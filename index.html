@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RingBack — the AI receptionist that books the job while you're on the tools</title>
+<meta name="description" content="RingBack answers every call for Australian trades, remembers repeat customers, books the job into your calendar and texts you the details. Founding plan: no setup fee, $150/month.">
+<link rel="canonical" href="https://ringback-chi.vercel.app/">
+<meta name="theme-color" content="#0a1913">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RingBack — every call answered, every job booked">
+<meta property="og:description" content="The AI receptionist for Australian trades. Answers in 2 seconds, remembers repeat callers, books straight into your calendar.">
+<meta property="og:url" content="https://ringback-chi.vercel.app/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f8f4; --panel:#ffffff; --panel-2:#fbfcfa;
+  --ink:#0f1a15; --ink-2:#4c5c54; --ink-3:#87938a;
+  --line:rgba(15,26,21,.11); --line-2:rgba(15,26,21,.07);
+  --acc:#146b42; --acc-2:#0c4c2e; --acc-ink:#ffffff; --acc-soft:rgba(20,107,66,.08);
+  --bright:#3ecf82;
+  --dark:#0a1913; --dark-2:#102a1f; --dark-3:#173a2b;
+  --dark-line:rgba(255,255,255,.12); --dark-line-2:rgba(255,255,255,.08);
+  --dark-ink-2:rgba(232,240,235,.68); --dark-ink-3:rgba(232,240,235,.44);
+  --warn:#b8730f;
+  --ease:cubic-bezier(.32,.72,0,1);
+  --r-lg:28px; --r-md:18px; --r-sm:12px;
+  --sans:'Geist',system-ui,sans-serif; --mono:'Geist Mono',ui-monospace,monospace;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+.sec{padding:clamp(72px,11vh,132px) 0}
+main,header,footer,nav{position:relative;z-index:2}
+
+/* ---------- top utility strip (Twilio-style thin bar) ---------- */
+.util{background:var(--dark);color:var(--dark-ink-3);font-size:12.5px}
+.util .wrap{display:flex;justify-content:flex-end;align-items:center;gap:22px;height:38px}
+.util a{display:flex;align-items:center;gap:6px;transition:color .3s var(--ease)}
+.util a:hover{color:#fff}
+.util i{font-size:13px}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(247,248,244,.86);backdrop-filter:blur(20px) saturate(180%);
+ border-bottom:1px solid var(--line-2)}
+.nav-in{display:flex;align-items:center;gap:30px;height:74px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px var(--acc-soft);flex:none}
+.nlinks{display:flex;gap:28px;font-size:14.5px;color:var(--ink-2);margin-right:auto}
+.nlinks a{transition:color .3s var(--ease)}
+.nlinks a:hover{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-weight:600;font-size:14.5px;
+ padding:11px 20px;border-radius:999px;border:1px solid transparent;cursor:pointer;white-space:nowrap;
+ transition:transform .5s var(--ease),background .3s var(--ease),border-color .3s var(--ease),color .3s var(--ease)}
+.btn.ic-r{padding:11px 11px 11px 22px}
+.btn .ic{width:28px;height:28px;border-radius:999px;display:grid;place-items:center;font-size:14px;flex:none;
+ transition:transform .5s var(--ease)}
+.btn:hover .ic{transform:translate(3px,-1px)}
+.btn:active{transform:scale(.978)}
+.btn-p{background:var(--acc);color:var(--acc-ink)}
+.btn-p .ic{background:rgba(255,255,255,.20)}
+.btn-p:hover{background:var(--acc-2)}
+.btn-bright{background:var(--bright);color:#06120c}
+.btn-bright .ic{background:rgba(6,18,12,.14)}
+.btn-bright:hover{background:#5adb96}
+.btn-g{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-g .ic{background:rgba(15,26,21,.06)}
+.btn-g:hover{border-color:rgba(15,26,21,.3)}
+.btn-g-dark{background:transparent;color:#fff;border-color:var(--dark-line)}
+.btn-g-dark .ic{background:rgba(255,255,255,.10)}
+.btn-g-dark:hover{border-color:rgba(255,255,255,.35)}
+.btn-lg{font-size:15.5px;padding:14px 24px}
+.btn-lg.ic-r{padding:14px 14px 14px 26px}
+.burger{display:none;width:42px;height:42px;border-radius:999px;border:1px solid var(--line);background:transparent;cursor:pointer;position:relative}
+.burger span{position:absolute;left:12px;width:18px;height:1.6px;background:var(--ink);border-radius:2px;transition:transform .5s var(--ease),opacity .3s}
+.burger span:nth-child(1){top:17px}.burger span:nth-child(2){top:23px}
+body.menu .burger span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+body.menu .burger span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+.sheet{position:fixed;inset:0;z-index:55;background:rgba(10,25,19,.97);backdrop-filter:blur(26px);color:#fff;
+ display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 32px;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+body.menu .sheet{opacity:1;pointer-events:auto}
+.sheet a{font-size:30px;font-weight:600;letter-spacing:-.02em;padding:11px 0;opacity:0;transform:translateY(26px);
+ transition:opacity .6s var(--ease),transform .6s var(--ease)}
+body.menu .sheet a{opacity:1;transform:none}
+body.menu .sheet a:nth-child(1){transition-delay:.06s}body.menu .sheet a:nth-child(2){transition-delay:.11s}
+body.menu .sheet a:nth-child(3){transition-delay:.16s}body.menu .sheet a:nth-child(4){transition-delay:.21s}
+
+/* ---------- dark section shell ---------- */
+.dk{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+.dk:before{content:"";position:absolute;inset:0;pointer-events:none;
+ background:radial-gradient(560px 420px at 88% -10%,rgba(62,207,130,.16),transparent 60%),
+             radial-gradient(520px 460px at -10% 110%,rgba(62,207,130,.08),transparent 60%)}
+.dk .wrap{position:relative;z-index:1}
+.dk .ink-2{color:var(--dark-ink-2)}
+.dk .ink-3{color:var(--dark-ink-3)}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(56px,9vh,96px) 0 clamp(56px,9vh,100px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,64px);align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:600;letter-spacing:.16em;
+ text-transform:uppercase;color:var(--bright);background:rgba(62,207,130,.12);border:1px solid rgba(62,207,130,.28);
+ padding:7px 15px;border-radius:999px;margin-bottom:26px}
+.eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--bright);animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+h1{font-size:clamp(40px,6vw,74px);line-height:1.02;letter-spacing:-.04em;font-weight:700}
+h1 em{font-style:normal;color:var(--bright)}
+.lede{margin-top:22px;font-size:clamp(16.5px,1.5vw,19px);max-width:44ch}
+.hero-cta{display:flex;gap:13px;flex-wrap:wrap;margin-top:34px}
+.hero-note{margin-top:20px;font-size:13.5px;display:flex;align-items:center;gap:8px}
+.hero-note i{color:var(--bright)}
+
+/* phone demo card — glass, dark-context */
+.shell{background:rgba(255,255,255,.06);border:1px solid var(--dark-line);border-radius:var(--r-lg);padding:9px;
+ box-shadow:0 50px 100px -50px rgba(0,0,0,.7)}
+.core{background:rgba(255,255,255,.03);border:1px solid var(--dark-line-2);
+ border-radius:calc(var(--r-lg) - 9px);overflow:hidden}
+.dbar{display:flex;align-items:center;gap:9px;padding:14px 18px;border-bottom:1px solid var(--dark-line-2);font-size:12.5px;color:var(--dark-ink-3)}
+.live{display:inline-flex;align-items:center;gap:7px;color:var(--bright);font-weight:600}
+.live .d{width:7px;height:7px;border-radius:50%;background:var(--bright);animation:pulse 1.8s var(--ease) infinite}
+.dbody{padding:22px 20px 24px}
+.wave{display:flex;align-items:flex-end;gap:3px;height:52px;margin-bottom:20px;padding:0 2px}
+.wave i{flex:1;min-height:4px;background:var(--bright);opacity:.85;border-radius:2px;
+ animation:eq 1.5s var(--ease) infinite;transform-origin:bottom}
+@keyframes eq{0%,100%{transform:scaleY(.22)}50%{transform:scaleY(1)}}
+.turn{display:flex;gap:11px;margin-bottom:13px;opacity:0;transform:translateY(10px);animation:rise .7s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.who{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-ink-3);
+ width:52px;flex:none;padding-top:4px}
+.said{font-size:14.5px;color:#f2f5f2;background:rgba(255,255,255,.05);border:1px solid var(--dark-line-2);
+ padding:11px 15px;border-radius:14px;border-top-left-radius:5px}
+.turn.ai .said{background:rgba(62,207,130,.12);border-color:rgba(62,207,130,.24)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;padding-top:17px;border-top:1px solid var(--dark-line-2)}
+.chip{font-family:var(--mono);font-size:10.5px;color:var(--bright);background:rgba(62,207,130,.10);
+ border:1px solid rgba(62,207,130,.24);padding:5px 10px;border-radius:7px}
+
+/* ---------- integrations pill strip ---------- */
+.strip{border-bottom:1px solid var(--line-2);padding:30px 0;background:var(--panel)}
+.strip-in{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.strip p{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.pillrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{font-size:13.5px;font-weight:500;color:var(--ink-2);letter-spacing:-.01em;
+ border:1px solid var(--line);padding:7px 15px;border-radius:999px;background:var(--panel-2);
+ transition:border-color .3s var(--ease),color .3s var(--ease)}
+.pill:hover{border-color:rgba(20,107,66,.4);color:var(--acc)}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-2);
+ border:1px solid var(--line-2);border-radius:var(--r-md);overflow:hidden}
+.stat{background:#fff;padding:28px 22px}
+.stat b{display:block;font-size:clamp(27px,3vw,36px);font-weight:700;letter-spacing:-.03em;color:var(--acc)}
+.stat span{display:block;font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.45}
+.stat cite{display:block;font-style:normal;font-size:11px;color:var(--ink-3);margin-top:9px}
+
+/* ---------- dark statement band (Twilio "infrastructure behind every magical moment" pattern) ---------- */
+.statement{border-radius:var(--r-lg);padding:clamp(40px,7vw,72px) clamp(28px,6vw,64px);position:relative;overflow:hidden}
+.statement h2{color:#fff;font-size:clamp(30px,4.4vw,50px);line-height:1.08;letter-spacing:-.035em;font-weight:700;max-width:22ch}
+.statement > p{margin-top:16px;color:var(--dark-ink-2);font-size:16.5px;max-width:52ch}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:clamp(32px,5vw,48px)}
+.frame{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/10;background:#122b20;
+ border:1px solid var(--dark-line-2)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,14,0) 40%,rgba(8,18,14,.88) 100%)}
+.frame .cap{position:absolute;left:22px;right:22px;bottom:20px;z-index:2;color:#fff}
+.frame .cap b{display:block;font-size:18px;font-weight:600;letter-spacing:-.02em;margin-bottom:4px}
+.frame .cap span{font-size:14px;color:rgba(255,255,255,.86);line-height:1.5}
+@media(max-width:860px){.story{grid-template-columns:1fr}}
+
+/* ---------- section heads ---------- */
+.shead{max-width:60ch;margin-bottom:44px}
+.shead h2{font-size:clamp(28px,3.6vw,44px);line-height:1.08;letter-spacing:-.035em;font-weight:700}
+.shead p{margin-top:14px;color:var(--ink-2);font-size:16.5px}
+.shead.dk h2{color:#fff}.shead.dk p{color:var(--dark-ink-2)}
+
+/* ---------- feature bento with tag row (Twilio "Products" pill pattern) ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);
+ padding:26px 24px;height:100%;box-shadow:0 1px 2px rgba(15,26,21,.04);
+ transition:transform .6s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease)}
+.card:hover{transform:translateY(-4px);border-color:rgba(20,107,66,.32);box-shadow:0 22px 46px -30px rgba(15,26,21,.28)}
+.c-a{grid-column:span 3}.c-b{grid-column:span 3}.c-c{grid-column:span 2}
+.card i.gi{font-size:26px;color:var(--acc);display:block;margin-bottom:15px}
+.card h3{font-size:18px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
+.card p{font-size:14.5px;color:var(--ink-2);line-height:1.6}
+
+/* ---------- flow ---------- */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.step{position:relative;padding:24px 20px;background:#fff;border:1px solid var(--line-2);border-radius:var(--r-md);box-shadow:0 1px 2px rgba(15,26,21,.04)}
+.step:before{counter-increment:s;content:"0" counter(s);font-family:var(--mono);font-size:11px;color:var(--acc);display:block;margin-bottom:13px}
+.step h4{font-size:16px;font-weight:600;margin-bottom:7px;letter-spacing:-.015em}
+.step p{font-size:14px;color:var(--ink-2);line-height:1.55}
+
+/* ---------- pricing ---------- */
+.price-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:stretch}
+.plan{background:var(--dark);color:#fff;border-radius:var(--r-lg);padding:34px 32px;position:relative;
+ box-shadow:0 34px 70px -44px rgba(10,25,19,.6);overflow:hidden}
+.plan:before{content:"";position:absolute;inset:0;pointer-events:none;
+ background:radial-gradient(420px 320px at 100% 0%,rgba(62,207,130,.18),transparent 60%)}
+.plan .tag{position:relative;z-index:1;display:inline-block;background:var(--bright);color:#06120c;font-size:11px;font-weight:700;
+ letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.plan h3{position:relative;z-index:1;font-size:19px;font-weight:600;letter-spacing:-.02em}
+.plan .amt{position:relative;z-index:1;display:flex;align-items:baseline;gap:9px;margin:18px 0 6px}
+.plan .amt b{font-size:clamp(40px,5.5vw,58px);font-weight:700;letter-spacing:-.045em;line-height:1}
+.plan .amt s{color:var(--dark-ink-3);font-size:19px;text-decoration-thickness:1.5px}
+.plan .amt em{position:relative;font-style:normal;color:var(--dark-ink-2);font-size:15px}
+.plan .sub{position:relative;z-index:1;color:var(--dark-ink-2);font-size:14.5px;margin-bottom:24px}
+.plan ul{position:relative;z-index:1;list-style:none;display:grid;gap:11px;margin-bottom:28px}
+.plan li{display:flex;gap:11px;font-size:14.5px;color:var(--dark-ink-2);align-items:flex-start}
+.plan li i{color:var(--bright);font-size:17px;flex:none;margin-top:1px}
+.compare{background:#fff;border:1px solid var(--line-2);border-radius:var(--r-lg);padding:34px 32px;box-shadow:0 1px 2px rgba(15,26,21,.04)}
+.compare h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:22px;font-weight:600}
+.crow{display:flex;justify-content:space-between;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line-2);gap:14px}
+.crow:last-of-type{border-bottom:none}
+.crow span{font-size:14.5px;color:var(--ink-2)}
+.crow b{font-size:17px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.crow.win b{color:var(--acc)}
+.saveline{margin-top:20px;padding:15px 17px;background:var(--acc-soft);border:1px solid rgba(20,107,66,.2);
+ border-radius:14px;font-size:14px;color:var(--ink)}
+.saveline b{color:var(--acc)}
+.fineprint{margin-top:16px;font-size:12.5px;color:var(--ink-3);line-height:1.6}
+
+/* ---------- faq ---------- */
+.faq{max-width:820px}
+.q{border:1px solid var(--line-2);border-radius:16px;background:#fff;margin-bottom:11px;overflow:hidden;box-shadow:0 1px 2px rgba(15,26,21,.04)}
+.q summary{cursor:pointer;list-style:none;padding:19px 24px;font-size:16px;font-weight:500;letter-spacing:-.015em;
+ display:flex;justify-content:space-between;align-items:center;gap:18px}
+.q summary::-webkit-details-marker{display:none}
+.q summary:after{content:"\002B";color:var(--acc);font-size:21px;font-weight:300;transition:transform .45s var(--ease);flex:none}
+.q[open] summary:after{transform:rotate(45deg)}
+.q .a{padding:0 24px 21px;color:var(--ink-2);font-size:15px;line-height:1.65;max-width:70ch}
+
+/* ---------- final cta (dark, Twilio "future. Build it." pattern) ---------- */
+.final{text-align:center;padding:clamp(20px,4vw,10px) 0}
+.final h2{color:#fff;font-size:clamp(30px,4.6vw,50px);line-height:1.08;letter-spacing:-.04em;font-weight:700;max-width:19ch;margin:0 auto}
+.final p{color:var(--dark-ink-2);margin:18px auto 30px;max-width:50ch;font-size:16.5px}
+.final .row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+
+/* ---------- footer (dark, Twilio multi-column pattern) ---------- */
+footer{padding:64px 0 40px}
+.f-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:44px;border-bottom:1px solid var(--dark-line-2)}
+.f-brand p{font-size:13.5px;color:var(--dark-ink-2);max-width:32ch;margin-top:12px;line-height:1.6}
+.f-cols{display:flex;gap:48px;flex-wrap:wrap}
+.f-col h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dark-ink-3);font-weight:700;
+ margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--dark-line-2);width:140px}
+.f-col a{display:block;font-size:14px;color:var(--dark-ink-2);margin-bottom:11px;transition:color .3s var(--ease)}
+.f-col a:hover{color:#fff}
+.f-bot{margin-top:30px;padding-top:24px;font-size:12.5px;color:var(--dark-ink-3);
+ display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr}
+  .price-grid{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}.c-a,.c-b,.c-c{grid-column:span 1}
+  .flow{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .f-cols{gap:32px}
+}
+@media(max-width:760px){
+  .util{display:none}
+  .nlinks,.nav-cta{display:none}
+  .burger{display:block}
+  .nav-in{gap:14px}
+  .flow{grid-template-columns:1fr}
+  .sec{padding:64px 0}
+  h1{font-size:clamp(34px,9vw,44px)}
+  .f-top{flex-direction:column;gap:28px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="wrap">
+    <a href="tel:+61340135000"><i class="ph-fill ph-phone-call"></i>+61 3 4013 5000</a>
+    <a href="#faq"><i class="ph-bold ph-question"></i>FAQ</a>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand"><span class="dot"></span>RingBack</a>
+    <div class="nlinks">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-g" href="#pricing">See pricing</a>
+      <a class="btn btn-p ic-r" href="tel:+61340135000"><span>Hear it live</span><span class="ic"><i class="ph-fill ph-phone-call"></i></span></a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</nav>
+<div class="sheet" id="sheet">
+  <a href="#how">How it works</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#faq">FAQ</a>
+  <a href="tel:+61340135000">Hear it live &nearr;</a>
+</div>
+
+<header class="hero dk" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow"><span class="pulse"></span>Founding plan · 5 spots</span>
+        <h1>Every call answered.<br><em>Every job booked.</em></h1>
+        <p class="lede ink-2">RingBack picks up in two seconds, knows your repeat customers, books the job in your calendar and texts you the details.</p>
+        <div class="hero-cta">
+          <a class="btn btn-bright btn-lg ic-r" href="tel:+61340135000"><span>Call the demo line</span><span class="ic"><i class="ph-fill ph-phone-call"></i></span></a>
+          <a class="btn btn-g-dark btn-lg ic-r" href="#pricing"><span>See pricing</span><span class="ic"><i class="ph-bold ph-arrow-down"></i></span></a>
+        </div>
+        <p class="hero-note ink-2"><i class="ph-fill ph-check-circle"></i>Ring it yourself. It answers like it would for your business.</p>
+      </div>
+
+      <div class="shell rv">
+        <div class="core">
+          <div class="dbar"><span class="live"><span class="d"></span>Live call</span><span>·</span><span>Burst pipe, Kedron</span></div>
+          <div class="dbody">
+            <div class="wave" id="wave" aria-hidden="true"></div>
+            <div class="turn" style="animation-delay:.15s"><span class="who">Caller</span><span class="said">Hi, I've got water coming through the kitchen ceiling.</span></div>
+            <div class="turn ai" style="animation-delay:.65s"><span class="who">RingBack</span><span class="said">That sounds urgent. I can get Dan out today. Are you still at 14 Kirkland Ave?</span></div>
+            <div class="turn" style="animation-delay:1.15s"><span class="who">Caller</span><span class="said">Yeah, same place as last winter.</span></div>
+            <div class="turn ai" style="animation-delay:1.65s"><span class="who">RingBack</span><span class="said">Booked for 2:15pm. Dan's got your notes from the hot water job. Text confirmation on its way.</span></div>
+            <div class="chips">
+              <span class="chip">repeat caller matched</span>
+              <span class="chip">urgency: emergency</span>
+              <span class="chip">calendar held 2:15pm</span>
+              <span class="chip">SMS sent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="strip">
+  <div class="wrap strip-in">
+    <p>Plugs into the tools you already run</p>
+    <div class="pillrow">
+      <span class="pill">ServiceM8</span><span class="pill">Tradify</span><span class="pill">simPRO</span>
+      <span class="pill">Xero</span><span class="pill">Google Calendar</span><span class="pill">Twilio</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="stats rv">
+      <div class="stat"><b>62%</b><span>of trade calls go unanswered</span><cite>ServiceTitan / 411 Locals</cite></div>
+      <div class="stat"><b>86%</b><span>of callers hang up on voicemail</span><cite>Invoca call data</cite></div>
+      <div class="stat"><b>2 sec</b><span>average answer time</span><cite>RingBack platform</cite></div>
+      <div class="stat"><b>$780</b><span>typical value of one missed job</span><cite>AU trades average</cite></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="statement dk rv">
+      <h2>You can't answer the phone with your hands full.</h2>
+      <p>Nobody's bad at their job because they missed a call. They were under a sink. RingBack picks it up so the work keeps coming.</p>
+      <div class="story">
+        <div class="frame"><img src="https://pub.hyperagent.com/api/published/pbf01KYHQ14C6_T7NEP33NX741402W/e40a8482-77c1-4e38-ae4f-08a0a97319f0.png" alt="Australian plumber working under a kitchen sink while his phone rings on the floor beside him" loading="lazy">
+          <div class="cap"><b>4:40pm, hands full</b><span>The phone rings on the floor. That job goes to whoever picks up first.</span></div>
+        </div>
+        <div class="frame"><img src="https://pub.hyperagent.com/api/published/pbf01KYHQ2Z3K_32ZRZC2FRDYJKKYB/485704a1-ec85-4d89-abce-baecc581fa97.png" alt="Australian electrician beside his ute at golden hour checking a job booked on his phone" loading="lazy">
+          <div class="cap"><b>4:41pm, booked</b><span>Answered, qualified, in the diary. You read the summary when you're done.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead rv">
+      <h2>Built around your customer history, not just the phone call.</h2>
+      <p>The voice is the surface. What makes it worth paying for is what happens underneath it.</p>
+    </div>
+    <div class="bento">
+      <div class="card rv c-a">
+        <i class="gi ph-light ph-user-focus"></i>
+        <h3>It remembers who's calling</h3>
+        <p>Repeat callers get recognised by number. RingBack pulls their address, last job and any notes, so nobody repeats themselves and you look like you never forget a customer.</p>
+      </div>
+      <div class="card rv c-b">
+        <i class="gi ph-light ph-calendar-check"></i>
+        <h3>It books, it doesn't just take messages</h3>
+        <p>Reads your live calendar, offers real windows, holds the slot and sends the confirmation SMS. You get a job in the diary, not a callback list to work through at 8pm.</p>
+      </div>
+      <div class="card rv c-c">
+        <i class="gi ph-light ph-arrows-split"></i>
+        <h3>Warm handoff</h3>
+        <p>Anything it can't handle rings straight through to you with the context already gathered.</p>
+      </div>
+      <div class="card rv c-c">
+        <i class="gi ph-light ph-shield-check"></i>
+        <h3>It won't quote for you</h3>
+        <p>Locked to your rules. No pricing promises, no scope commitments, no arguing with anyone.</p>
+      </div>
+      <div class="card rv c-c">
+        <i class="gi ph-light ph-chat-teardrop-text"></i>
+        <h3>Crew brief</h3>
+        <p>Every job lands with a plain-English summary of the call, so whoever's driving knows the story.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead rv"><h2>From ring to booked job.</h2></div>
+    <div class="flow">
+      <div class="step rv"><h4>Phone rings</h4><p>Missed, after hours, or while you're already on a call. RingBack picks up in two seconds.</p></div>
+      <div class="step rv"><h4>Caller identified</h4><p>Known number matches to history. New number gets asked the right questions for your trade.</p></div>
+      <div class="step rv"><h4>Job booked</h4><p>Real slot from your live calendar, held and confirmed by SMS while they're still on the line.</p></div>
+      <div class="step rv"><h4>You get the brief</h4><p>Name, address, problem, urgency and the full transcript, in your phone before you're off the tools.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead rv">
+      <h2>Founding pricing. No setup fee.</h2>
+      <p>Five founding spots at this rate. In exchange I want honest feedback and, if it works, permission to use your name.</p>
+    </div>
+    <div class="price-grid">
+      <div class="plan rv">
+        <span class="tag">Founding · 5 spots</span>
+        <h3>Founding operator</h3>
+        <div class="amt"><s>$1,200 setup</s><b>$0</b></div>
+        <div class="amt" style="margin-top:2px"><b>$150</b><em>/month for the first 3 months</em></div>
+        <p class="sub">Then $299/month. Cancel any time, keep your number.</p>
+        <ul>
+          <li><i class="ph-fill ph-check-circle"></i>Built and launched for you inside 48 hours</li>
+          <li><i class="ph-fill ph-check-circle"></i>Your own AU number, or forward your existing one</li>
+          <li><i class="ph-fill ph-check-circle"></i>Caller memory, calendar booking, SMS confirmations</li>
+          <li><i class="ph-fill ph-check-circle"></i>ServiceM8 / Tradify / simPRO handoff</li>
+          <li><i class="ph-fill ph-check-circle"></i>Call minutes included up to 300/month</li>
+          <li><i class="ph-fill ph-check-circle"></i>I tune the script with you in week one</li>
+        </ul>
+        <a class="btn btn-bright btn-lg ic-r" href="https://cal.com/ringback/setup"><span>Claim a founding spot</span><span class="ic"><i class="ph-bold ph-arrow-right"></i></span></a>
+      </div>
+
+      <div class="compare rv">
+        <h4>What answering costs you now</h4>
+        <div class="crow"><span>Full-time receptionist, loaded</span><b>$6,500/mo</b></div>
+        <div class="crow"><span>Part-time office admin</span><b>$2,900/mo</b></div>
+        <div class="crow"><span>Traditional answering service</span><b>$400–900/mo</b></div>
+        <div class="crow win"><span>RingBack, founding rate</span><b>$150/mo</b></div>
+        <div class="saveline">One recovered job a month covers it <b>five times over</b>. The average missed trade job in Australia is worth about $780.</div>
+        <p class="fineprint">Receptionist figure based on Jobs and Skills Australia median full-time earnings (~$5,326/month gross) plus superannuation, leave loading and workers' compensation. Call minutes beyond the included 300 are billed at cost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead rv"><h2>Straight answers before you switch it on.</h2></div>
+    <div class="faq">
+      <details class="q rv"><summary>Will callers know it is AI?</summary><div class="a">Most don't ask. It answers with your business name, speaks in plain Australian English and doesn't pretend to be a specific person. If someone asks directly, it tells them it's the automated booking line and offers to put them through to you.</div></details>
+      <details class="q rv"><summary>What happens when it can't help?</summary><div class="a">It stops trying. Anything outside its rules gets a warm handoff to your mobile with the caller's name, number and problem already captured, or a callback booked in if you're unreachable.</div></details>
+      <details class="q rv"><summary>Can it promise a price?</summary><div class="a">No, and that's deliberate. It's locked out of quoting, discounting and committing to scope. It gathers the job details and books the visit. You keep every pricing conversation.</div></details>
+      <details class="q rv"><summary>Does it work with my job software?</summary><div class="a">Jobs push into ServiceM8, Tradify and simPRO. If you run something else, tell me on the setup call and I'll confirm before you pay anything.</div></details>
+      <details class="q rv"><summary>How quickly can we launch?</summary><div class="a">Inside 48 hours. Setup call, I build the flow for your trade and suburb, you call it and pick it apart, then we point your number at it.</div></details>
+      <details class="q rv"><summary>What if I hate it?</summary><div class="a">Cancel and we unpoint the number the same day. No lock-in contract, no exit fee. You were a founding customer, not a hostage.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec dk">
+  <div class="wrap">
+    <div class="final rv">
+      <h2>Let the next call become the next job.</h2>
+      <p>Ring the demo line and hear exactly what your customers would hear. It takes ninety seconds.</p>
+      <div class="row">
+        <a class="btn btn-bright btn-lg ic-r" href="tel:+61340135000"><span>Call the demo line</span><span class="ic"><i class="ph-fill ph-phone-call"></i></span></a>
+        <a class="btn btn-g-dark btn-lg ic-r" href="https://cal.com/ringback/setup"><span>Book a setup call</span><span class="ic"><i class="ph-bold ph-arrow-up-right"></i></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="dk">
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-brand">
+        <a href="#top" class="brand"><span class="dot" style="background:var(--bright);box-shadow:0 0 0 4px rgba(62,207,130,.16)"></span>RingBack</a>
+        <p>The AI receptionist for Australian trades. Built and supported by one person who answers the phone.</p>
+      </div>
+      <div class="f-cols">
+        <div class="f-col">
+          <h5>Product</h5>
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="f-col">
+          <h5>Talk to it</h5>
+          <a href="tel:+61340135000">Demo line</a>
+          <a href="https://cal.com/ringback/setup">Book a setup call</a>
+        </div>
+      </div>
+    </div>
+    <div class="f-bot">
+      <span>&copy; 2026 RingBack</span>
+      <span>Brisbane, Australia</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var w=document.getElementById('wave');
+  if(w){for(var i=0;i<44;i++){var b=document.createElement('i');
+    b.style.animationDelay=(i*0.045).toFixed(2)+'s';
+    b.style.animationDuration=(1.1+Math.random()*0.9).toFixed(2)+'s';
+    w.appendChild(b);}}
+  var b=document.getElementById('burger');
+  if(b)b.addEventListener('click',function(){document.body.classList.toggle('menu')});
+  document.querySelectorAll('.sheet a').forEach(function(a){
+    a.addEventListener('click',function(){document.body.classList.remove('menu')})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')document.body.classList.remove('menu')});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){
+      if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},
+      {threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el,i){
+      el.style.transitionDelay=(Math.min(i,4)*0.06)+'s';io.observe(el)});
+  } else { document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')}); }
+})();
+</script>
+</body>
+</html>
