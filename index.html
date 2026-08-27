@@ -142,6 +142,37 @@ h1 em{font-style:normal;color:var(--bright)}
 .chip{font-family:var(--mono);font-size:10.5px;color:var(--bright);background:rgba(62,207,130,.10);
  border:1px solid rgba(62,207,130,.24);padding:5px 10px;border-radius:7px}
 
+.watch-link{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-size:14.5px;font-weight:600;color:#fff}
+.watch-ic{width:30px;height:30px;border-radius:50%;background:var(--bright);color:#06120c;display:grid;place-items:center;font-size:12px;flex:none;transition:transform .4s var(--ease)}
+.watch-link:hover .watch-ic{transform:scale(1.1)}
+.watch-time{font-family:var(--mono);font-size:11.5px;color:var(--dark-ink-3);font-weight:500}
+
+/* ---------- demo video section ---------- */
+.vpanel{border-radius:var(--r-lg);padding:clamp(40px,7vw,72px) clamp(28px,6vw,64px);position:relative;overflow:hidden}
+.vpanel .shead{margin-bottom:clamp(28px,4vw,40px)}
+.vframe{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/9;background:#0d221a;
+ border:1px solid var(--dark-line-2);max-width:920px;margin:0 auto;box-shadow:0 50px 100px -50px rgba(0,0,0,.7)}
+.vframe img,.vframe video{width:100%;height:100%;object-fit:cover;display:block}
+.vframe:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,14,.05),rgba(8,18,14,.35));
+ pointer-events:none;transition:opacity .4s var(--ease)}
+.vframe.playing:after{opacity:0}
+.playbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;
+ background:rgba(255,255,255,.95);border:none;display:grid;place-items:center;cursor:pointer;z-index:2;
+ box-shadow:0 20px 50px -18px rgba(0,0,0,.6);transition:transform .4s var(--ease),background .3s var(--ease)}
+.playbtn i{font-size:26px;color:var(--dark);margin-left:4px}
+.playbtn:hover{transform:translate(-50%,-50%) scale(1.08);background:var(--bright)}
+.vframe.playing .playbtn{display:none}
+.vlabel{position:absolute;left:22px;bottom:20px;z-index:2;color:#fff;font-size:13.5px;
+ background:rgba(0,0,0,.35);backdrop-filter:blur(6px);padding:6px 13px;border-radius:999px;
+ display:flex;align-items:center;gap:8px}
+.vframe.playing .vlabel{display:none}
+.vlabel .d{width:6px;height:6px;border-radius:50%;background:var(--bright)}
+.vsoon{position:absolute;inset:0;z-index:3;display:none;align-items:center;justify-content:center;
+ background:rgba(8,18,14,.86);color:#fff;text-align:center;padding:24px}
+.vsoon.show{display:flex}
+.vsoon p{max-width:32ch;font-size:15px;color:var(--dark-ink-2)}
+.vsoon b{display:block;font-size:17px;margin-bottom:8px;color:#fff}
+
 /* ---------- integrations pill strip ---------- */
 .strip{border-bottom:1px solid var(--line-2);padding:30px 0;background:var(--panel)}
 .strip-in{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
@@ -326,6 +357,7 @@ footer{padding:64px 0 40px}
           <a class="btn btn-g-dark btn-lg ic-r" href="#pricing"><span>See pricing</span><span class="ic"><i class="ph-bold ph-arrow-down"></i></span></a>
         </div>
         <p class="hero-note ink-2"><i class="ph-fill ph-check-circle"></i>Ring it yourself. It answers like it would for your business.</p>
+        <a class="watch-link" href="#demo-video"><span class="watch-ic"><i class="ph-fill ph-play"></i></span>Watch it answer a real call<span class="watch-time">0:47</span></a>
       </div>
 
       <div class="shell rv">
@@ -349,6 +381,24 @@ footer{padding:64px 0 40px}
     </div>
   </div>
 </header>
+
+<section class="sec dk" id="demo-video">
+  <div class="wrap">
+    <div class="vpanel dk rv">
+      <div class="shead dk" style="margin:0 auto 40px;text-align:center">
+        <span class="eyebrow" style="margin:0 auto 20px">See it in action</span>
+        <h2>Hear the whole call, start to finish.</h2>
+        <p style="margin-left:auto;margin-right:auto">No script reading, no robotic pauses. This is what a customer actually hears when RingBack picks up.</p>
+      </div>
+      <div class="vframe" id="vframe" data-video-src="">
+        <img src="https://pub.hyperagent.com/api/published/pbf01KYHQ14C6_T7NEP33NX741402W/e40a8482-77c1-4e38-ae4f-08a0a97319f0.png" alt="Preview frame for the RingBack demo call video" loading="lazy">
+        <span class="vlabel"><span class="d"></span>0:47</span>
+        <button class="playbtn" id="playbtn" aria-label="Play demo video"><i class="ph-fill ph-play"></i></button>
+        <div class="vsoon" id="vsoon"><div><b>Demo video coming soon</b><p>This player is wired up and ready — drop your own clip in and it plays right here.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="strip">
   <div class="wrap strip-in">
@@ -535,6 +585,21 @@ footer{padding:64px 0 40px}
     b.style.animationDelay=(i*0.045).toFixed(2)+'s';
     b.style.animationDuration=(1.1+Math.random()*0.9).toFixed(2)+'s';
     w.appendChild(b);}}
+  var vframe=document.getElementById('vframe'), playbtn=document.getElementById('playbtn'), vsoon=document.getElementById('vsoon');
+  if(vframe&&playbtn){
+    playbtn.addEventListener('click',function(){
+      var src=vframe.getAttribute('data-video-src');
+      if(src){
+        var v=document.createElement('video');
+        v.src=src;v.controls=true;v.autoplay=true;v.playsInline=true;
+        var img=vframe.querySelector('img');if(img)img.remove();
+        vframe.insertBefore(v,vframe.firstChild);
+        vframe.classList.add('playing');
+      } else if(vsoon){
+        vsoon.classList.add('show');
+      }
+    });
+  }
   var b=document.getElementById('burger');
   if(b)b.addEventListener('click',function(){document.body.classList.toggle('menu')});
   document.querySelectorAll('.sheet a').forEach(function(a){
