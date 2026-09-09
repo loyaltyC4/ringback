@@ -322,10 +322,10 @@ h1 .plain {
   padding-bottom: 38px;
 }
 .hg-stat {
-  grid-column: 1 / span 5;
+  grid-column: 1 / span 4;
 }
 .hg-claim {
-  grid-column: 6 / span 3;
+  grid-column: 5 / span 4;
 }
 /* the tall frame carries the whole right edge, rows one and two */
 .hg-tall {
@@ -337,7 +337,7 @@ h1 .plain {
 .hg-wide {
   grid-column: 1 / span 3;
   grid-row: 2;
-  align-self: end;
+  align-self: start;
   aspect-ratio: 16 / 11;
   min-height: 0;
 }
@@ -348,8 +348,10 @@ h1 .plain {
 
 .statpill {
   height: 100%;
-  display: inline-flex;
+  width: 100%;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 18px;
   background: var(--color-bone-2);
   border-radius: 999px;
@@ -601,6 +603,7 @@ h1 .plain {
 .vidcap {
   position: absolute;
   inset: 0 0 auto 0;
+  max-width: 30ch;
   border-radius: 15px;
   padding: 11px 15px;
   font-size: 13.5px;
