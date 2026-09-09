@@ -228,8 +228,10 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 112px 0 0;
+  /* pinned near the top rather than optically centred: at ~910px of content
+     in a 900px viewport, centring pushed everything down into the fold */
+  justify-content: flex-start;
+  padding: clamp(88px, 10.5vh, 118px) 0 0;
   overflow: hidden;
 }
 .hero-inner {
@@ -270,7 +272,7 @@
 .hero-say {
   text-align: center;
   max-width: 940px;
-  margin: 0 auto clamp(30px, 4.2vh, 54px);
+  margin: 0 auto clamp(26px, 3.6vh, 46px);
 }
 .hero h1 {
   font-size: clamp(42px, 6.8vw, 88px);
@@ -748,11 +750,13 @@ h1 .plain {
 }
 .brandmark {
   display: block;
-  height: 26px;
+  height: 30px;
   flex: none;
   margin: 0 clamp(20px, 2.6vw, 40px);
-  background-color: var(--color-ink);
-  opacity: 0.58;
+  /* the ink is only revealed through the logo's alpha mask — if masking were
+     unsupported this would paint a solid rectangle, so it's guarded below */
+  background-color: transparent;
+  opacity: 0.72;
   -webkit-mask-image: var(--logo);
   mask-image: var(--logo);
   -webkit-mask-repeat: no-repeat;
@@ -765,8 +769,13 @@ h1 .plain {
     opacity 0.45s var(--e),
     background-color 0.45s var(--e);
 }
+@supports (mask-image: none) or (-webkit-mask-image: none) {
+  .brandmark {
+    background-color: var(--color-ink);
+  }
+}
 .marquee:hover .brandmark {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 .brandmark:hover {
   opacity: 1;
@@ -1600,6 +1609,105 @@ h1 .plain {
 }
 
 /* ============================================================
+   SECURITY & PRIVACY
+   ============================================================ */
+.secgrid {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(34px, 5vw, 84px);
+  align-items: start;
+  margin-top: clamp(34px, 5vh, 56px);
+}
+.sg-copy h2 {
+  font-size: clamp(30px, 3.7vw, 52px);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  margin-top: 18px;
+}
+.sg-copy h2 .g {
+  color: var(--color-forest);
+}
+.sg-copy p {
+  margin-top: 18px;
+  color: var(--color-ink-2);
+  font-size: 16.5px;
+  max-width: 40ch;
+}
+.sg-copy .btn {
+  margin-top: 28px;
+}
+
+.sg-list {
+  border-top: 1px solid var(--hair);
+}
+.sgrow {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 20px 2px;
+  border-bottom: 1px solid var(--hair-2);
+}
+.sg-ic {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--green-soft);
+  color: var(--color-forest);
+  margin-top: 1px;
+}
+.sg-ic svg {
+  width: 17px;
+  height: 17px;
+}
+.sgrow b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 16.5px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 5px;
+}
+.sgrow span.t {
+  display: block;
+  font-size: 14.5px;
+  color: var(--color-ink-2);
+  line-height: 1.6;
+  max-width: 54ch;
+}
+
+.sg-note {
+  margin-top: clamp(28px, 4vh, 44px);
+  border-radius: var(--radius-xl2, 32px);
+  border: 1px solid var(--hair);
+  background: rgba(253, 252, 249, 0.7);
+  padding: clamp(24px, 3vw, 36px);
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.sg-note .sg-ic {
+  background: var(--amber-soft);
+  color: var(--color-amber);
+}
+.sg-note b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 7px;
+}
+.sg-note p {
+  font-size: 15px;
+  color: var(--color-ink-2);
+  line-height: 1.65;
+  max-width: 78ch;
+}
+
+/* ============================================================
    PRICING
    ============================================================ */
 .price {
@@ -2021,7 +2129,8 @@ footer {
   .bento,
   .split,
   .price,
-  .proof {
+  .proof,
+  .secgrid {
     grid-template-columns: 1fr;
   }
   .split .vis {
@@ -2156,7 +2265,7 @@ footer {
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 900px) {
   /* the two islands collapse to a brand pill and a burger pill */
   .nlinks,
   .nav-rule,
@@ -2205,5 +2314,10 @@ footer {
   }
   .final {
     border-radius: 24px;
+  }
+  .sg-note {
+    flex-direction: column;
+    gap: 14px;
+    border-radius: 20px;
   }
 }

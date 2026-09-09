@@ -89,6 +89,7 @@ export function useReveals() {
 const LINKS = [
   { href: "#stages", label: "How it works" },
   { href: "#followups", label: "Follow-ups" },
+  { href: "#security", label: "Security" },
   { href: "#pricing", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
 ];
@@ -245,6 +246,7 @@ export function Footer() {
               <h5>Product</h5>
               <a href="#stages">How it works</a>
               <a href="#followups">Follow-ups</a>
+              <a href="#security">Security &amp; privacy</a>
               <a href="#pricing">Pricing</a>
               <a href="#faq">FAQ</a>
             </div>

@@ -9,6 +9,7 @@ import {
   FollowUpTabs,
   Pricing,
   Proof,
+  Security,
   StatSplit,
 } from "@/components/sections";
 import { Footer, IntegrationStrip, Nav, useReveals } from "@/components/site-chrome";
@@ -26,6 +27,7 @@ export default function Home() {
       <Bento />
       <FollowUpTabs />
       <Proof />
+      <Security />
       <Pricing />
       <Faq />
       <FinalCta />

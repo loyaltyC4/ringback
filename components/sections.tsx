@@ -406,6 +406,165 @@ export function Proof() {
 }
 
 /* ============================================================
+   SECURITY & PRIVACY
+
+   Every claim here is either an architectural fact or an explicit
+   commitment. No certification language — RingBack holds none, and the
+   closing note says so rather than implying otherwise.
+   ============================================================ */
+
+function IcPin() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <circle cx="12" cy="10" r="2.6" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+function IcLock() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+      <rect x="4" y="10.5" width="16" height="10" rx="2.5" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+function IcSpeak() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M4 12a8 8 0 1 1 16 0v5a3 3 0 0 1-3 3h-2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <rect x="3" y="11" width="3.4" height="6" rx="1.7" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="17.6" y="11" width="3.4" height="6" rx="1.7" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+function IcDot() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="12" cy="12" r="3.2" fill="currentColor" />
+    </svg>
+  );
+}
+function IcNoTrain() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M6.5 17.5 17.5 6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+function IcExport() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M12 15.5V4m0 0L8 8m4-4 4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+function IcScale() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M12 4v16M6 8h12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M6 8 3.5 14h5L6 8Zm12 0-2.5 6h5L18 8Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+const SECURITY = [
+  {
+    icon: <IcPin />,
+    title: "Your calls stay in Australia",
+    text: "Call audio, transcripts and customer details are stored on Australian infrastructure. Nothing is shipped offshore to sit at rest.",
+  },
+  {
+    icon: <IcLock />,
+    title: "Encrypted in transit and at rest",
+    text: "Every call leg and every request runs over TLS. Stored audio and transcripts are encrypted on disk.",
+  },
+  {
+    icon: <IcSpeak />,
+    title: "It never pretends to be a person",
+    text: "It answers as your business, not as a named human. Ask it directly whether it's a machine and it says so, then offers to put you through.",
+  },
+  {
+    icon: <IcDot />,
+    title: "A recording notice on every call",
+    text: "On by default, because recording law differs from state to state. You can switch recording off entirely and keep transcripts only.",
+  },
+  {
+    icon: <IcNoTrain />,
+    title: "Your calls are not training data",
+    text: "Nothing said on your line is used to train or fine-tune a model — not ours, not a vendor's.",
+  },
+  {
+    icon: <IcExport />,
+    title: "Yours to export or erase",
+    text: "Pull every transcript out whenever you want. Cancel and the lot is deleted within 30 days, number released the same day.",
+  },
+];
+
+export function Security() {
+  return (
+    <section className="sec tight" id="security">
+      <div className="wrap">
+        <div className="shead rv" style={{ maxWidth: "none" }}>
+          <span className="kick">
+            <span className="bar" />
+            Security &amp; privacy
+          </span>
+        </div>
+        <div className="secgrid rv">
+          <div className="sg-copy">
+            <h2>
+              It answers your phone.{" "}
+              <span className="g">That earns you straight answers.</span>
+            </h2>
+            <p>
+              You&rsquo;re handing us the first conversation every new customer has
+              with your business. Here&rsquo;s exactly what happens to it.
+            </p>
+            <a className="btn btn-line" href="tel:+61340135000">
+              <span>Ask me anything on the setup call</span>
+              <span className="tic">✆</span>
+            </a>
+          </div>
+
+          <div className="sg-list">
+            {SECURITY.map((r) => (
+              <div className="sgrow" key={r.title}>
+                <span className="sg-ic">{r.icon}</span>
+                <div>
+                  <b>{r.title}</b>
+                  <span className="t">{r.text}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="sg-note rv">
+          <span className="sg-ic">
+            <IcScale />
+          </span>
+          <div>
+            <b>What we don&rsquo;t have, so you don&rsquo;t have to ask</b>
+            <p>
+              RingBack is a small Australian operation, not an enterprise vendor with
+              a compliance department. We hold no SOC 2 report and no ISO 27001
+              certificate, and we&rsquo;re not going to pretend otherwise with a badge
+              on a landing page. If your insurer or a strata client needs that on
+              paper, raise it on the setup call and I&rsquo;ll tell you honestly
+              whether we&rsquo;re the right fit yet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
    PRICING
    ============================================================ */
 
