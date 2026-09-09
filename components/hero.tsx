@@ -64,15 +64,11 @@ function AgentWindow() {
       <div className="aw-bar">
         <span className="aw-live" data-ringing={!beat.turns || undefined} />
         <span className="aw-who">Kedron Plumbing · booking line</span>
+        <span className="aw-state">{beat.status}</span>
         <span className="aw-timer">{beat.timer}</span>
       </div>
 
       <div className="aw-body">
-        <div className="aw-status">
-          <span className="aw-status-dot" />
-          {beat.status}
-        </div>
-
         <div className="aw-turns">
           {TURNS.map((t, k) => (
             <div
@@ -115,9 +111,7 @@ function AgentWindow() {
           <span>Ring it and listen</span>
           <span className="tic">✆</span>
         </a>
-        <p className="aw-fine">
-          Live agent · answers 24/7 · no credit card to try
-        </p>
+        <p className="aw-fine">Answers 24/7 · no credit card to try</p>
       </div>
     </div>
   );
