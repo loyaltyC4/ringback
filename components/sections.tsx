@@ -320,7 +320,12 @@ export function FollowUpTabs() {
                 </div>
                 <div className="tp-media">
                   <div className="tp-canvas">
-                    <ShaderBackground className="surface" uniforms={GREY_GRAIN} />
+                    {/* only the visible pane gets a WebGL context — five live
+                        canvases here pushed the page to 11 contexts, close to
+                        the per-page ceiling browsers enforce */}
+                    {k === i && (
+                      <ShaderBackground className="surface" uniforms={GREY_GRAIN} />
+                    )}
                     <div className="tp-cards">
                       {p.cards.map((c) => (
                         <div className="mcard" key={c.label}>
