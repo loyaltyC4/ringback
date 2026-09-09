@@ -704,12 +704,12 @@ h1 .plain {
 .strip {
   border-top: 1px solid var(--hair-2);
   border-bottom: 1px solid var(--hair-2);
-  padding: 24px 0;
+  padding: 30px 0 34px;
   background: rgba(253, 252, 249, 0.5);
   overflow: hidden;
 }
 .strip .strip-head {
-  margin-bottom: 16px;
+  margin-bottom: 22px;
 }
 .marquee {
   position: relative;
@@ -751,8 +751,8 @@ h1 .plain {
   height: 26px;
   flex: none;
   margin: 0 clamp(20px, 2.6vw, 40px);
-  background-color: var(--color-ink-2);
-  opacity: 0.5;
+  background-color: var(--color-ink);
+  opacity: 0.58;
   -webkit-mask-image: var(--logo);
   mask-image: var(--logo);
   -webkit-mask-repeat: no-repeat;
@@ -766,7 +766,7 @@ h1 .plain {
     background-color 0.45s var(--e);
 }
 .marquee:hover .brandmark {
-  opacity: 0.34;
+  opacity: 0.4;
 }
 .brandmark:hover {
   opacity: 1;
@@ -918,14 +918,19 @@ h1 .plain {
   max-width: 64%;
 }
 .bub .det {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 12.5px;
+  font-size: 12px;
   font-style: italic;
-  color: rgba(245, 242, 234, 0.86);
-  margin-bottom: 7px;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  color: rgba(245, 242, 234, 0.95);
+  margin-bottom: 8px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(14, 12, 9, 0.66);
+  border: 1px solid rgba(245, 242, 234, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .bub .det svg {
   width: 13px;
