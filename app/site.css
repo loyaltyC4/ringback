@@ -230,7 +230,7 @@
   min-height: calc(100dvh - 74px);
   display: flex;
   flex-direction: column;
-  padding: clamp(78px, 9vh, 104px) 0 0;
+  padding: clamp(66px, 7.5vh, 90px) 0 0;
   overflow: hidden;
 }
 .hero-inner {
@@ -277,11 +277,11 @@
   /* margin-top pushes the headline into the upper-middle of the hero rather
      than sitting straight under the nav; margin-bottom becomes 'auto' so any
      leftover height is absorbed between the headline and the grid */
-  margin: clamp(24px, 5.5vh, 68px) auto auto;
+  margin: clamp(16px, 3.4vh, 44px) auto auto;
 }
 .hero-grid {
   /* grid pins to the bottom edge of the hero (above the marquee) */
-  margin-top: clamp(30px, 4.5vh, 54px);
+  margin-top: clamp(22px, 3.2vh, 38px);
 }
 .hero h1 {
   font-size: clamp(42px, 6.8vw, 88px);
