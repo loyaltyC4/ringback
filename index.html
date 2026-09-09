@@ -530,12 +530,18 @@ h1 .plain{display:block;margin-top:.06em}
   font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
   padding:7px 15px;border-radius:var(--r-pill);margin-bottom:26px}
 .plan h3{font-size:24px;letter-spacing:-.035em}
-.plan .amt{display:flex;align-items:baseline;gap:12px;margin:22px 0 6px;flex-wrap:wrap}
+.plan .amt{display:flex;align-items:baseline;gap:12px;margin:22px 0 10px;flex-wrap:wrap}
 .plan .amt s{color:var(--on-night-2);font-size:19px;text-decoration-thickness:1.5px}
 .plan .amt b{font-family:var(--display);font-size:clamp(50px,6.2vw,70px);font-weight:800;
   letter-spacing:-.06em;line-height:.92}
 .plan .amt em{font-style:normal;color:var(--on-night-2);font-size:15.5px}
-.plan .sub{color:var(--on-night-2);font-size:15px;margin-bottom:30px}
+.setupline{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;margin:0 0 14px;
+  font-size:14.5px;color:var(--on-night-2)}
+.setupline s{text-decoration-thickness:1.5px}
+.setupline b{font-family:var(--display);font-size:17px;font-weight:800;letter-spacing:-.03em;
+  color:var(--green-br)}
+.plan .sub{color:var(--on-night-2);font-size:15px;margin-bottom:30px;
+  padding-top:14px;border-top:1px solid rgba(245,242,234,.1)}
 .plan ul{list-style:none;display:grid;gap:1px;margin-bottom:32px;border-top:1px solid rgba(245,242,234,.1)}
 .plan li{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:rgba(245,242,234,.86);
   padding:14px 0;border-bottom:1px solid rgba(245,242,234,.1)}
@@ -1280,8 +1286,8 @@ footer{border-top:1px solid var(--hair-2);padding:clamp(52px,8vh,84px) 0 40px;
       <div class="plan rv"><div class="in">
         <span class="tag">Founding · 5 spots</span>
         <h3>Founding operator</h3>
-        <div class="amt"><s>$1,200 setup</s><b>$0</b></div>
-        <div class="amt" style="margin-top:0"><b>$150</b><em>/month for the first 3 months</em></div>
+        <div class="amt"><b>$150</b><em>/month for the first 3 months</em></div>
+        <div class="setupline"><span>Setup &amp; build</span><s>$1,200</s><b>$0 today</b></div>
         <p class="sub">Then $299/month. 30-day money-back guarantee.</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="m8 12.5 2.5 2.5L16 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Built and launched for you inside 48 hours</li>
