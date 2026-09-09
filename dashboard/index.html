@@ -89,6 +89,99 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 .skill .sk-tx span{font-size:12px;color:var(--ink-3)}
 .skill .tgl{margin-left:auto}
 
+/* sliders + range controls */
+.slider-row{display:grid;grid-template-columns:170px 1fr 56px;align-items:center;gap:14px;padding:13px 22px;border-bottom:1px solid var(--line-2)}
+.slider-row:last-child{border-bottom:none}
+.slider-row .sl-lb b{display:block;font-size:13.5px;font-weight:600}
+.slider-row .sl-lb span{font-size:11.5px;color:var(--ink-3)}
+.slider-row input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:99px;background:var(--bg-2);outline:none;cursor:pointer}
+.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--acc);border:3px solid #fff;box-shadow:0 2px 8px rgba(47,92,255,.4);cursor:grab}
+.slider-row input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--acc);border:3px solid #fff;box-shadow:0 2px 8px rgba(47,92,255,.4);cursor:grab}
+.slider-row .sl-val{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--acc-deep);text-align:right}
+
+/* segment control */
+.seg{display:inline-flex;background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:4px;gap:3px}
+.seg button{padding:8px 16px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--ink-2);transition:all .3s var(--ease)}
+.seg button.on{background:var(--panel);color:var(--ink);box-shadow:var(--shadow-sm)}
+
+/* voice studio cards */
+.voicelab{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+.voice-big{display:flex;align-items:center;gap:16px;border:1.5px solid var(--line);border-radius:var(--r-md);padding:18px;background:var(--panel-2)}
+.voice-big .vb-orb{width:64px;height:64px;border-radius:50%;flex:none;position:relative;overflow:hidden;box-shadow:0 12px 28px -10px rgba(47,92,255,.5)}
+.voice-big .vb-orb:before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,#2f5cff,#0da678,#4de3b0,#2f5cff);filter:blur(10px) saturate(150%);animation:orbspin 7s linear infinite}
+.voice-big .vb-meta b{display:block;font-family:var(--display);font-size:17px;letter-spacing:-.01em}
+.voice-big .vb-meta span{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+.voice-big .vb-play{margin-left:auto;width:44px;height:44px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-size:16px;border:none;transition:transform .3s var(--ease-spring)}
+.voice-big .vb-play:hover{transform:scale(1.08)}
+.voice-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.vstrip{border:1.5px solid var(--line);border-radius:13px;padding:13px 12px;text-align:center;cursor:pointer;background:var(--panel);transition:all .25s var(--ease)}
+.vstrip:hover{border-color:rgba(12,21,38,.25)}
+.vstrip.on{border-color:var(--acc);background:var(--acc-soft)}
+.vstrip .vs-av{width:38px;height:38px;border-radius:50%;margin:0 auto 8px;display:grid;place-items:center;font-weight:700;font-size:12px;color:#fff;font-family:var(--display)}
+.vstrip b{display:block;font-size:13px;font-family:var(--display)}
+.vstrip span{font-size:10px;color:var(--ink-3);font-family:var(--mono)}
+
+/* knowledge base */
+.kb-item{display:flex;align-items:center;gap:14px;padding:14px 22px;border-bottom:1px solid var(--line-2)}
+.kb-item:last-child{border-bottom:none}
+.kb-item .kb-ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:15px;flex:none}
+.kb-item .kb-ic.b{background:var(--acc-soft);color:var(--acc-deep)}.kb-item .kb-ic.m{background:var(--mint-soft);color:var(--mint-deep)}.kb-item .kb-ic.a{background:var(--amber-soft);color:var(--amber)}
+.kb-item .kb-tx{flex:1;min-width:0}
+.kb-item .kb-tx b{display:block;font-size:13.5px;font-weight:600}
+.kb-item .kb-tx span{font-size:12px;color:var(--ink-3)}
+.kb-item .kb-act{margin-left:auto;display:flex;gap:8px;align-items:center}
+.sync-ok{font-family:var(--mono);font-size:10px;color:var(--mint-deep);background:var(--mint-soft);padding:4px 9px;border-radius:6px}
+
+/* trust / legal */
+.trust-row{display:flex;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line-2);align-items:flex-start}
+.trust-row:last-child{border-bottom:none}
+.trust-row .tr-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:18px;flex:none}
+.trust-row .tr-ic.m{background:var(--mint-soft);color:var(--mint-deep)}.trust-row .tr-ic.b{background:var(--acc-soft);color:var(--acc-deep)}.trust-row .tr-ic.a{background:var(--amber-soft);color:var(--amber)}
+.trust-row .tr-tx{flex:1}
+.trust-row .tr-tx b{display:block;font-family:var(--display);font-size:14.5px;font-weight:700;letter-spacing:-.01em}
+.trust-row .tr-tx p{font-size:13px;color:var(--ink-2);margin-top:4px;line-height:1.6}
+.trust-row .tgl{margin-top:4px}
+.decl-preview{margin-top:10px;font-size:12.5px;font-style:italic;color:var(--ink-2);background:var(--panel-2);border-left:3px solid var(--mint);padding:11px 14px;border-radius:0 10px 10px 0}
+.badgeok{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--mint-deep);background:var(--mint-soft);padding:4px 10px;border-radius:6px}
+
+/* outbound campaign cards */
+.camp{display:flex;align-items:center;gap:14px;padding:16px 22px;border-bottom:1px solid var(--line-2)}
+.camp:last-child{border-bottom:none}
+.camp .cp-ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:16px;flex:none}
+.camp .cp-ic.b{background:var(--acc-soft);color:var(--acc-deep)}.camp .cp-ic.m{background:var(--mint-soft);color:var(--mint-deep)}.camp .cp-ic.a{background:var(--amber-soft);color:var(--amber)}
+.camp .cp-tx{flex:1;min-width:0}
+.camp .cp-tx b{display:block;font-size:14px;font-weight:600}
+.camp .cp-tx span{font-size:12px;color:var(--ink-3)}
+.camp .cp-stat{font-family:var(--mono);font-size:10.5px;padding:4px 10px;border-radius:6px;flex:none}
+.camp .cp-stat.on{color:var(--mint-deep);background:var(--mint-soft)}
+.camp .cp-stat.off{color:var(--ink-3);background:var(--bg-2)}
+
+/* test sandbox */
+.sandbox{background:linear-gradient(160deg,#0c1526,#0a1a2e);border-radius:var(--r-lg);padding:24px;color:#fff;position:relative;overflow:hidden}
+.sandbox:before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 80% 0%,rgba(47,92,255,.3),transparent 60%)}
+.sandbox .sb-hd{position:relative;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:rgba(220,230,255,.6);text-transform:uppercase;margin-bottom:16px}
+.sandbox .sb-hd .d{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:pulse 1.6s infinite}
+.sandbox .sb-log{position:relative;display:grid;gap:9px;max-height:280px;overflow-y:auto}
+.sb-line{font-size:13px;padding:10px 14px;border-radius:13px;line-height:1.5;max-width:85%}
+.sb-line.ai{background:rgba(11,185,138,.14);border:1px solid rgba(11,185,138,.25);border-top-left-radius:5px}
+.sb-line.you{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-top-right-radius:5px;justify-self:end}
+.sb-line .sw{font-family:var(--mono);font-size:9px;color:rgba(220,230,255,.5);display:block;margin-bottom:2px;text-transform:uppercase}
+.sb-input{position:relative;display:flex;gap:9px;margin-top:16px}
+.sb-input input{flex:1;padding:12px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-family:inherit;font-size:13.5px}
+.sb-input input::placeholder{color:rgba(220,230,255,.4)}
+.sb-input input:focus{outline:none;border-color:var(--mint)}
+.sb-input button{padding:12px 20px;border-radius:999px;background:var(--mint);color:#fff;font-weight:600;font-size:13px}
+
+/* form fields (used across My Agent / Settings) */
+.field{margin-top:0}
+.field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:8px;letter-spacing:.01em}
+.field input,.field select{width:100%;max-width:100%;min-width:0;padding:13px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel-2);font-family:inherit;font-size:14.5px;color:var(--ink);transition:all .3s var(--ease);text-overflow:ellipsis}
+.field input:focus,.field select:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 4px var(--acc-soft);background:#fff}
+.field input[readonly]{background:var(--mint-soft);border-color:rgba(13,166,120,.3);font-family:var(--mono);font-weight:600}
+.field .hint{font-size:12px;color:var(--ink-3);margin-top:7px}
+.tworow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.tworow{grid-template-columns:1fr}}
+
 .app{min-height:100dvh;display:grid;grid-template-columns:240px 1fr}
 /* ── sidebar ── */
 .side{background:var(--panel);border-right:1px solid var(--line-2);padding:24px 14px;display:flex;flex-direction:column;position:sticky;top:0;height:100dvh}
@@ -294,12 +387,15 @@ body.detail-open .detail{transform:translateX(0)}
       <button data-view="calls"><span class="ic">✆</span>Calls <span class="badge" id="nav-call-badge">8</span></button>
       <button data-view="bookings"><span class="ic">◷</span>Bookings</button>
       <button data-view="customers"><span class="ic">◉</span>Customers</button>
+      <button data-view="transcripts"><span class="ic">≡</span>Transcripts</button>
       <span class="lbl">Configure</span>
       <button data-view="agent"><span class="ic">✦</span>My agent</button>
+      <button data-view="outbound"><span class="ic">↗</span>Outbound</button>
       <button data-view="integrations"><span class="ic">⚡</span>Integrations</button>
       <span class="lbl">Account</span>
       <button data-view="billing"><span class="ic">◔</span>Billing</button>
       <button data-view="settings"><span class="ic">⚙</span>Settings</button>
+      <button data-view="trust"><span class="ic">🛡</span>Trust &amp; legal</button>
     </nav>
     <div class="d-foot">
       <div class="d-user"><span class="av">DK</span><span><b>Dave Kelleher</b><span>Kedron Plumbing</span></span></div>
@@ -398,23 +494,106 @@ body.detail-open .detail{transform:translateX(0)}
       <div class="card"><div class="c-bd" id="customers-list"></div></div>
     </section>
 
-    <!-- ══════ MY AGENT (skills editor) ══════ -->
+    <!-- ══════ TRANSCRIPTS ══════ -->
+    <section class="view" id="v-transcripts">
+      <div class="topbar">
+        <div><h1>Transcripts</h1><div class="sub">Every call, word for word. Search across all of them.</div></div>
+        <div class="right"><button class="btn btn-g btn-sm">Export all</button></div>
+      </div>
+      <div class="card">
+        <div class="filters">
+          <button class="fchip on">All</button><button class="fchip">This week</button><button class="fchip">Emergencies</button><button class="fchip">Bookings</button>
+          <div class="search"><span class="sic">⌕</span><input type="text" placeholder="Search every word of every call…"></div>
+        </div>
+        <div>
+          <div class="skill"><span class="sk-ic m">✆</span><div class="sk-tx"><b>Sue Murphy — "water coming through the kitchen ceiling"</b><span>3:04 · today 9:42am · booked 2:15pm · 2 min read</span></div><span class="cstat booked">Booked</span></div>
+          <div class="skill"><span class="sk-ic r">!</span><div class="sk-tx"><b>Rachel Byrne — "I can smell gas in my kitchen"</b><span>1:37 · today 7:31am · warm-transferred · flagged emergency</span></div><span class="cstat transferred">Emergency</span></div>
+          <div class="skill"><span class="sk-ic b">$</span><div class="sk-tx"><b>Jim Taylor — "after a rough quote for a bathroom reno"</b><span>2:06 · today 8:15am · callback booked Fri</span></div><span class="cstat quote">Quote</span></div>
+          <div class="skill"><span class="sk-ic m">✓</span><div class="sk-tx"><b>Marco Giordano — "stormwater drain's blocked up again"</b><span>3:23 · yesterday · repeat caller · booked Wed 7am</span></div><span class="cstat booked">Booked</span></div>
+          <div class="skill"><span class="sk-ic b">✉</span><div class="sk-tx"><b>Priya Patel — "leaking mixer tap in the bathroom"</b><span>2:38 · yesterday · first-time caller · booked Fri 10:30</span></div><span class="cstat booked">Booked</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ MY AGENT (full frontier surface) ══════ -->
     <section class="view" id="v-agent">
       <div class="topbar">
-        <div><h1>My agent</h1><div class="sub">What Emma does when a caller asks — in plain English. Test before you publish.</div></div>
-        <div class="right"><button class="btn btn-mint btn-sm"><span>Test call</span><span class="tic">✆</span></button><button class="btn btn-p btn-sm">Publish changes</button></div>
+        <div><h1>My agent</h1><div class="sub">Everything Emma does, in plain English. Test it, then publish.</div></div>
+        <div class="right"><button class="btn btn-mint btn-sm" id="open-sandbox"><span>Test in sandbox</span><span class="tic">▶</span></button><button class="btn btn-p btn-sm">Publish changes</button></div>
       </div>
+
+      <!-- Voice studio -->
       <div class="card" style="margin-bottom:16px">
-        <div class="c-hd"><div><h3>Voice &amp; greeting</h3><div class="sub">How she sounds and the first thing she says</div></div></div>
-        <div style="padding:20px 22px;display:grid;gap:16px">
-          <div class="field" style="margin:0"><label>Greeting</label><input type="text" value="G'day, you've reached Kedron Plumbing — this is Emma, the booking line. How can I help?"></div>
-          <div class="tworow">
-            <div class="field" style="margin:0"><label>Voice</label><select><option>Emma — Warm · General AU</option><option>Jack — Relaxed · Blokey</option><option>Sophie — Polished · Pro</option><option>Davo — Broad · True-blue</option></select></div>
-            <div class="field" style="margin:0"><label>Speaking pace</label><select><option>Relaxed (recommended)</option><option>Brisk</option><option>Slow &amp; clear</option></select></div>
+        <div class="c-hd"><div><h3>Voice studio</h3><div class="sub">ElevenLabs-grade Australian voices. Hear each before you commit.</div></div><span class="badgeok">✓ ElevenLabs Flash v2.5</span></div>
+        <div style="padding:20px 22px">
+          <div class="voicelab">
+            <div>
+              <div class="voice-big">
+                <span class="vb-orb"></span>
+                <div class="vb-meta"><b>Emma</b><span>Warm · General AU · currently live</span></div>
+                <button class="vb-play">▶</button>
+              </div>
+              <div class="voice-strip" id="vstrip">
+                <div class="vstrip on"><span class="vs-av" style="background:linear-gradient(140deg,#0da678,#2f5cff)">EM</span><b>Emma</b><span>Warm</span></div>
+                <div class="vstrip"><span class="vs-av" style="background:linear-gradient(140deg,#2f5cff,#e2930a)">JA</span><b>Jack</b><span>Relaxed</span></div>
+                <div class="vstrip"><span class="vs-av" style="background:linear-gradient(140deg,#e2930a,#0da678)">SO</span><b>Sophie</b><span>Polished</span></div>
+                <div class="vstrip"><span class="vs-av" style="background:linear-gradient(140deg,#0da678,#e2930a)">DA</span><b>Davo</b><span>Broad</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="slider-row" style="padding-left:0;padding-right:0;border:none"><div class="sl-lb"><b>Speaking pace</b><span>How fast she talks</span></div><input type="range" min="0" max="100" value="40"><span class="sl-val">Relaxed</span></div>
+              <div class="slider-row" style="padding-left:0;padding-right:0;border:none"><div class="sl-lb"><b>Warmth</b><span>How friendly vs formal</span></div><input type="range" min="0" max="100" value="70"><span class="sl-val">Warm</span></div>
+              <div class="slider-row" style="padding-left:0;padding-right:0;border:none"><div class="sl-lb"><b>Stability</b><span>Consistent vs expressive</span></div><input type="range" min="0" max="100" value="62"><span class="sl-val">0.62</span></div>
+              <div class="field" style="margin:14px 0 0"><label>Pronunciations &amp; local words</label><input type="text" value="Kedron, Wavell Heights, Chermside, arvo, no worries, rego"><p class="hint">Teach her your suburbs and trade terms so nothing gets butchered.</p></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="card">
+
+      <!-- Greeting + disclosure -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="c-hd"><div><h3>Greeting &amp; AI disclosure</h3><div class="sub">The first thing callers hear — and the honest bit that keeps you legal</div></div></div>
+        <div style="padding:20px 22px;display:grid;gap:16px">
+          <div class="field" style="margin:0"><label>Greeting</label><input type="text" value="G'day, you've reached Kedron Plumbing — this is Emma. How can I help?"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><b style="font-size:13.5px">Tell callers it's an AI</b><span class="tgl on" style="margin-left:auto"></span></div>
+            <div class="decl-preview">"Just so you know, I'm the automated booking line — I can take your details or book you in, and Dave can call you back. This call may be recorded."</div>
+            <p class="hint" style="margin-top:8px">Keeps you compliant with Australian Consumer Law s18 and every state's call-recording consent rules. We recommend leaving this on.</p>
+          </div>
+          <div class="tworow">
+            <div class="field" style="margin:0"><label>Record calls</label><select><option>On — announce at start (recommended)</option><option>Off</option></select></div>
+            <div class="field" style="margin:0"><label>If someone asks to speak to a human</label><select><option>Transfer to my mobile</option><option>Take a message</option><option>Offer a callback window</option></select></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Behaviour controls -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="c-hd"><div><h3>How she handles calls</h3><div class="sub">The fine-tuning — no code, just sliders and toggles</div></div></div>
+        <div>
+          <div class="slider-row"><div class="sl-lb"><b>Patience before answering</b><span>Pause so it feels natural</span></div><input type="range" min="0" max="100" value="30"><span class="sl-val">0.6s</span></div>
+          <div class="slider-row"><div class="sl-lb"><b>Let callers interrupt</b><span>Barge-in — stop when they talk</span></div><input type="range" min="0" max="100" value="85"><span class="sl-val">High</span></div>
+          <div class="slider-row"><div class="sl-lb"><b>Max call length</b><span>Wrap up politely after</span></div><input type="range" min="0" max="100" value="50"><span class="sl-val">8 min</span></div>
+          <div class="skill"><span class="sk-ic b">⌛</span><div class="sk-tx"><b>Silence handling</b><span>If the caller goes quiet, gently check in after 8 seconds.</span></div><span class="tgl on"></span></div>
+          <div class="skill"><span class="sk-ic m">✉</span><div class="sk-tx"><b>End-of-call SMS</b><span>Text the caller a confirmation the moment the call ends.</span></div><span class="tgl on"></span></div>
+          <div class="skill"><span class="sk-ic a">✕</span><div class="sk-tx"><b>Never quote prices</b><span>Locked. She captures the job, you keep every pricing conversation.</span></div><span class="tgl on"></span></div>
+        </div>
+      </div>
+
+      <!-- Knowledge base -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="c-hd"><div><h3>What she knows</h3><div class="sub">Your services, prices, suburbs and FAQs — pulled from your site</div></div><button class="more">+ Add</button></div>
+        <div>
+          <div class="kb-item"><span class="kb-ic b">⌂</span><div class="kb-tx"><b>Your website</b><span>kedronplumbing.com.au — 14 pages read</span></div><div class="kb-act"><span class="sync-ok">synced 2h ago</span><button class="btn btn-g btn-sm">Re-sync</button></div></div>
+          <div class="kb-item"><span class="kb-ic m">✓</span><div class="kb-tx"><b>Services &amp; price guide</b><span>Hot water, blocked drains, burst pipes, leaks, gas fitting · callout $120 (never quoted)</span></div><div class="kb-act"><button class="btn btn-g btn-sm">Edit</button></div></div>
+          <div class="kb-item"><span class="kb-ic a">◷</span><div class="kb-tx"><b>Business hours</b><span>Mon–Sat 7am–5pm · after-hours emergency line</span></div><div class="kb-act"><button class="btn btn-g btn-sm">Edit</button></div></div>
+          <div class="kb-item"><span class="kb-ic b">◉</span><div class="kb-tx"><b>Service area</b><span>Kedron, Stafford, Chermside, Wavell Heights + 8 more</span></div><div class="kb-act"><button class="btn btn-g btn-sm">Edit</button></div></div>
+          <div class="kb-item"><span class="kb-ic m">?</span><div class="kb-tx"><b>FAQs</b><span>12 questions she can answer — "do you do pensions discount", "are you licensed"</span></div><div class="kb-act"><button class="btn btn-g btn-sm">Edit</button></div></div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="card" style="margin-bottom:16px">
         <div class="c-hd"><div><h3>Skills</h3><div class="sub">When a caller says X → Emma does Y</div></div><button class="more">+ Add skill</button></div>
         <div>
           <div class="skill"><span class="sk-ic r">!</span><div class="sk-tx"><b>Emergency — burst pipe / gas / no power / sparking</b><span>Ring my mobile immediately. No answer → backup + urgent SMS.</span></div><span class="tgl on"></span></div>
@@ -424,6 +603,52 @@ body.detail-open .detail{transform:translateX(0)}
           <div class="skill"><span class="sk-ic m">★</span><div class="sk-tx"><b>Repeat customer</b><span>Greet them by name and pull up their history.</span></div><span class="tgl on"></span></div>
           <div class="skill"><span class="sk-ic b">✉</span><div class="sk-tx"><b>After-hours</b><span>Take details, book next-available, only wake me for emergencies.</span></div><span class="tgl on"></span></div>
         </div>
+      </div>
+
+      <!-- Test sandbox -->
+      <div class="card">
+        <div class="c-hd"><div><h3>Test it before it's live</h3><div class="sub">Talk to Emma as a difficult customer — she won't publish until you're happy</div></div></div>
+        <div style="padding:18px 22px">
+          <div class="sandbox" id="sandbox">
+            <div class="sb-hd"><span class="d"></span>Sandbox · not live · nothing here is saved</div>
+            <div class="sb-log" id="sb-log">
+              <div class="sb-line ai"><span class="sw">Emma</span>G'day, you've reached Kedron Plumbing — this is Emma. How can I help?</div>
+            </div>
+            <div class="sb-input"><input type="text" id="sb-in" placeholder="Try to trip her up… e.g. 'how much for a new hot water system?'"><button id="sb-send">Send</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ OUTBOUND ══════ -->
+    <section class="view" id="v-outbound">
+      <div class="topbar">
+        <div><h1>Outbound</h1><div class="sub">Emma calling out — reminders, confirmations, follow-ups. All opt-in only.</div></div>
+        <div class="right"><button class="btn btn-p btn-sm">+ New campaign</button></div>
+      </div>
+      <div style="margin-bottom:16px;border-radius:var(--r-md);background:var(--amber-soft);border:1px solid rgba(226,147,10,.3);padding:14px 18px;font-size:13px;color:var(--ink-2);display:flex;gap:11px;align-items:flex-start"><span style="color:var(--amber);font-size:16px">⚠</span><span><b>Australia's Do Not Call rules apply to outbound.</b> Emma only ever calls your existing customers who've booked or asked for it — never cold lists. That's the line we don't cross.</span></div>
+      <div class="card">
+        <div class="c-hd"><div><h3>Automations</h3><div class="sub">Set-and-forget outbound that earns its keep</div></div></div>
+        <div>
+          <div class="camp"><span class="cp-ic m">✓</span><div class="cp-tx"><b>Booking confirmation</b><span>Text the customer the moment a job's booked — cuts no-shows.</span></div><span class="cp-stat on">On</span><span class="tgl on"></span></div>
+          <div class="camp"><span class="cp-ic b">◷</span><div class="cp-tx"><b>Day-before reminder</b><span>SMS the arvo before — "Dan's confirmed for 2:15 tomorrow."</span></div><span class="cp-stat on">On</span><span class="tgl on"></span></div>
+          <div class="camp"><span class="cp-ic a">↺</span><div class="cp-tx"><b>Hot-lead follow-up</b><span>If you haven't called back in 4 hrs, Emma texts the lead to keep them warm.</span></div><span class="cp-stat on">On</span><span class="tgl on"></span></div>
+          <div class="camp"><span class="cp-ic m">★</span><div class="cp-tx"><b>Review request after a job</b><span>Once the job's done, ask for the Google review. Compounds your rating.</span></div><span class="cp-stat off">Off</span><span class="tgl"></span></div>
+          <div class="camp"><span class="cp-ic b">☎</span><div class="cp-tx"><b>Win-back call</b><span>Ring past customers due for a service (e.g. annual HWS check). Your list, your customers.</span></div><span class="cp-stat off">Off</span><span class="tgl"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ TRUST & LEGAL ══════ -->
+    <section class="view" id="v-trust">
+      <div class="topbar"><div><h1>Trust &amp; legal</h1><div class="sub">Why your customers can trust this with your business.</div></div></div>
+      <div class="card">
+        <div class="trust-row"><span class="tr-ic m">✓</span><div class="tr-tx"><b>Callers always know it's an AI</b><p>Emma introduces herself as the automated booking line and says the call may be recorded. Australian Consumer Law s18 compliant — no pretending to be human.</p><div class="decl-preview">"Just so you know, I'm the automated booking line, and this call may be recorded."</div></div><span class="tgl on"></span></div>
+        <div class="trust-row"><span class="tr-ic b">🛡</span><div class="tr-tx"><b>Your data stays in Australia</b><p>Calls, transcripts and recordings are processed and stored in Sydney (ap-southeast-2). Privacy Act 1988 compliant. Only you can access them. <span class="badgeok">Sydney · ap-southeast-2</span></p></div></div>
+        <div class="trust-row"><span class="tr-ic m">✎</span><div class="tr-tx"><b>She never quotes a price</b><p>Hard rule, locked on. Emma captures job details and books the visit — every pricing conversation stays with you. No AI-hallucinated quotes, ever.</p></div><span class="tgl on"></span></div>
+        <div class="trust-row"><span class="tr-ic a">⏵</span><div class="tr-tx"><b>You can listen to every call</b><p>Full recording + transcript of every conversation, in your dashboard within seconds. If anything ever sounds off, you hear it first — not on a Google review.</p></div></div>
+        <div class="trust-row"><span class="tr-ic b">⚖</span><div class="tr-tx"><b>Recording consent handled</b><p>The recording announcement at the start of every call covers you in every state (NSW, SA, WA, TAS &amp; ACT are all-party-consent). Recordings stored in Australia, encrypted.</p></div></div>
+        <div class="trust-row"><span class="tr-ic m">✕</span><div class="tr-tx"><b>Cancel any time, keep your number</b><p>No lock-in contract, no exit fee. Your phone number is yours — we unpoint it the same day if you ever leave.</p></div></div>
       </div>
     </section>
 
@@ -765,6 +990,42 @@ const d=new Date();document.getElementById('datesub').textContent=d.toLocaleDate
 
 /* toggles (settings + skills) */
 document.querySelectorAll('.tgl').forEach(t=>t.addEventListener('click',()=>t.classList.toggle('on')));
+
+/* voice strip selector */
+document.querySelectorAll('#vstrip .vstrip').forEach(v=>v.addEventListener('click',()=>{document.querySelectorAll('#vstrip .vstrip').forEach(x=>x.classList.remove('on'));v.classList.add('on');
+  const nm=v.querySelector('b').textContent;const big=document.querySelector('.voice-big .vb-meta b');if(big)big.textContent=nm;}));
+
+/* slider value labels (live update) */
+document.querySelectorAll('.slider-row input[type=range]').forEach(r=>{
+  r.addEventListener('input',()=>{const val=r.closest('.slider-row').querySelector('.sl-val');if(val&&isNaN(parseFloat(val.textContent))){const v=+r.value;val.textContent=v<33?'Low':v<66?'Med':'High'}});
+});
+
+/* ── test sandbox ── */
+(function(){
+  const log=document.getElementById('sb-log');const inp=document.getElementById('sb-in');const send=document.getElementById('sb-send');
+  if(!send)return;
+  const replies=[
+    {re:/price|cost|how much|quote|charge/i, ans:"Good question — I don't give out prices over the phone, but I'll get Dan to call you back with a proper quote. Can I grab your address and what's going on?"},
+    {re:/emergency|burst|flood|gas|sparking|no power|everywhere/i, ans:"Right, that sounds urgent. Let me get Dan on the line right now — stay there. Is anyone in immediate danger?"},
+    {re:/human|real person|someone|manager|robot|ai|not a person/i, ans:"No worries, I'm the automated booking line — totally understand if you'd rather talk to Dan. I can transfer you now, or grab your details and he'll call you back within the hour."},
+    {re:/where|suburb|area|located|come to|cover/i, ans:"We cover Brisbane's Northside — Kedron, Stafford, Chermside, Wavell Heights and surrounds. Whereabouts are you?"},
+    {re:/book|appointment|come|today|tomorrow|when/i, ans:"I can get you booked in. I've got a window this arvo between 2 and 4, or tomorrow morning. What suits?"}
+  ];
+  function emmaSay(text){const d=document.createElement('div');d.className='sb-line ai';d.innerHTML='<span class="sw">Emma</span>'+text;log.appendChild(d);log.scrollTop=log.scrollHeight;}
+  function youSay(text){const d=document.createElement('div');d.className='sb-line you';d.innerHTML='<span class="sw">You</span>'+text;log.appendChild(d);log.scrollTop=log.scrollHeight;}
+  function respond(q){
+    youSay(q);
+    setTimeout(()=>{
+      let r="Got it. Can I grab your name and address, and a quick rundown of what's going on, and I'll get Dan onto it?";
+      for(const pair of replies){ if(pair.re.test(q)){ r=pair.ans; break; } }
+      emmaSay(r);
+    },700);
+  }
+  function fire(){const v=inp.value.trim();if(!v)return;inp.value='';respond(v);}
+  send.addEventListener('click',fire);
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')fire()});
+  document.getElementById('open-sandbox').addEventListener('click',()=>{document.getElementById('sandbox').scrollIntoView({behavior:'smooth',block:'center'});inp.focus();});
+})();
 
 /* ═══════════ BOOT ═══════════ */
 renderStats();renderRecent();renderUpcoming();renderActivity();renderCalls();renderBookings();renderCustomers();
