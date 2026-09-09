@@ -273,10 +273,9 @@
 
 .hero-say {
   text-align: center;
-  max-width: 940px;
-  /* margin-top pushes the headline into the upper-middle of the hero rather
-     than sitting straight under the nav; margin-bottom becomes 'auto' so any
-     leftover height is absorbed between the headline and the grid */
+  /* wider frame so the wordpill + orb + "answered" line don't feel confined;
+     lets the H1 breathe closer to the actual visual centre */
+  max-width: 1080px;
   margin: clamp(24px, 4.5vh, 56px) auto auto;
 }
 .hero-grid {
@@ -362,15 +361,21 @@ h1 .plain {
   padding-bottom: 18px;
 }
 .hg-stat {
-  grid-column: 1 / span 4;
+  grid-column: 1 / span 3;
+  grid-row: 1;
 }
+/* claim pill sits above the tall video on the right, so the middle of row 1
+   is empty and the headline above can breathe centred */
 .hg-claim {
-  grid-column: 5 / span 4;
+  grid-column: 9 / span 4;
+  grid-row: 1;
 }
-/* the tall frame carries the whole right edge, rows one and two */
+/* the tall frame now only occupies row 2 and pushes slightly past the wrap's
+   right edge — that opens up the centre of the composition */
 .hg-tall {
   grid-column: 9 / span 4;
-  grid-row: 1 / span 2;
+  grid-row: 2;
+  margin-right: clamp(-40px, -2.4vw, -12px);
 }
 /* small frame bottom-left, pinned to a landscape ratio so the 16:9 clip
    isn't cropped to a sliver by the row height */
@@ -455,7 +460,7 @@ h1 .plain {
   object-fit: cover;
 }
 .hg-tall {
-  min-height: clamp(210px, 24vh, 280px);
+  min-height: clamp(210px, 26vh, 300px);
 }
 .hg-tall:hover,
 .hg-wide:hover {
@@ -630,9 +635,16 @@ h1 .plain {
 }
 .voicecard .btn {
   flex: none;
-  width: 100%;
-  justify-content: center;
-  padding-left: 20px;
+  align-self: center;
+  /* was a wide full-width fill — a compact pill under the caption reads
+     lighter and lets the waveform be the hero of the card */
+  padding: 10px 12px 10px 22px;
+  font-size: 14px;
+}
+.voicecard .btn .tic {
+  width: 26px;
+  height: 26px;
+  font-size: 12px;
 }
 
 /* ---- captions and chips that sit over the footage ---- */
