@@ -113,13 +113,16 @@ export function Nav() {
   return (
     <>
       <nav className="nav" data-scrolled={scrolled || undefined}>
-        <div className="nav-in">
+        {/* two islands rather than one bar: navigation on the left, account
+            and the call to action on the right */}
+        <div className="nav-in nav-left">
           <a href="#top" className="brand" aria-label="RingBack home">
             <span className="mk">
               <PhoneGlyph />
             </span>
             RingBack
           </a>
+          <span className="nav-rule" aria-hidden />
           <div className="nlinks">
             {LINKS.map((l) => (
               <a key={l.href} href={l.href}>
@@ -127,26 +130,28 @@ export function Nav() {
               </a>
             ))}
           </div>
-          <div className="nav-cta">
-            <a className="btn btn-line btn-sm plain" href="/dashboard">
-              See the dashboard
-            </a>
-            <a className="btn btn-ink btn-sm" href="tel:+61340135000">
-              <span>Ring it</span>
-              <span className="tic">✆</span>
-            </a>
-          </div>
-          <button
-            className="burger"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            data-open={open || undefined}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span />
-            <span />
-          </button>
         </div>
+
+        <div className="nav-in nav-right">
+          <a className="nav-signin" href="/dashboard">
+            Sign in
+          </a>
+          <a className="btn btn-ink btn-sm" href="tel:+61340135000">
+            <span>Ring it</span>
+            <span className="tic">✆</span>
+          </a>
+        </div>
+
+        <button
+          className="burger"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          data-open={open || undefined}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span />
+          <span />
+        </button>
       </nav>
 
       <div className="sheet" data-open={open || undefined}>
@@ -155,6 +160,9 @@ export function Nav() {
             {l.label}
           </a>
         ))}
+        <a href="/dashboard" onClick={() => setOpen(false)}>
+          Sign in
+        </a>
         <a href="tel:+61340135000" onClick={() => setOpen(false)}>
           Ring the demo line ✆
         </a>
@@ -167,15 +175,16 @@ export function Nav() {
    INTEGRATION MARQUEE
    ============================================================ */
 
+/** logo art is inlined in app/logos.css as `.logo-<slug>` custom properties */
 const TOOLS = [
-  "ServiceM8",
-  "simPRO",
-  "Tradify",
-  "AroFlo",
-  "Xero",
-  "Google Calendar",
-  "Outlook",
-  "MYOB",
+  { slug: "servicem8", name: "ServiceM8", w: 104 },
+  { slug: "simpro", name: "Simpro", w: 92 },
+  { slug: "tradify", name: "Tradify", w: 86 },
+  { slug: "aroflo", name: "AroFlo", w: 82 },
+  { slug: "xero", name: "Xero", w: 66 },
+  { slug: "myob", name: "MYOB", w: 74 },
+  { slug: "google-calendar", name: "Google Calendar", w: 84 },
+  { slug: "outlook", name: "Outlook", w: 88 },
 ];
 
 export function IntegrationStrip() {
@@ -192,16 +201,19 @@ export function IntegrationStrip() {
           {[0, 1].map((copy) => (
             <div className="marquee-group" key={copy}>
               {TOOLS.map((t) => (
-                <span className="spill" key={`${copy}-${t}`}>
-                  {t}
-                </span>
+                <span
+                  className={`brandmark logo-${t.slug}`}
+                  key={`${copy}-${t.slug}`}
+                  style={{ width: t.w }}
+                  title={t.name}
+                />
               ))}
             </div>
           ))}
         </div>
       </div>
       <span className="sr-only">
-        Integrates with {TOOLS.join(", ")}.
+        Integrates with {TOOLS.map((t) => t.name).join(", ")}.
       </span>
     </section>
   );

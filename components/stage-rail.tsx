@@ -11,7 +11,7 @@ import { PhoneGlyph, Spark, useLoopVideo } from "@/components/site-chrome";
    ============================================================ */
 
 type Media =
-  | { kind: "video"; src: string; poster: string; alt: string }
+  | { kind: "video"; src: string; poster?: string; alt: string }
   | { kind: "mesh" };
 
 type Bubble = { tone: "light" | "dark"; det: string; say: string; at: "b1" | "b2" };
@@ -38,9 +38,8 @@ const STAGES: Stage[] = [
     caps: ["First-ring pickup", "Natural speech", "Your business name", "Spam screening"],
     media: {
       kind: "video",
-      src: "https://pub.hyperagent.com/api/published/pbf01M23848X8_ZSSGC2DCJJ5YCNZW/on-the-roof.mp4",
-      poster: "https://pub.hyperagent.com/api/published/pbf01M23849PZ_8016520H92F13249/on-the-roof.jpg",
-      alt: "A tradesperson on a roof, hands full, unable to answer the phone",
+      src: "https://pub.hyperagent.com/api/published/pbf01M23D5TM0_G5KTYVG2TK48XJTT/ringing.mp4",
+      alt: "A phone ringing unanswered on a workbench while a tradesperson keeps working",
     },
     bubbles: [
       {
@@ -92,9 +91,8 @@ const STAGES: Stage[] = [
     caps: ["Live availability", "Calendar hold", "ServiceM8 push", "SMS confirmation"],
     media: {
       kind: "video",
-      src: "https://pub.hyperagent.com/api/published/pbf01M238486G_R8J1KBD99D62XM25/to-work.mp4",
-      poster: "https://pub.hyperagent.com/api/published/pbf01M23849EC_E7JYDK3G7XT5MEYQ/to-work.jpg",
-      alt: "A tradesperson heading out to the next job at sunrise",
+      src: "https://pub.hyperagent.com/api/published/pbf01M23D6D25_JWPAFRRY1YX8E2V0/arriving.mp4",
+      alt: "A tradesperson walking up a front path to the booked job",
     },
     cards: [
       {
@@ -117,7 +115,11 @@ const STAGES: Stage[] = [
     headGreen: "before you're off the ladder.",
     body: "Every call arrives as a transcript and a two-line summary. Anything genuinely urgent rings your mobile with the context already captured, so nobody repeats themselves.",
     caps: ["Two-line summary", "Warm live transfer", "Full transcript", "Emergency escalation"],
-    media: { kind: "mesh" },
+    media: {
+      kind: "video",
+      src: "https://pub.hyperagent.com/api/published/pbf01M23D6P3B_6DVFAW9VE5K08NRR/dusk-check.mp4",
+      alt: "A tradesperson reading the day's call summary in the ute at dusk",
+    },
     bubbles: [
       {
         tone: "light",

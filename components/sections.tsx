@@ -139,14 +139,13 @@ export function StatSplit() {
             <div className="splitmedia">
               <video
                 ref={vid}
-                src="https://pub.hyperagent.com/api/published/pbf01M23848X8_ZSSGC2DCJJ5YCNZW/on-the-roof.mp4"
-                poster="https://pub.hyperagent.com/api/published/pbf01M23849PZ_8016520H92F13249/on-the-roof.jpg"
+                src="https://pub.hyperagent.com/api/published/pbf01M23D64B3_CGF0FCR45VN0Q67M/under-sink.mp4"
                 muted
                 loop
                 playsInline
                 autoPlay
                 preload="none"
-                aria-label="A tradesperson on a roof with both hands busy"
+                aria-label="A plumber working under a sink with both hands, phone ringing on the floor"
               />
             </div>
           </div>
