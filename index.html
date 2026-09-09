@@ -1573,6 +1573,17 @@ window.addEventListener('DOMContentLoaded',function(){
   }
   heroIntro();
 
+  /* ---------- deep links: re-apply the hash once layout settles ---------- */
+  (function(){
+    if(!location.hash)return;
+    var t;
+    try{ t=document.querySelector(location.hash); }catch(e){ return; }
+    if(!t)return;
+    var jump=function(){ t.scrollIntoView({behavior:'auto',block:'start'}); };
+    setTimeout(jump,320);
+    addEventListener('load',function(){ setTimeout(jump,120); });
+  })();
+
   /* ---------- nav shadow on scroll ---------- */
   var onScroll=function(){ document.body.classList.toggle('scrolled', window.scrollY>20); };
   addEventListener('scroll',onScroll,{passive:true}); onScroll();
