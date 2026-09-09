@@ -171,8 +171,27 @@ export function Hero() {
             </div>
           </div>
 
-          {/* frame one: the tradie is on the roof */}
-          <figure className="hg hg-roof tile">
+          {/* frame one: heading out to the next job (portrait clip, tall frame) */}
+          <figure className="hg hg-tall tile">
+            <video
+              ref={workRef}
+              src="https://pub.hyperagent.com/api/published/pbf01M238486G_R8J1KBD99D62XM25/to-work.mp4"
+              poster="https://pub.hyperagent.com/api/published/pbf01M23849EC_E7JYDK3G7XT5MEYQ/to-work.jpg"
+              muted
+              loop
+              playsInline
+              autoPlay
+              preload="metadata"
+              aria-label="A tradesperson walking to their work ute at sunrise"
+            />
+            <figcaption>
+              <span className="tick" />
+              You&rsquo;re on the way
+            </figcaption>
+          </figure>
+
+          {/* frame two: hands full on the roof (landscape clip, wide frame) */}
+          <figure className="hg hg-wide tile">
             <video
               ref={roofRef}
               src="https://pub.hyperagent.com/api/published/pbf01M23848X8_ZSSGC2DCJJ5YCNZW/on-the-roof.mp4"
@@ -188,21 +207,6 @@ export function Hero() {
               <span className="tick" />
               You&rsquo;re on the roof
             </figcaption>
-          </figure>
-
-          {/* frame two: heading to the next job */}
-          <figure className="hg hg-work tile">
-            <video
-              ref={workRef}
-              src="https://pub.hyperagent.com/api/published/pbf01M238486G_R8J1KBD99D62XM25/to-work.mp4"
-              poster="https://pub.hyperagent.com/api/published/pbf01M23849EC_E7JYDK3G7XT5MEYQ/to-work.jpg"
-              muted
-              loop
-              playsInline
-              autoPlay
-              preload="metadata"
-              aria-label="A tradesperson walking to their work ute at sunrise"
-            />
           </figure>
 
           {/* frame three: the agent is booking the job */}
