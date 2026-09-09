@@ -248,6 +248,68 @@ body.modal-open .modal .box{transform:none}
 .vs-row.wait{opacity:.4}
 .vs-row .vt{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink-3)}
 
+/* ── ONBOARDING AGENT (voice interview) ── */
+.obagent{min-height:100dvh;display:flex;flex-direction:column;background:linear-gradient(170deg,#f7f9fd,#eef4fb);position:relative;overflow:hidden}
+.obagent .oa-top{padding:22px clamp(20px,4vw,44px);display:flex;align-items:center;gap:14px}
+.obagent .oa-top .progbar{flex:1;height:6px;border-radius:99px;background:rgba(10,19,34,.08);overflow:hidden}
+.obagent .oa-top .progbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--mint));transition:width .6s var(--ease)}
+.obagent .oa-top .pct{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--acc-deep)}
+.oa-stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 clamp(20px,4vw,44px) 40px;text-align:center;max-width:720px;margin:0 auto;width:100%}
+.oa-orb{position:relative;width:150px;height:150px;margin-bottom:30px}
+.oa-orb .ball{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-shadow:0 26px 60px -20px rgba(47,92,255,.5),inset 0 0 30px rgba(255,255,255,.35)}
+.oa-orb .ball:before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,#2f5cff,#6f9bff,#0bb98a,#4de3b0,#2f5cff);filter:blur(16px) saturate(150%);animation:orbspin 8s linear infinite}
+.oa-orb .ball:after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.8),transparent 45%)}
+.oa-orb.listening .ball:before{animation-duration:2.4s}
+.oa-orb.listening .ball{animation:oralisten 1.4s var(--ease) infinite}
+@keyframes oralisten{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.oa-orb .oa-wave{position:absolute;inset:0;display:grid;place-items:center;z-index:2}
+.oa-orb .oa-wave .w{display:flex;align-items:center;gap:3px;height:30px}
+.oa-orb .oa-wave .w i{width:3.5px;height:100%;border-radius:2px;background:#fff;transform-origin:center;animation:owave 1.2s var(--ease) infinite;transform:scaleY(.3)}
+@keyframes owave{0%,100%{transform:scaleY(.2)}50%{transform:scaleY(1)}}
+.oa-block{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc-deep);margin-bottom:14px}
+.oa-q{font-family:var(--display);font-size:clamp(24px,3.4vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.12;color:var(--ink);max-width:22ch}
+.oa-q em{font-style:normal;font-weight:300;background:linear-gradient(100deg,var(--acc),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.oa-sub{margin-top:14px;font-size:14.5px;color:var(--ink-2);max-width:48ch}
+.oa-answers{margin-top:30px;width:100%;display:grid;gap:10px}
+.oa-chip{display:flex;align-items:center;gap:12px;text-align:left;padding:15px 19px;border-radius:15px;border:1.5px solid var(--line);background:var(--panel);font-size:14.5px;font-weight:500;color:var(--ink);transition:all .3s var(--ease);cursor:pointer}
+.oa-chip:hover{border-color:var(--acc);background:var(--acc-soft);transform:translateX(4px)}
+.oa-chip .cn{font-family:var(--mono);font-size:10px;color:var(--ink-3);width:20px;flex:none}
+.oa-free{margin-top:14px;display:flex;gap:10px;width:100%}
+.oa-free input{flex:1;padding:14px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);font-family:inherit;font-size:14px}
+.oa-free input:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 4px var(--acc-soft)}
+.oa-free .mic{width:50px;height:50px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-size:18px;flex:none;box-shadow:0 8px 20px -6px rgba(47,92,255,.5);transition:transform .3s var(--ease-spring);border:none;cursor:pointer}
+.oa-free .mic:hover{transform:scale(1.06)}
+.oa-skip{margin-top:18px;font-size:12.5px;color:var(--ink-3);background:none;border:none;cursor:pointer;text-decoration:underline}
+.oa-rule{margin-top:18px;width:100%;text-align:left;border-radius:var(--r-md);background:var(--mint-soft);border:1px solid rgba(11,185,138,.25);padding:16px 19px;opacity:0;transform:translateY(10px);transition:all .5s var(--ease)}
+.oa-rule.show{opacity:1;transform:none}
+.oa-rule .rl-t{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mint-deep);margin-bottom:6px}
+.oa-rule .rl-b{font-size:14px;color:var(--ink);line-height:1.55}
+.oa-rule .rl-b b{color:var(--mint-deep)}
+
+/* ── SIMULATION RESULTS ── */
+.simres{min-height:100dvh;padding:110px clamp(20px,4vw,44px) 70px}
+.simres .wrap{max-width:900px}
+.sim-head{text-align:center;margin-bottom:40px}
+.sim-head h1{font-family:var(--display);font-size:clamp(32px,4.5vw,52px);font-weight:300;letter-spacing:-.03em}
+.sim-head h1 em{font-style:normal;font-weight:600;background:linear-gradient(100deg,var(--acc),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sim-head p{color:var(--ink-2);margin-top:14px;font-size:16px}
+.sim-score{display:flex;align-items:center;justify-content:center;gap:18px;margin:26px 0 10px}
+.sim-score .sc{font-family:var(--display);font-size:56px;font-weight:700;letter-spacing:-.04em;color:var(--mint-deep)}
+.sim-score .sc-sub{font-size:13px;color:var(--ink-2);text-align:left;max-width:20ch}
+.sim-grid{display:grid;gap:12px}
+.sim-row{display:flex;align-items:center;gap:15px;background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-md);padding:17px 20px;box-shadow:var(--shadow-sm)}
+.sim-row .sr-ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:17px;flex:none}
+.sim-row .sr-ic.pass{background:var(--mint-soft);color:var(--mint-deep)}
+.sim-row .sr-ic.fail{background:var(--red-soft);color:var(--red)}
+.sim-row .sr-tx{flex:1;min-width:0}
+.sim-row .sr-tx b{display:block;font-size:14.5px;font-weight:600}
+.sim-row .sr-tx span{font-size:12.5px;color:var(--ink-2)}
+.sim-row .sr-badge{font-family:var(--mono);font-size:9.5px;font-weight:600;padding:5px 11px;border-radius:7px;flex:none;text-transform:uppercase}
+.sim-row .sr-badge.pass{background:var(--mint-soft);color:var(--mint-deep)}
+.sim-row .sr-badge.fail{background:var(--red-soft);color:var(--red)}
+.sim-row .sr-play{width:34px;height:34px;border-radius:50%;background:var(--bg-2);border:1px solid var(--line);display:grid;place-items:center;font-size:11px;color:var(--ink-2);flex:none;cursor:pointer}
+.sim-row .sr-play:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
+
 /* ═══ DASHBOARD (reuse Run-4 styles inline, minimal) ═══ */
 .dash{min-height:100dvh;display:grid;grid-template-columns:236px 1fr}
 .d-side{background:var(--panel);border-right:1px solid var(--line-2);padding:24px 14px;display:flex;flex-direction:column;position:sticky;top:0;height:100dvh}
@@ -314,6 +376,8 @@ body.modal-open .modal .box{transform:none}
   <div class="stop" data-go="ob2"><span class="dot"></span><span class="lbl">Build</span></div>
   <div class="stop" data-go="ob3"><span class="dot"></span><span class="lbl">Aha</span></div>
   <div class="stop" data-go="ob4"><span class="dot"></span><span class="lbl">KYC</span></div>
+  <div class="stop" data-go="agent"><span class="dot"></span><span class="lbl">Interview</span></div>
+  <div class="stop" data-go="sim"><span class="dot"></span><span class="lbl">Simulate</span></div>
   <div class="stop" data-go="dash"><span class="dot"></span><span class="lbl">Dashboard</span></div>
 </nav>
 
@@ -470,6 +534,61 @@ body.modal-open .modal .box{transform:none}
 </div>
 </div>
 
+<!-- ════════ SCREEN: ONBOARDING AGENT (voice interview) ════════ -->
+<div class="screen" id="s-agent">
+<div class="obagent">
+  <div class="oa-top">
+    <span class="brand" style="font-size:14px"><span class="ring" style="width:18px;height:18px;position:relative;display:inline-block;vertical-align:middle"></span> RingBack</span>
+    <div class="progbar"><i id="oa-prog"></i></div>
+    <span class="pct" id="oa-pct">1 / 8</span>
+  </div>
+  <div class="oa-stage">
+    <div class="oa-orb" id="oa-orb"><div class="ball"></div><div class="oa-wave"><div class="w" id="oa-wave"></div></div></div>
+    <div class="oa-block" id="oa-block">Identity &amp; voice</div>
+    <h2 class="oa-q" id="oa-q">G'day! I'm going to build your receptionist. First — <em>how do you answer the phone today?</em></h2>
+    <p class="oa-sub" id="oa-sub">Say it like you would to a customer. This becomes your agent's greeting.</p>
+    <div class="oa-answers" id="oa-answers"></div>
+    <div class="oa-free">
+      <input type="text" id="oa-in" placeholder="Type it, or tap the mic and just talk…">
+      <button class="mic" id="oa-mic" title="Talk instead">🎙</button>
+    </div>
+    <div class="oa-rule" id="oa-rule"><div class="rl-t">Got it — rule saved</div><div class="rl-b" id="oa-rule-b"></div></div>
+    <button class="oa-skip" id="oa-skip">Not sure — remind me later</button>
+  </div>
+</div>
+</div>
+
+<!-- ════════ SCREEN: SIMULATION RESULTS ════════ -->
+<div class="screen" id="s-sim">
+<div class="simres"><div class="wrap">
+  <div class="sim-head">
+    <span class="eyebrow" style="margin-bottom:18px"><span class="pulse"></span>Pre-launch check</span>
+    <h1>We tested Emma against <em>12 kinds of caller.</em></h1>
+    <p>Before your number goes live, Emma ran simulated calls against every type of customer you'll get. Here's how she did.</p>
+    <div class="sim-score"><span class="sc">11 / 12</span><span class="sc-sub">personas passed across 3 runs each</span></div>
+  </div>
+  <div class="sim-grid">
+    <div class="sim-row"><span class="sr-ic pass">✓</span><div class="sr-tx"><b>Happy homeowner</b><span>"Need a quote for a leaky tap in Paddington" — captured details, booked, SMS sent.</span></div><span class="sr-badge pass">Pass</span><button class="sr-play">▶</button></div>
+    <div class="sim-row"><span class="sr-ic pass">✓</span><div class="sr-tx"><b>Emergency caller (distressed)</b><span>"Water's pouring through my ceiling!" — triaged, safety instruction given, transferred to your mobile.</span></div><span class="sr-badge pass">Pass</span><button class="sr-play">▶</button></div>
+    <div class="sim-row"><span class="sr-ic pass">✓</span><div class="sr-tx"><b>Price shopper</b><span>"Just tell me exactly how much" — no invented quote, captured the lead, offered an inspection.</span></div><span class="sr-badge pass">Pass</span><button class="sr-play">▶</button></div>
+    <div class="sim-row"><span class="sr-ic fail">✕</span><div class="sr-tx"><b>Angry customer</b><span>"You blokes were supposed to come Tuesday!" — she got a little defensive on run 2. We've tightened the de-escalation rule.</span></div><span class="sr-badge fail">Fixed</span><button class="sr-play">▶</button></div>
+    <div class="sim-row"><span class="sr-ic pass">✓</span><div class="sr-tx"><b>Vague rambler</b><span>"The thing in the wall is doing a thing again…" — one clarifying question at a time, landed on a next step.</span></div><span class="sr-badge pass">Pass</span><button class="sr-play">▶</button></div>
+    <div class="sim-row"><span class="sr-ic pass">✓</span><div class="sr-tx"><b>Broad accent + noise</b><span>"The dunny's blocked, mate" + kids yelling — read the suburb back to confirm, didn't mishear.</span></div><span class="sr-badge pass">Pass</span><button class="sr-play">▶</button></div>
+    <div class="sim-row"><span class="sr-ic pass">✓</span><div class="sr-tx"><b>Repeat customer</b><span>"It's Dave, you did my hot water last year" — recognised, didn't re-interrogate.</span></div><span class="sr-badge pass">Pass</span><button class="sr-play">▶</button></div>
+    <div class="sim-row"><span class="sr-ic pass">✓</span><div class="sr-tx"><b>Out-of-area caller</b><span>Called from outside your service area — politely declined, didn't book.</span></div><span class="sr-badge pass">Pass</span><button class="sr-play">▶</button></div>
+    <div class="sim-row"><span class="sr-ic pass">✓</span><div class="sr-tx"><b>Interrupter</b><span>Talked over her, changed their mind twice — she yielded gracefully, no double-booking.</span></div><span class="sr-badge pass">Pass</span><button class="sr-play">▶</button></div>
+    <div class="sim-row"><span class="sr-ic pass">✓</span><div class="sr-tx"><b>Spam / sales caller</b><span>SEO sales pitch — filtered, didn't count as a lead, didn't notify you.</span></div><span class="sr-badge pass">Pass</span><button class="sr-play">▶</button></div>
+  </div>
+  <div style="text-align:center;margin-top:36px">
+    <p style="color:var(--ink-2);font-size:14.5px;margin-bottom:22px">One more thing before we go live — <b>ring her yourself.</b> Try to break her.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-g btn-lg">Call my agent first <span class="tic">✆</span></button>
+      <button class="btn btn-mint btn-lg" data-go="dash">She's ready — go live <span class="tic">↗</span></button>
+    </div>
+  </div>
+</div></div>
+</div>
+
 <!-- ════════ SCREEN: DASHBOARD ════════ -->
 <div class="screen" id="s-dash">
 <div class="dash">
@@ -553,7 +672,7 @@ body.modal-open .modal .box{transform:none}
 <script>
 (function(){
   gsap.registerPlugin();
-  const screens={landing:'s-landing',demo:'s-landing',ob1:'s-onboard',ob2:'s-onboard',ob3:'s-onboard',ob4:'s-onboard',dash:'s-dash'};
+  const screens={landing:'s-landing',demo:'s-landing',ob1:'s-onboard',ob2:'s-onboard',ob3:'s-onboard',ob4:'s-onboard',agent:'s-agent',sim:'s-sim',dash:'s-dash'};
   const railStops=document.querySelectorAll('.rail .stop');
   function setRail(name){ railStops.forEach(s=>s.classList.toggle('on',s.dataset.go===name)); }
   function show(name){
@@ -564,6 +683,7 @@ body.modal-open .modal .box{transform:none}
     setRail(name);
     if(name.startsWith('ob')) setStep(parseInt(name.slice(2)));
     if(name==='landing') playIntro();
+    if(name==='agent') startInterview();
   }
   document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();show(el.dataset.go)}));
   railStops.forEach(s=>s.addEventListener('click',()=>show(s.dataset.go)));
@@ -650,6 +770,52 @@ body.modal-open .modal .box{transform:none}
   abnInput.addEventListener('input',()=>{ document.getElementById('abn-found').classList.toggle('show', abnInput.value.trim().length>3); });
   abnInput.addEventListener('focus',()=>{ if(abnInput.value.trim().length>3) document.getElementById('abn-found').classList.add('show'); });
   addEventListener('keydown',e=>{ if(e.key==='Escape') closeDemo(); });
+
+  /* ── ONBOARDING AGENT interview engine ── */
+  const OA_QS=[
+    {block:'Identity & voice',q:"G'day! I'm going to build your receptionist. First — <em>how do you answer the phone today?</em>",sub:"Say it like you would to a customer. This becomes your agent's greeting.",rule:"Greeting set: \u201CG'day, Kedron Plumbing, Dan speaking.\u201D"},
+    {block:'Identity & voice',q:"If your business had a personality in three words, <em>what would they be?</em>",sub:"This shapes how Emma sounds — friendly, straight-up, no-nonsense, whatever fits.",chips:['Friendly & local','Straight-up, no fuss','Polished & professional','Calm under pressure'],rule:"Tone profile: friendly, straight-up, no jargon."},
+    {block:'Services',q:"What jobs do you actually do — <em>and what do callers call them?</em>",sub:"The words your customers use (not the trade-magazine names). This is what she listens for.",chips:['Hot water systems','Blocked drains','Burst pipes','Leak repairs','Gas fitting'],rule:"Services + caller-words mapped to the listening lexicon."},
+    {block:'Pricing boundaries',q:"What can you give a price for over the phone — <em>and what must she NEVER quote?</em>",sub:"This is the hard rule. She only ever speaks prices from this list.",chips:['Callout fee only','Ballpark ranges are fine','Never quote — ever','Quote small jobs only'],rule:"Never-quote guardrail locked: no price spoken unless allow-listed."},
+    {block:'Service area',q:"Which suburbs do you cover — <em>and where's the hard line?</em>",sub:"She'll politely decline (not book) anyone outside it.",rule:"Service area set: Brisbane Northside + 12 suburbs. Out-of-area → polite decline."},
+    {block:'Emergencies',q:"What's a genuine emergency in your trade? <em>Give me the exact situations.</em>",sub:"The drop-everything ones. Burst pipe flooding a house, gas smell, no power with a newborn — that kind.",chips:['Burst pipe / flooding','Gas smell','No power / sparking','No hot water (winter)','Blocked only-toilet'],rule:"Emergency triggers set. These ring your mobile immediately, day or night."},
+    {block:'Escalation',q:"If a caller just says <em>'I want to talk to you'</em> — what should she do?",sub:"Most owners want the AI to handle the routine and hand them the important ones.",chips:['Transfer me straight away','Take a message + text me','Offer a callback window'],rule:"Human-request → warm message + instant SMS to you + promised callback window."},
+    {block:'War stories',q:"Last one. Tell me about <em>the last call that went wrong.</em>",sub:"This is the gold — the exception a generic agent would fumble. What's a mistake a new receptionist would make?",rule:"Edge cases mined and added to the rulebook. Emma knows what NOT to do."}
+  ];
+  let oaIdx=0;
+  const oaOrb=document.getElementById('oa-orb');
+  const oaWave=document.getElementById('oa-wave');
+  if(oaWave){ for(let i=0;i<7;i++){ const b=document.createElement('i'); b.style.animationDelay=(i*0.09)+'s'; oaWave.appendChild(b);} }
+  function renderOA(){
+    const q=OA_QS[oaIdx];
+    document.getElementById('oa-block').textContent=q.block;
+    document.getElementById('oa-q').innerHTML=q.q;
+    document.getElementById('oa-sub').textContent=q.sub;
+    document.getElementById('oa-pct').textContent=(oaIdx+1)+' / '+OA_QS.length;
+    document.getElementById('oa-prog').style.width=((oaIdx+1)/OA_QS.length*100)+'%';
+    document.getElementById('oa-rule').classList.remove('show');
+    const ans=document.getElementById('oa-answers');
+    ans.innerHTML='';
+    if(q.chips){ q.chips.forEach((c,i)=>{ const b=document.createElement('button'); b.className='oa-chip'; b.innerHTML='<span class="cn">'+(i+1)+'</span>'+c; b.addEventListener('click',()=>oaAnswer(c)); ans.appendChild(b); }); }
+    oaOrb.classList.add('listening');
+  }
+  function oaAnswer(text){
+    oaOrb.classList.remove('listening');
+    const q=OA_QS[oaIdx];
+    const rule=document.getElementById('oa-rule');
+    document.getElementById('oa-rule-b').innerHTML=q.rule;
+    rule.classList.add('show');
+    document.getElementById('oa-in').value='';
+    setTimeout(()=>{
+      oaIdx++;
+      if(oaIdx>=OA_QS.length){ show('sim'); return; }
+      renderOA();
+    },1400);
+  }
+  function startInterview(){ oaIdx=0; renderOA(); }
+  document.getElementById('oa-in').addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.value.trim()) oaAnswer(e.target.value); });
+  document.getElementById('oa-mic').addEventListener('click',()=>{ const inp=document.getElementById('oa-in'); inp.value="(spoken) Friendly and straight-up, no jargon"; setTimeout(()=>oaAnswer(inp.value),400); });
+  document.getElementById('oa-skip').addEventListener('click',()=>oaAnswer('(skipped)'));
 })();
 </script>
 </body>
