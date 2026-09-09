@@ -433,9 +433,9 @@ h1 .plain {
   font-size: 10.5px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: rgba(245, 242, 234, 0.92);
-  background: rgba(16, 14, 11, 0.5);
-  border: 1px solid rgba(245, 242, 234, 0.16);
+  color: rgba(245, 242, 234, 0.96);
+  background: rgba(14, 12, 9, 0.7);
+  border: 1px solid rgba(245, 242, 234, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 7px 13px;
@@ -543,11 +543,12 @@ h1 .plain {
 }
 /* between turns the line goes quiet rather than stopping dead */
 .vc-wave[data-quiet] {
-  opacity: 0.42;
+  opacity: 0.3;
 }
 .vc-wave[data-quiet] i {
   animation-play-state: paused;
-  transform: scaleY(calc(var(--s) * 0.12));
+  transform: scaleY(0.06);
+  transition: transform 0.7s var(--e);
 }
 
 .vc-sub {
@@ -649,9 +650,9 @@ h1 .plain {
   font-size: 9.5px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(245, 242, 234, 0.95);
-  background: rgba(16, 14, 11, 0.58);
-  border: 1px solid rgba(245, 242, 234, 0.18);
+  color: rgba(245, 242, 234, 0.97);
+  background: rgba(14, 12, 9, 0.74);
+  border: 1px solid rgba(245, 242, 234, 0.22);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 6px 12px;

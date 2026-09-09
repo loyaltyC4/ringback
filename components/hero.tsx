@@ -44,17 +44,27 @@ const CAPTIONS: Cap[] = [
   { text: "Details texted to Dave", live: false, done: true },
 ];
 
-/** deterministic bar heights — a random() here would differ server vs client */
+/**
+ * Deterministic bar heights — a random() here would differ between the server
+ * and client render. Three sines at incommensurate frequencies under a slow
+ * envelope, so the line has loud and quiet passages instead of the even comb
+ * a single sine produces.
+ */
 function useBars(n: number) {
   return useMemo(
     () =>
       Array.from({ length: n }, (_, k) => {
-        const a = Math.sin(k * 0.7) * 0.5 + 0.5;
-        const b = Math.sin(k * 1.9 + 1.1) * 0.5 + 0.5;
+        const t = k / (n - 1);
+        const envelope = 0.5 + 0.5 * Math.sin(t * Math.PI * 2.4 + 0.5);
+        const coarse = 0.5 + 0.5 * Math.sin(k * 0.61);
+        const mid = 0.5 + 0.5 * Math.sin(k * 2.399 + 1.7);
+        const fine = 0.5 + 0.5 * Math.sin(k * 5.113 + 3.2);
+        const raw =
+          0.16 + (0.35 + 0.65 * envelope) * (0.5 * coarse + 0.32 * mid + 0.18 * fine);
         return {
-          scale: 0.22 + a * 0.55 + b * 0.23,
-          delay: (k % 11) * 0.055,
-          dur: 0.85 + ((k * 7) % 5) * 0.11,
+          scale: Math.min(1, Math.max(0.13, raw * 1.28)),
+          delay: ((k * 3) % 13) * 0.05,
+          dur: 0.8 + ((k * 7) % 6) * 0.1,
         };
       }),
     [n],
@@ -143,7 +153,6 @@ export function Hero() {
   const roofRef = useLoopVideo();
   const workRef = useLoopVideo();
   const { i, setPaused } = useBeat(CAPTIONS.length, 2900);
-  const over = OVER_VIDEO[i];
 
   return (
     <header className="hero" id="top">
