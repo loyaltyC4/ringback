@@ -326,6 +326,11 @@ h1 .plain {
 .hg-wide {
   grid-column: 1 / span 3;
   grid-row: 2;
+  /* the agent window drives row 2's height; without this the landscape clip
+     stretches to match it and gets cropped to a portrait sliver */
+  align-self: end;
+  aspect-ratio: 16 / 10;
+  min-height: 0;
 }
 .hg-agent {
   grid-column: 4 / span 5;
@@ -420,7 +425,7 @@ h1 .plain {
   border-radius: 999px;
 }
 .hg-wide {
-  min-height: 178px;
+  min-height: 0;
 }
 .hg-wide figcaption {
   left: 12px;
