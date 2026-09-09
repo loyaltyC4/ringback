@@ -625,7 +625,7 @@ h1 .plain {
   margin-top: 2px;
 }
 .aw-foot {
-  padding: 12px 18px 14px;
+  padding: 12px 16px 14px;
   border-top: 1px solid var(--hair-2);
   margin-top: 10px;
 }
@@ -633,12 +633,6 @@ h1 .plain {
   width: 100%;
   justify-content: center;
   padding-left: 20px;
-}
-.aw-fine {
-  margin-top: 8px;
-  text-align: center;
-  font-size: 11px;
-  color: var(--color-ink-3);
 }
 
 /* ============================================================

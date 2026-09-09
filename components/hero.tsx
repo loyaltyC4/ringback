@@ -29,6 +29,9 @@ const BEATS: Beat[] = [
   { ms: 4200, turns: 4, chips: ["urgency: emergency", "water isolated ✓", "Stafford · in area"], booked: true, status: "Booked", timer: "00:31" },
 ];
 
+/** how many turns stay on screen — older ones scroll away like a real transcript */
+const VISIBLE_TURNS = 3;
+
 const TURNS: { who: "agent" | "caller"; text: string }[] = [
   { who: "agent", text: "G'day, you've reached Kedron Plumbing — this is Emma. How can I help?" },
   { who: "caller", text: "My hot water system's just let go, there's water everywhere." },
@@ -74,7 +77,9 @@ function AgentWindow() {
             <div
               key={k}
               className={`aw-turn ${t.who}`}
-              data-on={k < beat.turns || undefined}
+              data-on={
+                (k < beat.turns && k >= beat.turns - VISIBLE_TURNS) || undefined
+              }
             >
               <span className="aw-turn-who">{t.who === "agent" ? "Emma" : "Caller"}</span>
               <span className="aw-said">{t.text}</span>
@@ -111,7 +116,7 @@ function AgentWindow() {
           <span>Ring it and listen</span>
           <span className="tic">✆</span>
         </a>
-        <p className="aw-fine">Answers 24/7 · no credit card to try</p>
+
       </div>
     </div>
   );
