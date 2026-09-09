@@ -1,3 +1,11 @@
+/* ------------------------------------------------------------
+   NOTE ON SPECIFICITY
+   This file is @imported at the TOP of globals.css, so the base rules there
+   (.wrap, h1-h4, .kick, .btn ...) come LATER in the cascade and win ties.
+   Any rule here that targets the same selector as a base rule must therefore
+   out-specify it — hence `.hero h1`, `.rail .rail-head`, `.strip .strip-head`.
+   ------------------------------------------------------------ */
+
 /* ============================================================
    NAV — fluid island
    ============================================================ */
@@ -236,7 +244,7 @@
   max-width: 940px;
   margin: 0 auto clamp(22px, 3.2vh, 40px);
 }
-h1 {
+.hero h1 {
   font-size: clamp(42px, 6.8vw, 88px);
   letter-spacing: -0.055em;
   line-height: 0.88;
@@ -328,7 +336,7 @@ h1 .plain {
   grid-row: 2;
   /* the agent window drives row 2's height; without this the landscape clip
      stretches to match it and gets cropped to a portrait sliver */
-  align-self: end;
+  align-self: start;
   aspect-ratio: 16 / 10;
   min-height: 0;
 }
@@ -652,7 +660,7 @@ h1 .plain {
   background: rgba(253, 252, 249, 0.5);
   overflow: hidden;
 }
-.strip-head {
+.strip .strip-head {
   margin-bottom: 16px;
 }
 .marquee {
@@ -745,8 +753,9 @@ h1 .plain {
   overflow: hidden;
   z-index: 2;
 }
-.rail-head {
-  padding: clamp(96px, 12vh, 124px) 0 0;
+.rail .rail-head {
+  /* padding-top only: .wrap supplies the horizontal gutter */
+  padding-top: clamp(96px, 12vh, 124px);
   flex: none;
 }
 .rail-stages {
@@ -2026,10 +2035,10 @@ footer {
     height: auto;
     display: block;
   }
-  .rail-head {
-    padding: clamp(60px, 9vh, 90px) 0 0;
+  .rail .rail-head {
+    padding-top: clamp(60px, 9vh, 90px);
   }
-  .rail-stages {
+  .rail .rail-stages {
     position: static;
     min-height: 0;
     padding-bottom: clamp(50px, 8vh, 80px);
