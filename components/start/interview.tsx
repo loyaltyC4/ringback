@@ -347,11 +347,16 @@ export function Interview({ onDone }: { onDone: () => void }) {
             <div className="iv-done">
               <h2>
                 That&rsquo;s your rulebook.{" "}
-                <span className="g">{rules.length} rules, all in your words.</span>
+                <span className="g">
+                  {rules.length === 0
+                    ? "Nothing locked in yet — we can do this later."
+                    : `${rules.length} rule${rules.length === 1 ? "" : "s"}, all in your words.`}
+                </span>
               </h2>
               <p>
-                Next I&rsquo;ll read it back on a call so you can hear how it sounds
-                coming out of her mouth.
+                {rules.length === 0
+                  ? "You skipped the lot, which is fine — she'll run on the trade defaults until you come back to it."
+                  : "Next I'll read it back on a call so you can hear how it sounds coming out of her mouth."}
               </p>
               <button className="btn btn-fill" onClick={onDone}>
                 <span>Hear her use it</span>
