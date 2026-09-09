@@ -172,6 +172,41 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 .sb-input input:focus{outline:none;border-color:var(--mint)}
 .sb-input button{padding:12px 20px;border-radius:999px;background:var(--mint);color:#fff;font-weight:600;font-size:13px}
 
+/* ── ROI / value view ── */
+.roi-hero{border-radius:var(--r-xl);padding:2px;background:linear-gradient(140deg,rgba(13,166,120,.5),rgba(47,92,255,.4));margin-bottom:18px}
+.roi-hero .in{border-radius:calc(var(--r-xl) - 2px);background:linear-gradient(160deg,#0a1f16,#0a1420);padding:clamp(28px,4vw,44px);color:#fff;position:relative;overflow:hidden}
+.roi-hero .in:before{content:"";position:absolute;inset:0;background:radial-gradient(500px 240px at 80% 0%,rgba(13,166,120,.25),transparent 60%)}
+.roi-hero .rl{position:relative;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(150,240,200,.7)}
+.roi-hero .big{position:relative;font-family:var(--display);font-size:clamp(48px,6.5vw,84px);font-weight:700;letter-spacing:-.04em;line-height:1;margin-top:12px;background:linear-gradient(100deg,#6ef0c2,#8fb0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.roi-hero .cap{position:relative;margin-top:12px;font-size:15px;color:rgba(210,240,225,.8);max-width:52ch}
+.roi-mult{position:relative;display:inline-flex;align-items:baseline;gap:10px;margin-top:20px;padding:11px 18px;border-radius:999px;background:rgba(13,166,120,.15);border:1px solid rgba(13,166,120,.35)}
+.roi-mult b{font-family:var(--display);font-size:22px;color:#6ef0c2}
+.roi-mult span{font-size:12.5px;color:rgba(210,240,225,.75)}
+.roi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.roi-tile{background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:20px 21px;box-shadow:var(--shadow-sm)}
+.roi-tile .lb{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.roi-tile .v{font-family:var(--display);font-size:28px;font-weight:700;letter-spacing:-.03em;margin-top:9px}
+.roi-tile .v.m{color:var(--mint-deep)}
+.roi-tile .s{font-size:12px;color:var(--ink-2);margin-top:6px}
+/* loss calculator */
+.calculator{background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:26px 26px 22px}
+.calculator .crow2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:8px}
+.calculator .field{margin:0}
+.calc-out{margin-top:18px;border-radius:var(--r-md);background:var(--red-soft);border:1px solid rgba(229,72,77,.25);padding:20px 22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.calc-out .n{font-family:var(--display);font-size:clamp(30px,3.5vw,42px);font-weight:700;letter-spacing:-.04em;color:var(--red)}
+.calc-out .t{flex:1;min-width:200px;font-size:13.5px;color:var(--ink-2)}
+.calc-out .t b{color:var(--ink)}
+/* usage meter */
+.usage-wrap{background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:24px}
+.usage-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.usage-head b{font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:-.02em}
+.usage-head span{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.usage-bar{height:12px;border-radius:99px;background:var(--bg-2);overflow:hidden;margin:16px 0 10px}
+.usage-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--acc),var(--mint));transition:width 1s var(--ease)}
+.usage-bar.hot i{background:linear-gradient(90deg,var(--amber),var(--red))}
+.usage-note{font-size:12.5px;color:var(--ink-2)}
+.usage-note b{color:var(--amber)}
+
 /* form fields (used across My Agent / Settings) */
 .field{margin-top:0}
 .field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:8px;letter-spacing:.01em}
@@ -388,6 +423,7 @@ body.detail-open .detail{transform:translateX(0)}
       <button data-view="bookings"><span class="ic">◷</span>Bookings</button>
       <button data-view="customers"><span class="ic">◉</span>Customers</button>
       <button data-view="transcripts"><span class="ic">≡</span>Transcripts</button>
+      <button data-view="roi"><span class="ic">$</span>Value &amp; ROI</button>
       <span class="lbl">Configure</span>
       <button data-view="agent"><span class="ic">✦</span>My agent</button>
       <button data-view="outbound"><span class="ic">↗</span>Outbound</button>
@@ -652,6 +688,42 @@ body.detail-open .detail{transform:translateX(0)}
       </div>
     </section>
 
+    <!-- ══════ VALUE & ROI ══════ -->
+    <section class="view" id="v-roi">
+      <div class="topbar"><div><h1>Value &amp; ROI</h1><div class="sub">The number that matters: what RingBack put back in your business.</div></div></div>
+
+      <div class="roi-hero"><div class="in">
+        <span class="rl">Captured this month</span>
+        <div class="big">$4,870</div>
+        <p class="cap">Across 14 jobs RingBack answered, qualified and booked while you were on the tools — many after hours.</p>
+        <span class="roi-mult"><b>49×</b><span>return on your $99 plan this month</span></span>
+      </div></div>
+
+      <div class="roi-grid">
+        <div class="roi-tile"><div class="lb">Jobs captured</div><div class="v m">14</div><div class="s">this month · 9 after-hours</div></div>
+        <div class="roi-tile"><div class="lb">Lifetime recovered</div><div class="v m">$23,640</div><div class="s">since you switched on 3 months ago</div></div>
+        <div class="roi-tile"><div class="lb">Avg job value</div><div class="v">$420</div><div class="s">used to estimate recovered revenue — <a href="#" style="color:var(--acc-deep);font-weight:600">adjust</a></div></div>
+      </div>
+
+      <div class="d-section-h">This week, in one message</div>
+      <div class="card"><div class="c-bd" style="padding:20px 22px">
+        <div class="digest-prev"><span class="dp-phone">✉</span><div class="dp-body"><b>Monday digest — you captured $1,840 last week.</b><br>32 calls answered · 9 jobs booked · 4 after-hours emergencies. Tuesday 5–7pm is your busiest missed-call window. Your $99 plan returned 18×. <a href="#" style="color:var(--acc-deep);font-weight:600">See the calls →</a></div></div>
+      </div></div>
+
+      <div class="d-section-h">What it's worth — run your own numbers</div>
+      <div class="calculator">
+        <div class="crow2">
+          <div class="field"><label>Calls you miss / week</label><input type="number" id="calc-missed" value="8" min="0"></div>
+          <div class="field"><label>Avg job value</label><input type="number" id="calc-value" value="450" min="0"></div>
+          <div class="field"><label>Close rate %</label><input type="number" id="calc-close" value="35" min="0" max="100"></div>
+        </div>
+        <div class="calc-out">
+          <div class="n" id="calc-out">$50,960</div>
+          <div class="t"><b>walks to a competitor every year</b> while those calls hit voicemail. RingBack answers them all — for less than one job a month.</div>
+        </div>
+      </div>
+    </section>
+
     <!-- ══════ INTEGRATIONS ══════ -->
     <section class="view" id="v-integrations">
       <div class="topbar"><div><h1>Integrations</h1><div class="sub">Where your jobs and calendar live.</div></div></div>
@@ -667,15 +739,27 @@ body.detail-open .detail{transform:translateX(0)}
 
     <!-- ══════ BILLING ══════ -->
     <section class="view" id="v-billing">
-      <div class="topbar"><div><h1>Billing</h1><div class="sub">Plan, minutes and invoices.</div></div></div>
+      <div class="topbar"><div><h1>Billing</h1><div class="sub">Plan, minutes and invoices — flat AUD, no lock-in, no surprise add-ons.</div></div></div>
+
+      <!-- usage meter (the honest paywall) -->
+      <div class="usage-wrap" style="margin-bottom:16px">
+        <div class="usage-head"><b>Call minutes this month</b><span>resets 1 October</span></div>
+        <div class="usage-bar hot" id="usage-bar"><i id="usage-fill" style="width:82%"></i></div>
+        <p class="usage-note"><b>410 of 500 used — you're running hot.</b> At this pace you'll hit your included minutes around the 28th. Overage is billed at cost, or step up and stop watching it.</p>
+        <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+          <button class="btn btn-g btn-sm">Keep overage at cost</button>
+          <button class="btn btn-p btn-sm">Upgrade — 1,000 min for $80 more <span class="tic">→</span></button>
+        </div>
+      </div>
+
       <div class="card" style="margin-bottom:16px"><div class="c-bd" style="padding:24px 22px">
-        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span style="font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-.04em">Founding — $150<span style="font-size:15px;font-weight:400;color:var(--ink-2)">/mo</span></span><span class="cstat booked" style="text-transform:none">free trial · 4 days left</span></div>
-        <div style="margin-top:20px">
-          <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2);margin-bottom:8px"><span>Call minutes this month</span><span><b style="color:var(--ink)">312</b> of 500 included</span></div>
-          <div style="height:9px;border-radius:99px;background:var(--bg-2);overflow:hidden"><div style="height:100%;width:62%;border-radius:99px;background:linear-gradient(90deg,var(--acc),var(--mint))"></div></div>
-          <p style="font-size:12px;color:var(--ink-3);margin-top:9px">At this rate you'll stay in plan. Overage is billed at cost, never marked up.</p>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span style="font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-.04em">Founding — $150<span style="font-size:15px;font-weight:400;color:var(--ink-2)">/mo</span></span><span class="cstat booked" style="text-transform:none">locked for life</span></div>
+        <p style="font-size:13px;color:var(--ink-2);margin-top:12px">Everything's in the base plan — booking, SMS, emergency triage, transcripts. No per-feature add-ons, no per-call surprises. What you see is what you pay.</p>
+        <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2)">
+          <span>✓ No lock-in contract</span><span>✓ Keep your number</span><span>✓ 30-day money-back</span>
         </div>
       </div></div>
+
       <div class="card"><div class="c-hd"><div><h3>Invoices</h3><div class="sub">PDF for your BAS</div></div></div>
         <div class="skill"><div class="sk-tx"><b>September 2026</b><span>Founding · $150</span></div><button class="btn btn-g btn-sm">Download PDF</button></div>
         <div class="skill"><div class="sk-tx"><b>August 2026</b><span>Founding · $150</span></div><button class="btn btn-g btn-sm">Download PDF</button></div>
@@ -990,6 +1074,15 @@ const d=new Date();document.getElementById('datesub').textContent=d.toLocaleDate
 
 /* toggles (settings + skills) */
 document.querySelectorAll('.tgl').forEach(t=>t.addEventListener('click',()=>t.classList.toggle('on')));
+
+/* ── loss calculator ── */
+(function(){
+  const m=document.getElementById('calc-missed'),v=document.getElementById('calc-value'),c=document.getElementById('calc-close'),out=document.getElementById('calc-out');
+  if(!m)return;
+  function calc(){const missed=+m.value||0,val=+v.value||0,close=(+c.value||0)/100;const yr=Math.round(missed*val*close*52);out.textContent='$'+yr.toLocaleString();}
+  [m,v,c].forEach(el=>el.addEventListener('input',calc));
+  calc();
+})();
 
 /* voice strip selector */
 document.querySelectorAll('#vstrip .vstrip').forEach(v=>v.addEventListener('click',()=>{document.querySelectorAll('#vstrip .vstrip').forEach(x=>x.classList.remove('on'));v.classList.add('on');
