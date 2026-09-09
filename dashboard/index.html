@@ -27,6 +27,68 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1
 a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 ::selection{background:var(--acc);color:#fff}
 
+/* ── LIVING AGENT ORB (dashboard heartbeat) ── */
+.agent-orb-card{background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);overflow:hidden;position:relative}
+.agent-orb-card .ao-in{padding:22px;display:flex;align-items:center;gap:20px;position:relative}
+.agent-orb{position:relative;width:96px;height:96px;flex:none;display:grid;place-items:center}
+.agent-orb .ao-halo{position:absolute;inset:-30%;border-radius:50%;background:radial-gradient(closest-side,rgba(47,92,255,.18),transparent 70%);filter:blur(10px);transition:all .6s var(--ease)}
+.agent-orb .ao-ball{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;box-shadow:0 16px 36px -14px rgba(47,92,255,.5),inset 0 0 24px rgba(255,255,255,.3);transition:transform .5s var(--ease)}
+.agent-orb .ao-ball:before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,#2f5cff,#6f9bff,#0da678,#4de3b0,#2f5cff);filter:blur(12px) saturate(150%);animation:orbspin 9s linear infinite}
+.agent-orb .ao-ball:after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.7),transparent 45%)}
+@keyframes orbspin{to{transform:rotate(360deg)}}
+.agent-orb .ao-state{position:absolute;inset:0;display:grid;place-items:center;z-index:2}
+.agent-orb .ao-state .wave-mini{display:flex;align-items:center;gap:2.5px;height:26px}
+.agent-orb .ao-state .wave-mini i{width:3px;height:100%;border-radius:2px;background:#fff;transform-origin:center;transform:scaleY(.3);transition:transform .3s}
+/* idle = slow breathe */
+.agent-orb.idle .ao-ball{animation:orbreathe 4.5s ease-in-out infinite}
+@keyframes orbreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+/* listening = reactive amplitude */
+.agent-orb.live .ao-ball{animation:none;transform:scale(1.06)}
+.agent-orb.live .ao-halo{background:radial-gradient(closest-side,rgba(13,166,120,.3),transparent 70%)}
+.agent-orb.live .ao-state .wave-mini i{animation:orbeq 1s var(--ease) infinite;transform:scaleY(.2)}
+@keyframes orbeq{0%,100%{transform:scaleY(.18)}50%{transform:scaleY(1)}}
+.agent-orb.live .ao-ball:before{animation-duration:3.5s}
+.ao-meta{flex:1;min-width:0}
+.ao-meta .ao-status{font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.ao-meta .ao-status .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);animation:pulse 1.6s var(--ease) infinite}
+.ao-meta .ao-sub{font-size:12.5px;color:var(--ink-2);margin-top:4px}
+.ao-meta .ao-line{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-top:8px}
+.ao-toggle{flex:none}
+
+/* unactioned-lead urgency banner */
+.leadalert{margin-bottom:22px;border-radius:var(--r-lg);padding:2px;background:linear-gradient(120deg,rgba(226,147,10,.55),rgba(229,72,77,.4))}
+.leadalert .in{border-radius:calc(var(--r-lg) - 2px);background:var(--panel);padding:18px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.leadalert .la-ic{width:42px;height:42px;border-radius:12px;background:var(--amber-soft);color:var(--amber);display:grid;place-items:center;font-size:19px;flex:none}
+.leadalert .txt{flex:1;min-width:220px}
+.leadalert .txt b{font-family:var(--display);font-size:15px;font-weight:700;display:block}
+.leadalert .txt span{font-size:13px;color:var(--ink-2)}
+.leadalert .txt span b{display:inline;color:var(--amber);font-size:13px}
+
+/* notification matrix */
+.notif-grid{width:100%;border-collapse:collapse}
+.notif-grid th{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:0 14px 12px}
+.notif-grid td{padding:12px 14px;border-top:1px solid var(--line-2);font-size:13.5px;vertical-align:middle}
+.notif-grid .ev{font-weight:600}
+.notif-grid .ev span{display:block;font-weight:400;font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.tgl{position:relative;width:42px;height:24px;border-radius:999px;background:#e6ecf5;border:1.5px solid var(--line);cursor:pointer;transition:all .3s var(--ease);flex:none;display:inline-block}
+.tgl:after{content:"";position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.25);transition:transform .3s var(--ease-spring)}
+.tgl.on{background:var(--mint);border-color:var(--mint-deep);box-shadow:0 0 0 3px var(--mint-soft)}
+.tgl.on:after{transform:translateX(18px);background:#fff}
+.digest-prev{display:flex;gap:14px;align-items:flex-start;background:var(--panel-2);border:1px solid var(--line-2);border-radius:var(--r-md);padding:18px 19px;margin-top:8px}
+.digest-prev .dp-phone{width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,var(--acc),var(--mint));display:grid;place-items:center;color:#fff;font-size:15px;flex:none}
+.digest-prev .dp-body{font-size:13px;color:var(--ink-2);line-height:1.6}
+.digest-prev .dp-body b{color:var(--ink)}
+
+/* agent skills editor */
+.skill{display:flex;align-items:center;gap:14px;padding:15px 22px;border-bottom:1px solid var(--line-2)}
+.skill:last-child{border-bottom:none}
+.skill .sk-ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:15px;flex:none}
+.skill .sk-ic.m{background:var(--mint-soft);color:var(--mint-deep)}.skill .sk-ic.b{background:var(--acc-soft);color:var(--acc-deep)}.skill .sk-ic.a{background:var(--amber-soft);color:var(--amber)}.skill .sk-ic.r{background:var(--red-soft);color:var(--red)}
+.skill .sk-tx{flex:1;min-width:0}
+.skill .sk-tx b{display:block;font-size:13.5px;font-weight:600}
+.skill .sk-tx span{font-size:12px;color:var(--ink-3)}
+.skill .tgl{margin-left:auto}
+
 .app{min-height:100dvh;display:grid;grid-template-columns:240px 1fr}
 /* ── sidebar ── */
 .side{background:var(--panel);border-right:1px solid var(--line-2);padding:24px 14px;display:flex;flex-direction:column;position:sticky;top:0;height:100dvh}
@@ -260,6 +322,28 @@ body.detail-open .detail{transform:translateX(0)}
         <button class="btn btn-mint btn-sm">Connect calendar <span class="tic">→</span></button>
       </div></div>
 
+      <div class="leadalert"><div class="in">
+        <span class="la-ic">⚠</span>
+        <div class="txt"><b>2 hot leads need you</b><span>Jim Taylor (quote) and Tom Ng (service) asked for a callback <b>over 4 hours ago</b>. Hot leads go cold fast — ring them while they're warm.</span></div>
+        <button class="btn btn-p btn-sm">Call them now <span class="tic">→</span></button>
+      </div></div>
+
+      <div class="agent-orb-card" style="margin-bottom:20px">
+        <div class="ao-in">
+          <div class="agent-orb idle" id="agent-orb">
+            <span class="ao-halo"></span>
+            <div class="ao-ball"></div>
+            <div class="ao-state"><div class="wave-mini" id="orb-wave"></div></div>
+          </div>
+          <div class="ao-meta">
+            <div class="ao-status"><span class="dot"></span><span id="orb-status">Emma is on the line</span></div>
+            <div class="ao-sub" id="orb-sub">Listening for calls 24/7. She answered 6 today — 3 became jobs.</div>
+            <div class="ao-line" id="orb-line">last call · Sue Murphy · 38 min ago · booked</div>
+          </div>
+          <button class="btn btn-g btn-sm ao-toggle" id="orb-toggle"><span>Simulate a live call</span><span class="tic">✆</span></button>
+        </div>
+      </div>
+
       <div class="stats" id="stats"></div>
 
       <div class="grid2">
@@ -314,11 +398,104 @@ body.detail-open .detail{transform:translateX(0)}
       <div class="card"><div class="c-bd" id="customers-list"></div></div>
     </section>
 
-    <!-- ══════ PLACEHOLDERS ══════ -->
-    <section class="view" id="v-agent"><div class="topbar"><div><h1>My agent</h1><div class="sub">Skills, greeting, voice and knowledge — Run 5.</div></div></div><div class="card"><div class="c-bd" style="padding:40px 22px;color:var(--ink-2);font-size:14px">Agent editor (skills model, greeting, voice picker, knowledge base) builds in Run 5.</div></div></section>
-    <section class="view" id="v-integrations"><div class="topbar"><div><h1>Integrations</h1><div class="sub">Calendar, ServiceM8, Xero and more — Run 5.</div></div></div><div class="card"><div class="c-bd" style="padding:40px 22px;color:var(--ink-2);font-size:14px">Integrations grid builds in Run 5.</div></div></section>
-    <section class="view" id="v-billing"><div class="topbar"><div><h1>Billing</h1><div class="sub">Plan, minutes and invoices — Run 6.</div></div></div><div class="card"><div class="c-bd" style="padding:40px 22px;color:var(--ink-2);font-size:14px">Billing (Stripe AUD, usage meter, invoice PDFs) builds in Run 6.</div></div></section>
-    <section class="view" id="v-settings"><div class="topbar"><div><h1>Settings</h1><div class="sub">Hours, emergency rules, transfers, notifications — Run 5.</div></div></div><div class="card"><div class="c-bd" style="padding:40px 22px;color:var(--ink-2);font-size:14px">Settings surface builds in Run 5.</div></div></section>
+    <!-- ══════ MY AGENT (skills editor) ══════ -->
+    <section class="view" id="v-agent">
+      <div class="topbar">
+        <div><h1>My agent</h1><div class="sub">What Emma does when a caller asks — in plain English. Test before you publish.</div></div>
+        <div class="right"><button class="btn btn-mint btn-sm"><span>Test call</span><span class="tic">✆</span></button><button class="btn btn-p btn-sm">Publish changes</button></div>
+      </div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="c-hd"><div><h3>Voice &amp; greeting</h3><div class="sub">How she sounds and the first thing she says</div></div></div>
+        <div style="padding:20px 22px;display:grid;gap:16px">
+          <div class="field" style="margin:0"><label>Greeting</label><input type="text" value="G'day, you've reached Kedron Plumbing — this is Emma, the booking line. How can I help?"></div>
+          <div class="tworow">
+            <div class="field" style="margin:0"><label>Voice</label><select><option>Emma — Warm · General AU</option><option>Jack — Relaxed · Blokey</option><option>Sophie — Polished · Pro</option><option>Davo — Broad · True-blue</option></select></div>
+            <div class="field" style="margin:0"><label>Speaking pace</label><select><option>Relaxed (recommended)</option><option>Brisk</option><option>Slow &amp; clear</option></select></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="c-hd"><div><h3>Skills</h3><div class="sub">When a caller says X → Emma does Y</div></div><button class="more">+ Add skill</button></div>
+        <div>
+          <div class="skill"><span class="sk-ic r">!</span><div class="sk-tx"><b>Emergency — burst pipe / gas / no power / sparking</b><span>Ring my mobile immediately. No answer → backup + urgent SMS.</span></div><span class="tgl on"></span></div>
+          <div class="skill"><span class="sk-ic m">✓</span><div class="sk-tx"><b>Book a job</b><span>Check live calendar, offer a real window, SMS the confirmation.</span></div><span class="tgl on"></span></div>
+          <div class="skill"><span class="sk-ic b">$</span><div class="sk-tx"><b>Quote request</b><span>Capture details, never quote a price — "Dan will call you back with that."</span></div><span class="tgl on"></span></div>
+          <div class="skill"><span class="sk-ic a">↗</span><div class="sk-tx"><b>Out of service area</b><span>Politely decline and take a message — don't book outside Brisbane Northside.</span></div><span class="tgl on"></span></div>
+          <div class="skill"><span class="sk-ic m">★</span><div class="sk-tx"><b>Repeat customer</b><span>Greet them by name and pull up their history.</span></div><span class="tgl on"></span></div>
+          <div class="skill"><span class="sk-ic b">✉</span><div class="sk-tx"><b>After-hours</b><span>Take details, book next-available, only wake me for emergencies.</span></div><span class="tgl on"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ INTEGRATIONS ══════ -->
+    <section class="view" id="v-integrations">
+      <div class="topbar"><div><h1>Integrations</h1><div class="sub">Where your jobs and calendar live.</div></div></div>
+      <div class="card"><div>
+        <div class="skill"><span class="sk-ic b">◷</span><div class="sk-tx"><b>Google Calendar</b><span>Bookings land here in real time. <span style="color:var(--mint-deep)">● Connected · synced 2 min ago</span></span></div><button class="btn btn-g btn-sm">Manage</button></div>
+        <div class="skill"><span class="sk-ic m">⚒</span><div class="sk-tx"><b>ServiceM8</b><span>Create jobs + look up customers by caller ID. <span style="color:var(--amber)">● Not connected</span></span></div><button class="btn btn-p btn-sm">Connect</button></div>
+        <div class="skill"><span class="sk-ic a">◈</span><div class="sk-tx"><b>simPRO</b><span>For bigger crews. <span style="color:var(--ink-3)">Not connected</span></span></div><button class="btn btn-g btn-sm">Connect</button></div>
+        <div class="skill"><span class="sk-ic b">∑</span><div class="sk-tx"><b>Xero</b><span>Invoice follow-up + payment links. <span style="color:var(--ink-3)">Not connected</span></span></div><button class="btn btn-g btn-sm">Connect</button></div>
+        <div class="skill"><span class="sk-ic m">✆</span><div class="sk-tx"><b>SMS notifications</b><span>Instant text on every booking. <span style="color:var(--mint-deep)">● On</span></span></div><button class="btn btn-g btn-sm">Manage</button></div>
+        <div class="skill"><span class="sk-ic r">✉</span><div class="sk-tx"><b>Email digest</b><span>A 6pm summary of the day's calls and jobs. <span style="color:var(--mint-deep)">● On</span></span></div><button class="btn btn-g btn-sm">Manage</button></div>
+      </div></div>
+    </section>
+
+    <!-- ══════ BILLING ══════ -->
+    <section class="view" id="v-billing">
+      <div class="topbar"><div><h1>Billing</h1><div class="sub">Plan, minutes and invoices.</div></div></div>
+      <div class="card" style="margin-bottom:16px"><div class="c-bd" style="padding:24px 22px">
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span style="font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-.04em">Founding — $150<span style="font-size:15px;font-weight:400;color:var(--ink-2)">/mo</span></span><span class="cstat booked" style="text-transform:none">free trial · 4 days left</span></div>
+        <div style="margin-top:20px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2);margin-bottom:8px"><span>Call minutes this month</span><span><b style="color:var(--ink)">312</b> of 500 included</span></div>
+          <div style="height:9px;border-radius:99px;background:var(--bg-2);overflow:hidden"><div style="height:100%;width:62%;border-radius:99px;background:linear-gradient(90deg,var(--acc),var(--mint))"></div></div>
+          <p style="font-size:12px;color:var(--ink-3);margin-top:9px">At this rate you'll stay in plan. Overage is billed at cost, never marked up.</p>
+        </div>
+      </div></div>
+      <div class="card"><div class="c-hd"><div><h3>Invoices</h3><div class="sub">PDF for your BAS</div></div></div>
+        <div class="skill"><div class="sk-tx"><b>September 2026</b><span>Founding · $150</span></div><button class="btn btn-g btn-sm">Download PDF</button></div>
+        <div class="skill"><div class="sk-tx"><b>August 2026</b><span>Founding · $150</span></div><button class="btn btn-g btn-sm">Download PDF</button></div>
+      </div>
+    </section>
+
+    <!-- ══════ SETTINGS (notification matrix + emergency rules) ══════ -->
+    <section class="view" id="v-settings">
+      <div class="topbar"><div><h1>Settings</h1><div class="sub">Hours, emergency rules, and how Emma reaches you.</div></div></div>
+
+      <div class="card" style="margin-bottom:16px">
+        <div class="c-hd"><div><h3>Emergency rules</h3><div class="sub">What counts as drop-everything — the safety net</div></div></div>
+        <div>
+          <div class="skill"><span class="sk-ic r">!</span><div class="sk-tx"><b>Burst pipe / major leak / flooding</b><span>Ring my mobile now → no answer → backup number → urgent SMS.</span></div><span class="tgl on"></span></div>
+          <div class="skill"><span class="sk-ic r">⚡</span><div class="sk-tx"><b>Gas smell / no power / sparking</b><span>Ring my mobile now. Always, day or night.</span></div><span class="tgl on"></span></div>
+          <div class="skill"><span class="sk-ic a">☾</span><div class="sk-tx"><b>After-hours, not an emergency</b><span>Take details + book next-available. Don't wake me.</span></div><span class="tgl on"></span></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px">
+        <div class="c-hd"><div><h3>How Emma reaches you</h3><div class="sub">Per event, per channel — you control the noise</div></div></div>
+        <div style="padding:8px 22px 18px;overflow-x:auto">
+          <table class="notif-grid">
+            <thead><tr><th>Event</th><th>Push</th><th>SMS</th><th>Email</th></tr></thead>
+            <tbody>
+              <tr><td class="ev">Emergency / transfer failed<span>Something needs you right now</span></td><td><span class="tgl on"></span></td><td><span class="tgl on"></span></td><td><span class="tgl on"></span></td></tr>
+              <tr><td class="ev">Job booked<span>A new job landed in your calendar</span></td><td><span class="tgl on"></span></td><td><span class="tgl on"></span></td><td><span class="tgl"></span></td></tr>
+              <tr><td class="ev">Hot lead waiting 4+ hrs<span>Someone asked for a callback</span></td><td><span class="tgl on"></span></td><td><span class="tgl on"></span></td><td><span class="tgl"></span></td></tr>
+              <tr><td class="ev">Message taken<span>Routine — not urgent</span></td><td><span class="tgl on"></span></td><td><span class="tgl"></span></td><td><span class="tgl"></span></td></tr>
+              <tr><td class="ev">Daily digest<span>6pm — the day's calls + jobs + $</span></td><td><span class="tgl"></span></td><td><span class="tgl"></span></td><td><span class="tgl on"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="c-hd"><div><h3>Daily digest preview</h3><div class="sub">What lands in your inbox at 6pm</div></div></div>
+        <div style="padding:8px 22px 22px">
+          <div class="digest-prev">
+            <span class="dp-phone">✉</span>
+            <div class="dp-body"><b>Today: 14 calls answered, 3 jobs booked (~$1,350 est.), 1 urgent callback needed.</b><br>Sue Murphy's hot water system is booked for Thu 2:15. Jim Taylor asked for a reno quote — worth a ring tonight. Emma caught 2 spam calls before they reached you.</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 </div>
@@ -555,6 +732,39 @@ document.getElementById('call-search').addEventListener('input',e=>{curSearch=e.
 /* greeting + date */
 (function(){const h=new Date().getHours();const g=h<12?'G\'day Dave — good morning':h<17?'G\'day Dave — here\'s your day':'G\'day Dave — here\'s your arvo';document.getElementById('greeting').textContent=g+'.';
 const d=new Date();document.getElementById('datesub').textContent=d.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'})+' · '+TENANT.area;})();
+
+/* ═══════════ LIVING ORB ═══════════ */
+(function(){
+  const wave=document.getElementById('orb-wave');
+  if(wave){ for(let i=0;i<16;i++){ const b=document.createElement('i'); b.style.animationDelay=(i*0.07)+'s'; b.style.animationDuration=(0.8+Math.random()*0.7)+'s'; wave.appendChild(b);} }
+  const orb=document.getElementById('agent-orb');
+  const status=document.getElementById('orb-status');
+  const sub=document.getElementById('orb-sub');
+  const line=document.getElementById('orb-line');
+  const toggle=document.getElementById('orb-toggle');
+  let live=false;
+  function setLive(on){
+    live=on;
+    orb.classList.toggle('live',on); orb.classList.toggle('idle',!on);
+    if(on){
+      status.innerHTML='<span class="dot"></span>Emma is answering a call';
+      sub.textContent='Live now — a customer is on the line. Tap any call to listen in.';
+      line.textContent='● live · 00:00';
+      let s=0; orb._t=setInterval(()=>{s++;line.textContent='● live · 00:'+('0'+s).slice(-2)},1000);
+      toggle.querySelector('span').textContent='End the live call';
+    }else{
+      clearInterval(orb._t);
+      status.innerHTML='<span class="dot"></span>Emma is on the line';
+      sub.textContent='Listening for calls 24/7. She answered 6 today — 3 became jobs.';
+      line.textContent='last call · Sue Murphy · 38 min ago · booked';
+      toggle.querySelector('span').textContent='Simulate a live call';
+    }
+  }
+  toggle.addEventListener('click',()=>setLive(!live));
+})();
+
+/* toggles (settings + skills) */
+document.querySelectorAll('.tgl').forEach(t=>t.addEventListener('click',()=>t.classList.toggle('on')));
 
 /* ═══════════ BOOT ═══════════ */
 renderStats();renderRecent();renderUpcoming();renderActivity();renderCalls();renderBookings();renderCustomers();
