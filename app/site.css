@@ -706,10 +706,27 @@ h1 .plain {
 .strip {
   border-top: 1px solid var(--hair-2);
   border-bottom: 1px solid var(--hair-2);
-  padding: 18px 0 22px;
+  padding: 12px 0;
   background: rgba(253, 252, 249, 0.5);
   overflow: hidden;
 }
+/* single row: the label sits inline with the moving marks so the whole strip
+   is shallow enough to peek into the first viewport */
+.strip-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 3vw, 40px);
+  min-height: 42px;
+}
+.strip-row .kick {
+  flex: none;
+  white-space: nowrap;
+}
+.strip-row .marquee {
+  flex: 1;
+  min-width: 0;
+}
+/* legacy — the stacked layout is gone but keep the class working in case */
 .strip .strip-head {
   margin-bottom: 12px;
 }
