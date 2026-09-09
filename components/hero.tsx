@@ -1,123 +1,117 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PhoneGlyph, useLoopVideo } from "@/components/site-chrome";
 
-/* ============================================================
-   AGENT WINDOW
-   The second "frame" in the hero: while the tradie is on the roof,
-   this is the agent working the call and putting the job in the diary.
-   Six beats on a loop — ring, answer, caller, triage, booking, sent.
-   ============================================================ */
+const ROOF_MP4 =
+  "https://pub.hyperagent.com/api/published/pbf01M23848X8_ZSSGC2DCJJ5YCNZW/on-the-roof.mp4";
+const ROOF_POSTER =
+  "https://pub.hyperagent.com/api/published/pbf01M23849PZ_8016520H92F13249/on-the-roof.jpg";
+const WORK_MP4 =
+  "https://pub.hyperagent.com/api/published/pbf01M238486G_R8J1KBD99D62XM25/to-work.mp4";
+const WORK_POSTER =
+  "https://pub.hyperagent.com/api/published/pbf01M23849EC_E7JYDK3G7XT5MEYQ/to-work.jpg";
 
-type Beat = {
-  ms: number;
-  /** how many transcript turns are visible at this beat */
-  turns: number;
-  chips: string[];
-  booked: boolean;
-  status: string;
-  timer: string;
-};
-
-const BEATS: Beat[] = [
-  { ms: 1100, turns: 0, chips: [], booked: false, status: "Incoming call", timer: "00:00" },
-  { ms: 2600, turns: 1, chips: [], booked: false, status: "Answering", timer: "00:02" },
-  { ms: 2800, turns: 2, chips: ["urgency: emergency"], booked: false, status: "Listening", timer: "00:09" },
-  { ms: 2800, turns: 3, chips: ["urgency: emergency", "water isolated ✓"], booked: false, status: "Triaging", timer: "00:17" },
-  { ms: 2600, turns: 4, chips: ["urgency: emergency", "water isolated ✓", "Stafford · in area"], booked: false, status: "Checking diary", timer: "00:24" },
-  { ms: 4200, turns: 4, chips: ["urgency: emergency", "water isolated ✓", "Stafford · in area"], booked: true, status: "Booked", timer: "00:31" },
-];
-
-/** how many turns stay on screen — older ones scroll away like a real transcript */
-const VISIBLE_TURNS = 3;
-
-const TURNS: { who: "agent" | "caller"; text: string }[] = [
-  { who: "agent", text: "G'day, you've reached Kedron Plumbing — this is Emma. How can I help?" },
-  { who: "caller", text: "My hot water system's just let go, there's water everywhere." },
-  { who: "agent", text: "No worries. Is it still leaking, or have you got the water off at the mains?" },
-  { who: "caller", text: "Off at the mains." },
-];
-
-function AgentWindow() {
+/** one shared clock so the card, the captions and the chips stay in step */
+function useBeat(count: number, ms: number) {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     if (paused) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setI(BEATS.length - 1);
-      return;
-    }
-    const t = window.setTimeout(
-      () => setI((v) => (v + 1) % BEATS.length),
-      BEATS[i].ms,
-    );
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = window.setTimeout(() => setI((v) => (v + 1) % count), ms);
     return () => window.clearTimeout(t);
-  }, [i, paused]);
+  }, [i, paused, count, ms]);
 
-  const beat = BEATS[i];
+  return { i, setPaused };
+}
+
+/* ============================================================
+   VOICE CARD
+   Deliberately not a chat window. A waveform, one subtitle line,
+   and the call to action — the rest is whitespace.
+   ============================================================ */
+
+type Cap = { text: string; live: boolean; done?: boolean };
+
+const CAPTIONS: Cap[] = [
+  { text: "Ringing…", live: false },
+  { text: "“G’day, you’ve reached Kedron Plumbing.”", live: true },
+  { text: "“My hot water system’s just let go.”", live: true },
+  { text: "Emergency · water off at the mains", live: true },
+  { text: "All booked — Thursday, 2:15pm", live: false, done: true },
+  { text: "Details texted to Dave", live: false, done: true },
+];
+
+/** deterministic bar heights — a random() here would differ server vs client */
+function useBars(n: number) {
+  return useMemo(
+    () =>
+      Array.from({ length: n }, (_, k) => {
+        const a = Math.sin(k * 0.7) * 0.5 + 0.5;
+        const b = Math.sin(k * 1.9 + 1.1) * 0.5 + 0.5;
+        return {
+          scale: 0.22 + a * 0.55 + b * 0.23,
+          delay: (k % 11) * 0.055,
+          dur: 0.85 + ((k * 7) % 5) * 0.11,
+        };
+      }),
+    [n],
+  );
+}
+
+function VoiceCard({ beat, onHover }: { beat: number; onHover: (v: boolean) => void }) {
+  const bars = useBars(44);
+  const cap = CAPTIONS[beat];
 
   return (
     <div
-      className="agentwin"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      className="voicecard"
+      onMouseEnter={() => onHover(true)}
+      onMouseLeave={() => onHover(false)}
     >
-      <div className="aw-bar">
-        <span className="aw-live" data-ringing={!beat.turns || undefined} />
-        <span className="aw-who">Kedron Plumbing · booking line</span>
-        <span className="aw-state">{beat.status}</span>
-        <span className="aw-timer">{beat.timer}</span>
+      <div className="vc-top">
+        <span className="vc-dot" data-ringing={beat === 0 || undefined} />
+        <span>Kedron Plumbing</span>
+        <span className="vc-num">(07) 3000 4182</span>
       </div>
 
-      <div className="aw-body">
-        <div className="aw-turns">
-          {TURNS.map((t, k) => (
-            <div
+      <div className="vc-stage">
+        <div className="vc-wave" data-quiet={!cap.live || undefined} aria-hidden>
+          {bars.map((b, k) => (
+            <i
               key={k}
-              className={`aw-turn ${t.who}`}
-              data-on={
-                (k < beat.turns && k >= beat.turns - VISIBLE_TURNS) || undefined
-              }
-            >
-              <span className="aw-turn-who">{t.who === "agent" ? "Emma" : "Caller"}</span>
-              <span className="aw-said">{t.text}</span>
-            </div>
+              style={{
+                ["--s" as string]: b.scale,
+                animationDelay: `${b.delay}s`,
+                animationDuration: `${b.dur}s`,
+              }}
+            />
           ))}
         </div>
 
-        <div className="aw-chips">
-          {["urgency: emergency", "water isolated ✓", "Stafford · in area"].map((c) => (
-            <span
-              key={c}
-              className={`aw-chip${c.startsWith("urgency") ? " amber" : ""}`}
-              data-on={beat.chips.includes(c) || undefined}
-            >
-              {c}
-            </span>
-          ))}
-        </div>
-
-        <div className="aw-booked" data-on={beat.booked || undefined}>
-          <div className="aw-booked-date">
-            <b>10</b>
-            <span>Thu</span>
-          </div>
-          <div className="aw-booked-meta">
-            <b>HWS replacement — booked 2:15pm</b>
-            <span>Held in your calendar · pushed to ServiceM8 · SMS sent</span>
-          </div>
-        </div>
+        <p className="vc-sub" data-done={cap.done || undefined} aria-live="polite">
+          {cap.done && (
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
+              <path
+                d="m8 12.5 2.5 2.5L16 9"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
+          {cap.text}
+        </p>
       </div>
 
-      <div className="aw-foot">
-        <a className="btn btn-fill" href="tel:+61340135000">
-          <span>Ring it and listen</span>
-          <span className="tic">✆</span>
-        </a>
-
-      </div>
+      <a className="btn btn-fill" href="tel:+61340135000">
+        <span>Ring it and listen</span>
+        <span className="tic">✆</span>
+      </a>
     </div>
   );
 }
@@ -126,9 +120,30 @@ function AgentWindow() {
    HERO
    ============================================================ */
 
+/** the conversation now lives over the footage, one line at a time */
+const OVER_VIDEO = [
+  null,
+  { tone: "light", text: "“G’day, you’ve reached Kedron Plumbing — this is Emma.”" },
+  { tone: "dark", text: "“My hot water system’s just let go, there’s water everywhere.”" },
+  { tone: "light", text: "“Is it still leaking, or have you got the water off at the mains?”" },
+  { tone: "light", text: "“Dan can be there Thursday between 2 and 4 — I’ve held it for you.”" },
+  null,
+] as const;
+
+const ROOF_CHIPS = [
+  "Ringing · you’re up a ladder",
+  "Answered in 1.8s",
+  "Emergency triaged",
+  "Availability checked",
+  "Booked · Thu 2:15pm",
+  "SMS confirmation sent",
+];
+
 export function Hero() {
   const roofRef = useLoopVideo();
   const workRef = useLoopVideo();
+  const { i, setPaused } = useBeat(CAPTIONS.length, 2900);
+  const over = OVER_VIDEO[i];
 
   return (
     <header className="hero" id="top">
@@ -139,7 +154,6 @@ export function Hero() {
       </div>
 
       <div className="wrap hero-inner">
-        {/* ---- the statement ---- */}
         <div className="hero-say">
           <h1>
             <span className="wordpill">Every call</span>
@@ -155,7 +169,6 @@ export function Hero() {
           </p>
         </div>
 
-        {/* ---- the scatter ---- */}
         <div className="hero-grid">
           <div className="hg hg-stat">
             <div className="statpill">
@@ -170,12 +183,12 @@ export function Hero() {
             </div>
           </div>
 
-          {/* frame one: heading out to the next job (portrait clip, tall frame) */}
+          {/* the big frame: you're driving to the next job, it's handling the call */}
           <figure className="hg hg-tall tile">
             <video
               ref={workRef}
-              src="https://pub.hyperagent.com/api/published/pbf01M238486G_R8J1KBD99D62XM25/to-work.mp4"
-              poster="https://pub.hyperagent.com/api/published/pbf01M23849EC_E7JYDK3G7XT5MEYQ/to-work.jpg"
+              src={WORK_MP4}
+              poster={WORK_POSTER}
               muted
               loop
               playsInline
@@ -183,18 +196,31 @@ export function Hero() {
               preload="metadata"
               aria-label="A tradesperson walking to their work ute at sunrise"
             />
+            <div className="vidcaps" aria-hidden>
+              {OVER_VIDEO.map((o, k) =>
+                o ? (
+                  <p
+                    key={k}
+                    className={`vidcap ${o.tone}`}
+                    data-on={k === i || undefined}
+                  >
+                    {o.text}
+                  </p>
+                ) : null,
+              )}
+            </div>
             <figcaption>
               <span className="tick" />
               You&rsquo;re on the way
             </figcaption>
           </figure>
 
-          {/* frame two: hands full on the roof (landscape clip, wide frame) */}
+          {/* the small frame: hands full on the roof */}
           <figure className="hg hg-wide tile">
             <video
               ref={roofRef}
-              src="https://pub.hyperagent.com/api/published/pbf01M23848X8_ZSSGC2DCJJ5YCNZW/on-the-roof.mp4"
-              poster="https://pub.hyperagent.com/api/published/pbf01M23849PZ_8016520H92F13249/on-the-roof.jpg"
+              src={ROOF_MP4}
+              poster={ROOF_POSTER}
               muted
               loop
               playsInline
@@ -202,15 +228,17 @@ export function Hero() {
               preload="metadata"
               aria-label="A tradesperson working on a roof with a cordless drill"
             />
-            <figcaption>
-              <span className="tick" />
-              You&rsquo;re on the roof
-            </figcaption>
+            <div className="vidchips" aria-hidden>
+              {ROOF_CHIPS.map((c, k) => (
+                <span className="vidchip" key={c} data-on={k === i || undefined}>
+                  {c}
+                </span>
+              ))}
+            </div>
           </figure>
 
-          {/* frame three: the agent is booking the job */}
-          <div className="hg hg-agent">
-            <AgentWindow />
+          <div className="hg hg-voice">
+            <VoiceCard beat={i} onHover={setPaused} />
           </div>
         </div>
       </div>
