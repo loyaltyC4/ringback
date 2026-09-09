@@ -207,6 +207,48 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 .usage-note{font-size:12.5px;color:var(--ink-2)}
 .usage-note b{color:var(--amber)}
 
+/* ── ANALYTICS view ── */
+.ana-group{font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:-.02em;margin:28px 0 14px;display:flex;align-items:center;gap:10px}
+.ana-group .tag{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);background:var(--bg-2);padding:3px 9px;border-radius:6px}
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.metric{background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:19px 20px;box-shadow:var(--shadow-sm)}
+.metric .lb{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.metric .v{font-family:var(--display);font-size:27px;font-weight:700;letter-spacing:-.03em;margin-top:9px;line-height:1}
+.metric .v.m{color:var(--mint-deep)}.metric .v.r{color:var(--red)}.metric .v.b{color:var(--acc-deep)}
+.metric .s{font-size:12px;color:var(--ink-2);margin-top:6px}
+.metric .spark2{height:34px;margin-top:10px}
+/* heat map */
+.heatcard{background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:22px;overflow-x:auto}
+.heat{display:grid;grid-template-columns:44px repeat(12,1fr);gap:4px;min-width:520px}
+.heat .hlab{font-family:var(--mono);font-size:9px;color:var(--ink-3);display:flex;align-items:center;justify-content:flex-end;padding-right:7px}
+.heat .hcell{aspect-ratio:1.4;border-radius:5px;background:var(--bg-2);position:relative;cursor:pointer;transition:transform .2s}
+.heat .hcell:hover{transform:scale(1.12);z-index:2}
+.heat .hcell.missed{border:1.5px solid var(--red)}
+.heat .hcol{font-family:var(--mono);font-size:8.5px;color:var(--ink-3);text-align:center;padding-top:5px}
+.heat-insight{margin-top:14px;font-size:13px;color:var(--ink-2);background:var(--acc-soft);border:1px solid rgba(47,92,255,.2);border-radius:12px;padding:12px 16px}
+.heat-insight b{color:var(--acc-deep)}
+/* action list */
+.actionitem{display:flex;align-items:center;gap:13px;padding:14px 22px;border-bottom:1px solid var(--line-2)}
+.actionitem:last-child{border-bottom:none}
+.actionitem .ai-dot{width:9px;height:9px;border-radius:50%;flex:none}
+.actionitem .ai-tx{flex:1;min-width:0}
+.actionitem .ai-tx b{display:block;font-size:13.5px}
+.actionitem .ai-tx span{font-size:11.5px;color:var(--ink-3)}
+.age{font-family:var(--mono);font-size:9.5px;font-weight:600;padding:4px 9px;border-radius:6px;flex:none}
+.age.ok{background:var(--mint-soft);color:var(--mint-deep)}
+.age.warn{background:var(--amber-soft);color:var(--amber)}
+.age.late{background:var(--red-soft);color:var(--red)}
+/* topic list */
+.topic{display:flex;align-items:center;gap:13px;padding:13px 22px;border-bottom:1px solid var(--line-2)}
+.topic:last-child{border-bottom:none}
+.topic .t-cnt{font-family:var(--display);font-size:18px;font-weight:700;color:var(--acc-deep);width:34px;flex:none;text-align:center}
+.topic .t-tx{flex:1;font-size:13.5px}
+.topic .t-tx span{display:block;font-size:11.5px;color:var(--ink-3)}
+.topic .t-bar{width:110px;height:6px;border-radius:99px;background:var(--bg-2);overflow:hidden;flex:none}
+.topic .t-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--mint));border-radius:99px}
+@media(max-width:900px){.metric-row{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.metric-row{grid-template-columns:1fr}}
+
 /* form fields (used across My Agent / Settings) */
 .field{margin-top:0}
 .field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:8px;letter-spacing:.01em}
@@ -424,6 +466,7 @@ body.detail-open .detail{transform:translateX(0)}
       <button data-view="customers"><span class="ic">◉</span>Customers</button>
       <button data-view="transcripts"><span class="ic">≡</span>Transcripts</button>
       <button data-view="roi"><span class="ic">$</span>Value &amp; ROI</button>
+      <button data-view="analytics"><span class="ic">▥</span>Analytics</button>
       <span class="lbl">Configure</span>
       <button data-view="agent"><span class="ic">✦</span>My agent</button>
       <button data-view="outbound"><span class="ic">↗</span>Outbound</button>
@@ -720,6 +763,83 @@ body.detail-open .detail{transform:translateX(0)}
         <div class="calc-out">
           <div class="n" id="calc-out">$50,960</div>
           <div class="t"><b>walks to a competitor every year</b> while those calls hit voicemail. RingBack answers them all — for less than one job a month.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ ANALYTICS ══════ -->
+    <section class="view" id="v-analytics">
+      <div class="topbar">
+        <div><h1>Analytics</h1><div class="sub">Is it making you money, saving you time, and do you need to act?</div></div>
+        <div class="right"><div class="seg" id="ana-range"><button data-r="today">Today</button><button class="on" data-r="month">This month</button><button data-r="custom">Custom</button></div></div>
+      </div>
+
+      <!-- GROUP 5: ACTION REQUIRED (always on top when non-empty) -->
+      <div class="ana-group">Do this today <span class="tag">action required</span></div>
+      <div class="card" style="margin-bottom:6px"><div>
+        <div class="actionitem"><span class="ai-dot" style="background:var(--red)"></span><div class="ai-tx"><b>Jim Taylor — reno quote callback</b><span>asked 8:15am · est. $2,400 job</span></div><span class="age late">4h old</span><button class="btn btn-p btn-sm">Call back</button></div>
+        <div class="actionitem"><span class="ai-dot" style="background:var(--red)"></span><div class="ai-tx"><b>Tom Ng — annual service booking</b><span>VIP · asked yesterday · est. $380</span></div><span class="age late">1d old</span><button class="btn btn-p btn-sm">Call back</button></div>
+        <div class="actionitem"><span class="ai-dot" style="background:var(--amber)"></span><div class="ai-tx"><b>Review a flagged call</b><span>a caller sounded frustrated at 6:40pm — worth a listen</span></div><span class="age warn">review</span><button class="btn btn-g btn-sm">Play</button></div>
+      </div></div>
+
+      <!-- GROUP 1: THE MONEY -->
+      <div class="ana-group">The money <span class="tag">hero</span></div>
+      <div class="metric-row">
+        <div class="metric"><div class="lb">Recovered revenue</div><div class="v m">$4,870</div><div class="s">▲ 22% vs last month · est. from booked jobs</div><svg class="spark2" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,24 16,20 32,22 48,13 64,16 82,7 100,3" fill="none" stroke="#0da678" stroke-width="2"/></svg></div>
+        <div class="metric"><div class="lb">Jobs booked</div><div class="v m">14</div><div class="s">by Emma · 9 after-hours</div><svg class="spark2" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,22 18,20 34,16 52,18 68,10 84,12 100,4" fill="none" stroke="#2f5cff" stroke-width="2"/></svg></div>
+        <div class="metric"><div class="lb">Return on plan</div><div class="v b">49×</div><div class="s">you paid $99 · it recovered $4,870</div><svg class="spark2" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,25 20,19 40,21 60,11 80,13 100,5" fill="none" stroke="#2f5cff" stroke-width="2"/></svg></div>
+        <div class="metric"><div class="lb">Value per call</div><div class="v">$348</div><div class="s">why answering every call matters</div></div>
+        <div class="metric"><div class="lb">Booked work · next 4 wks</div><div class="v">$6,120</div><div class="s">▲ 14% above your 4-week average</div></div>
+        <div class="metric"><div class="lb">Revenue by job type</div><div class="s" style="margin-top:10px">Hot water $2,150 · Blocked drains $1,180 · Leaks $760 · Gas $580</div></div>
+      </div>
+
+      <!-- GROUP 2: VOLUME -->
+      <div class="ana-group">Calls &amp; missed calls <span class="tag">the proof</span></div>
+      <div class="metric-row" style="margin-bottom:16px">
+        <div class="metric"><div class="lb">Answered vs missed</div><div class="v m">98% answered</div><div class="s">missed down from ~40% before RingBack</div></div>
+        <div class="metric"><div class="lb">After-hours share</div><div class="v b">38%</div><div class="s">of demand arrives when you're off the tools</div></div>
+        <div class="metric"><div class="lb">Calls this week</div><div class="v">47</div><div class="s">▲ steady vs last week</div></div>
+      </div>
+      <div class="heatcard">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px">When your phone rings — busiest hours</div>
+        <div class="heat" id="heat"></div>
+        <div class="heat-insight">💡 <b>40% of your calls come before 8am or after 5pm</b> — that's exactly when RingBack earned its keep. Tuesday 7–8am is your single busiest slot.</div>
+      </div>
+
+      <!-- GROUP 3: AGENT PERFORMANCE -->
+      <div class="ana-group">Is Emma doing her job <span class="tag">agent performance</span></div>
+      <div class="metric-row">
+        <div class="metric"><div class="lb">Handled without you</div><div class="v m">81%</div><div class="s">of calls resolved start-to-finish by Emma</div></div>
+        <div class="metric"><div class="lb">Calls → jobs</div><div class="v m">34%</div><div class="s">of genuine enquiries became bookings</div></div>
+        <div class="metric"><div class="lb">Answers in</div><div class="v">1.8s</div><div class="s">every call, before the second ring</div></div>
+        <div class="metric"><div class="lb">Handed to you</div><div class="v">19%</div><div class="s">transfers + callbacks — emergencies &amp; quotes</div></div>
+        <div class="metric"><div class="lb">Emergency accuracy</div><div class="v m">96%</div><div class="s">caught the real ones, didn't cry wolf</div></div>
+        <div class="metric"><div class="lb">Spam blocked</div><div class="v">34</div><div class="s">junk calls you never had to hear this month</div></div>
+      </div>
+
+      <!-- GROUP 4: CALLERS -->
+      <div class="ana-group">Your callers <span class="tag">grow the business</span></div>
+      <div class="grid2">
+        <div class="card"><div class="c-hd"><div><h3>What people keep asking for</h3><div class="sub">Spot the demand you didn't know you had</div></div></div>
+          <div>
+            <div class="topic"><span class="t-cnt">12</span><div class="t-tx">EV charger installs<span>trending up 3 weeks running</span></div><span class="t-bar"><i style="width:100%"></i></span></div>
+            <div class="topic"><span class="t-cnt">9</span><div class="t-tx">Hot water system replacements<span>steady</span></div><span class="t-bar"><i style="width:75%"></i></span></div>
+            <div class="topic"><span class="t-cnt">6</span><div class="t-tx">"Do you do pensions discount?"<span>worth a line on your listing</span></div><span class="t-bar"><i style="width:50%"></i></span></div>
+            <div class="topic"><span class="t-cnt">4</span><div class="t-tx">Blocked drains after rain<span>seasonal</span></div><span class="t-bar"><i style="width:33%"></i></span></div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px"><div class="c-hd"><div><h3>New vs repeat</h3><div class="sub">Are you winning new work?</div></div></div>
+            <div style="padding:20px 22px">
+              <div style="display:flex;height:14px;border-radius:99px;overflow:hidden;gap:2px"><div style="flex:62;background:linear-gradient(90deg,var(--acc),#6f9bff)"></div><div style="flex:38;background:linear-gradient(90deg,var(--mint),#4de3b0)"></div></div>
+              <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:12.5px;color:var(--ink-2)"><span><span style="color:var(--acc)">●</span> 62% new callers</span><span><span style="color:var(--mint)">●</span> 38% repeat</span></div>
+            </div>
+          </div>
+          <div class="card"><div class="c-hd"><div><h3>Top customers by value</h3></div></div>
+            <div class="actionitem"><div class="ai-tx"><b>Tom Ng</b><span>Kedron · 6 jobs</span></div><span style="font-family:var(--mono);font-size:12px;color:var(--mint-deep);font-weight:600">$3,940</span></div>
+            <div class="actionitem"><div class="ai-tx"><b>Sue Murphy</b><span>Stafford · 4 jobs</span></div><span style="font-family:var(--mono);font-size:12px;color:var(--mint-deep);font-weight:600">$2,680</span></div>
+            <div class="actionitem"><div class="ai-tx"><b>Rachel Byrne</b><span>Wavell Heights · 2 jobs</span></div><span style="font-family:var(--mono);font-size:12px;color:var(--mint-deep);font-weight:600">$1,150</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -1082,6 +1202,32 @@ document.querySelectorAll('.tgl').forEach(t=>t.addEventListener('click',()=>t.cl
   function calc(){const missed=+m.value||0,val=+v.value||0,close=(+c.value||0)/100;const yr=Math.round(missed*val*close*52);out.textContent='$'+yr.toLocaleString();}
   [m,v,c].forEach(el=>el.addEventListener('input',calc));
   calc();
+})();
+
+/* ── analytics: heat map + range toggle ── */
+(function(){
+  const heat=document.getElementById('heat');
+  if(heat){
+    const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    const hours=['6a','7a','8a','9a','10a','11a','12p','1p','2p','3p','4p','5p'];
+    // plausible tradie call-density pattern (heavier early morning + late arvo)
+    const base=[3,6,5,4,3,3,2,2,3,4,5,6];
+    let html='';
+    hours.forEach((h,i)=>{ if(i===0) html+='<div class="hlab"></div>'; html+='<div class="hcol">'+h+'</div>'; });
+    days.forEach((d,di)=>{
+      html+='<div class="hlab">'+d+'</div>';
+      hours.forEach((h,hi)=>{
+        let v=base[hi]*(di<5?1:0.55)+((di+hi)%3); // weekend lighter
+        if(d==='Tue'&&hi===1)v=14; // Tue 7am peak
+        const intensity=Math.min(v/14,1);
+        const missed=(di===1&&hi===1)||(di===4&&hi===0); // a couple of missed cells
+        html+='<div class="hcell'+(missed?' missed':'')+'" style="background:rgba(47,92,255,'+(0.06+intensity*0.7)+')" title="'+d+' '+h+' · '+Math.round(v)+' calls"></div>';
+      });
+    });
+    heat.innerHTML=html;
+  }
+  const range=document.getElementById('ana-range');
+  if(range){ range.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{ range.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); })); }
 })();
 
 /* voice strip selector */
