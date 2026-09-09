@@ -225,13 +225,13 @@
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 100dvh;
+  /* leave 82px below the fold for the marquee — that's guaranteed to show the
+     moving logos in the first viewport, on any screen ≥ ~740px tall */
+  min-height: calc(100dvh - 82px);
   display: flex;
   flex-direction: column;
-  /* pinned near the top rather than optically centred: at ~910px of content
-     in a 900px viewport, centring pushed everything down into the fold */
   justify-content: flex-start;
-  padding: clamp(88px, 10.5vh, 118px) 0 0;
+  padding: clamp(84px, 9.5vh, 110px) 0 0;
   overflow: hidden;
 }
 .hero-inner {
@@ -272,7 +272,7 @@
 .hero-say {
   text-align: center;
   max-width: 940px;
-  margin: 0 auto clamp(26px, 3.6vh, 46px);
+  margin: 0 auto clamp(22px, 3vh, 38px);
 }
 .hero h1 {
   font-size: clamp(42px, 6.8vw, 88px);
@@ -350,7 +350,7 @@ h1 .plain {
   column-gap: clamp(16px, 2.1vw, 30px);
   row-gap: clamp(18px, 2.6vh, 32px);
   align-items: stretch;
-  padding-bottom: 44px;
+  padding-bottom: 26px;
 }
 .hg-stat {
   grid-column: 1 / span 4;
@@ -706,12 +706,12 @@ h1 .plain {
 .strip {
   border-top: 1px solid var(--hair-2);
   border-bottom: 1px solid var(--hair-2);
-  padding: 30px 0 34px;
+  padding: 18px 0 22px;
   background: rgba(253, 252, 249, 0.5);
   overflow: hidden;
 }
 .strip .strip-head {
-  margin-bottom: 22px;
+  margin-bottom: 12px;
 }
 .marquee {
   position: relative;
@@ -750,7 +750,7 @@ h1 .plain {
 }
 .brandmark {
   display: block;
-  height: 30px;
+  height: 26px;
   flex: none;
   margin: 0 clamp(20px, 2.6vw, 40px);
   /* the ink is only revealed through the logo's alpha mask — if masking were
