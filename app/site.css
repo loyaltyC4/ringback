@@ -277,7 +277,7 @@
   /* margin-top pushes the headline into the upper-middle of the hero rather
      than sitting straight under the nav; margin-bottom becomes 'auto' so any
      leftover height is absorbed between the headline and the grid */
-  margin: clamp(16px, 3.4vh, 44px) auto auto;
+  margin: clamp(24px, 4.5vh, 56px) auto auto;
 }
 .hero-grid {
   /* grid pins to the bottom edge of the hero (above the marquee) */
@@ -357,9 +357,9 @@ h1 .plain {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: clamp(16px, 2.1vw, 30px);
-  row-gap: clamp(18px, 2.6vh, 32px);
+  row-gap: clamp(12px, 1.8vh, 22px);
   align-items: stretch;
-  padding-bottom: 26px;
+  padding-bottom: 18px;
 }
 .hg-stat {
   grid-column: 1 / span 4;
@@ -455,7 +455,7 @@ h1 .plain {
   object-fit: cover;
 }
 .hg-tall {
-  min-height: clamp(230px, 28vh, 300px);
+  min-height: clamp(210px, 24vh, 280px);
 }
 .hg-tall:hover,
 .hg-wide:hover {
