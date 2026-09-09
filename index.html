@@ -545,7 +545,7 @@ footer{border-top:1px solid var(--line-2);padding:64px 0 40px;background:var(--p
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-cta">
-      <a class="btn btn-g" href="#" data-go="dashboard">View demo dashboard</a>
+      <a class="btn btn-g" href="/dashboard">View demo dashboard</a>
       <a class="btn btn-p ic-r" href="#" data-go="onboard"><span>Start free trial</span><span class="tic">↗</span></a>
     </div>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
@@ -798,7 +798,7 @@ footer{border-top:1px solid var(--line-2);padding:64px 0 40px;background:var(--p
       </div>
       <div class="f-cols">
         <div class="f-col"><h5>Product</h5><a href="#how">How it works</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
-        <div class="f-col"><h5>Product demo</h5><a href="#" data-go="onboard">Start free trial</a><a href="#" data-go="dashboard">View dashboard</a><a href="tel:+61340135000">Call demo line</a></div>
+        <div class="f-col"><h5>Product demo</h5><a href="#" data-go="onboard">Start free trial</a><a href="/dashboard">View dashboard</a><a href="tel:+61340135000">Call demo line</a></div>
         <div class="f-col"><h5>Integrations</h5><a href="#features">ServiceM8</a><a href="#features">simPRO</a><a href="#features">Xero</a></div>
       </div>
     </div>
@@ -1046,6 +1046,7 @@ footer{border-top:1px solid var(--line-2);padding:64px 0 40px;background:var(--p
   /* ============ VIEW ROUTER ============ */
   var views={landing:document.getElementById('view-landing'),onboard:document.getElementById('view-onboard'),dashboard:document.getElementById('view-dashboard')};
   function go(name){
+    if(name==='dashboard'){ window.location.href='/dashboard'; return; }
     Object.keys(views).forEach(function(k){views[k].classList.remove('active')});
     views[name].classList.add('active');
     window.scrollTo({top:0});
