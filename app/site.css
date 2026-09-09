@@ -393,13 +393,19 @@ h1 .plain {
   box-shadow: var(--sh-md);
   transition: transform 0.8s var(--e);
 }
+/* Absolute, so the clip's intrinsic aspect ratio can't drive the grid. The
+   portrait clip is 432x768; left in flow it demanded 654px of height and
+   inflated the whole hero. */
 .tile video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 .hg-tall {
   min-height: clamp(230px, 28vh, 310px);
+  aspect-ratio: 3 / 4;
 }
 .hg-tall:hover,
 .hg-wide:hover {
@@ -407,6 +413,7 @@ h1 .plain {
 }
 .tile figcaption {
   position: absolute;
+  z-index: 2;
   left: 16px;
   bottom: 14px;
   display: inline-flex;
