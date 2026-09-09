@@ -191,26 +191,28 @@ const TOOLS = [
 export function IntegrationStrip() {
   return (
     <section className="strip">
-      <div className="strip-head wrap">
+      {/* label left, moving marks right — single row keeps the whole strip
+          shallow enough to sit inside the first viewport */}
+      <div className="strip-row wrap">
         <span className="kick">
           <span className="bar" />
           Plugs into what you already run
         </span>
-      </div>
-      <div className="marquee" aria-hidden>
-        <div className="marquee-track">
-          {[0, 1].map((copy) => (
-            <div className="marquee-group" key={copy}>
-              {TOOLS.map((t) => (
-                <span
-                  className={`brandmark logo-${t.slug}`}
-                  key={`${copy}-${t.slug}`}
-                  style={{ width: t.w }}
-                  title={t.name}
-                />
-              ))}
-            </div>
-          ))}
+        <div className="marquee" aria-hidden>
+          <div className="marquee-track">
+            {[0, 1].map((copy) => (
+              <div className="marquee-group" key={copy}>
+                {TOOLS.map((t) => (
+                  <span
+                    className={`brandmark logo-${t.slug}`}
+                    key={`${copy}-${t.slug}`}
+                    style={{ width: t.w }}
+                    title={t.name}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <span className="sr-only">

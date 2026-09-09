@@ -2266,6 +2266,11 @@ footer {
 }
 
 @media (max-width: 900px) {
+  /* let the marquee take the full row on phones — the label above wraps oddly
+     in a 390px viewport */
+  .strip-row .kick {
+    display: none;
+  }
   /* the two islands collapse to a brand pill and a burger pill */
   .nlinks,
   .nav-rule,
