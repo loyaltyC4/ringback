@@ -137,9 +137,10 @@ export function Nav() {
           <a className="nav-signin" href="/dashboard">
             Sign in
           </a>
-          <a className="btn btn-ink btn-sm" href="tel:+61340135000">
-            <span>Ring it</span>
-            <span className="tic">✆</span>
+          {/* primary CTA is signup, not the demo call — the demo lives in the hero */}
+          <a className="btn btn-fill btn-sm" href="/start">
+            <span>Start free</span>
+            <span className="tic">↗</span>
           </a>
         </div>
 
@@ -161,6 +162,9 @@ export function Nav() {
             {l.label}
           </a>
         ))}
+        <a href="/start" onClick={() => setOpen(false)}>
+          Start free ↗
+        </a>
         <a href="/dashboard" onClick={() => setOpen(false)}>
           Sign in
         </a>
@@ -254,9 +258,9 @@ export function Footer() {
             </div>
             <div className="f-col">
               <h5>Try it</h5>
+              <a href="/start">Start free trial</a>
               <a href="tel:+61340135000">Ring the demo line</a>
               <a href="/dashboard">Demo dashboard</a>
-              <a href="/journey">Customer journey</a>
             </div>
             <div className="f-col">
               <h5>Integrations</h5>

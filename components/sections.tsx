@@ -625,9 +625,9 @@ export function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a className="btn btn-fill" href="tel:+61340135000">
-                <span>Ring it, then decide</span>
-                <span className="tic">✆</span>
+              <a className="btn btn-fill" href="/start">
+                <span>Start free trial</span>
+                <span className="tic">↗</span>
               </a>
             </div>
           </div>
@@ -739,13 +739,13 @@ export function FinalCta() {
               form, no sales call — just pick up your phone.
             </p>
             <div className="row">
-              <a className="btn btn-fill" href="tel:+61340135000">
-                <span>Ring it and listen</span>
-                <span className="tic">✆</span>
-              </a>
-              <a className="btn btn-onnight" href="/dashboard">
-                <span>See the dashboard</span>
+              <a className="btn btn-fill" href="/start">
+                <span>Start free trial</span>
                 <span className="tic">↗</span>
+              </a>
+              <a className="btn btn-onnight" href="tel:+61340135000">
+                <span>Or ring it first</span>
+                <span className="tic">✆</span>
               </a>
             </div>
             <p className="fine">+61 3 4013 5000 · answers 24/7 · no credit card</p>
