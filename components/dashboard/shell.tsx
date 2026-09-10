@@ -103,6 +103,16 @@ function IcSettings({ className }: { className?: string }) {
   );
 }
 
+function IcBilling({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
+      <rect x="3.5" y="6.5" width="17" height="12" rx="2" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M3.5 10h17" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M7 15h4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function IcBell({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
@@ -124,6 +134,7 @@ const NAV: NavItem[] = [
   { href: "/dashboard/followups", label: "Follow-ups", icon: IcFollowups },
   { href: "/dashboard/agent", label: "My Agent", icon: IcAgent },
   { href: "/dashboard/value", label: "Value", icon: IcValue },
+  { href: "/dashboard/billing", label: "Billing", icon: IcBilling },
   { href: "/dashboard/settings", label: "Settings", icon: IcSettings },
 ];
 
