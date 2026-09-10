@@ -103,6 +103,17 @@ function IcSettings({ className }: { className?: string }) {
   );
 }
 
+function IcAnalytics({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
+      <path d="M4 20V4M4 20h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <rect x="7.5" y="12" width="2.8" height="5" rx="0.8" fill="currentColor" />
+      <rect x="12.6" y="8.5" width="2.8" height="8.5" rx="0.8" fill="currentColor" />
+      <rect x="17.7" y="6" width="2.8" height="11" rx="0.8" fill="currentColor" opacity="0.55" />
+    </svg>
+  );
+}
+
 function IcBilling({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
@@ -134,6 +145,7 @@ const NAV: NavItem[] = [
   { href: "/dashboard/followups", label: "Follow-ups", icon: IcFollowups },
   { href: "/dashboard/agent", label: "My Agent", icon: IcAgent },
   { href: "/dashboard/value", label: "Value", icon: IcValue },
+  { href: "/dashboard/analytics", label: "Analytics", icon: IcAnalytics },
   { href: "/dashboard/billing", label: "Billing", icon: IcBilling },
   { href: "/dashboard/settings", label: "Settings", icon: IcSettings },
 ];
