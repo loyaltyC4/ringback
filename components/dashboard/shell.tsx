@@ -133,6 +133,17 @@ function IcBilling({ className }: { className?: string }) {
   );
 }
 
+function IcIntegrations({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
+      <rect x="3.5" y="3.5" width="7" height="7" rx="1.6" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="13.5" y="3.5" width="7" height="7" rx="1.6" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="3.5" y="13.5" width="7" height="7" rx="1.6" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M17 13.5v7M13.5 17h7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function IcBell({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
@@ -157,6 +168,7 @@ const NAV: NavItem[] = [
   { href: "/dashboard/value", label: "Value", icon: IcValue },
   { href: "/dashboard/analytics", label: "Analytics", icon: IcAnalytics },
   { href: "/dashboard/billing", label: "Billing", icon: IcBilling },
+  { href: "/dashboard/integrations", label: "Integrations", icon: IcIntegrations },
   { href: "/dashboard/settings", label: "Settings", icon: IcSettings },
 ];
 
