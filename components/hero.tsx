@@ -71,24 +71,28 @@ function useBars(n: number) {
   );
 }
 
-function VoiceCard({ beat, onHover }: { beat: number; onHover: (v: boolean) => void }) {
-  const bars = useBars(44);
+/* A slim horizontal voice bar — the waveform is the same green "sound bar",
+   just laid on its side so the hero keeps its height for whitespace instead of
+   a tall card. Left: who's calling. Centre: the live waveform + one caption.
+   Right: the call to action. */
+function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => void }) {
+  const bars = useBars(56);
   const cap = CAPTIONS[beat];
 
   return (
     <div
-      className="voicecard"
+      className="voicebar"
       onMouseEnter={() => onHover(true)}
       onMouseLeave={() => onHover(false)}
     >
-      <div className="vc-top">
-        <span className="vc-dot" data-ringing={beat === 0 || undefined} />
-        <span>Kedron Plumbing</span>
-        <span className="vc-num">(07) 3000 4182</span>
+      <div className="vb-id">
+        <span className="vb-dot" data-ringing={beat === 0 || undefined} />
+        <span className="vb-name">Kedron Plumbing</span>
+        <span className="vb-num">(07) 3000 4182</span>
       </div>
 
-      <div className="vc-stage">
-        <div className="vc-wave" data-quiet={!cap.live || undefined} aria-hidden>
+      <div className="vb-stage">
+        <div className="vb-wave" data-quiet={!cap.live || undefined} aria-hidden>
           {bars.map((b, k) => (
             <i
               key={k}
@@ -101,7 +105,7 @@ function VoiceCard({ beat, onHover }: { beat: number; onHover: (v: boolean) => v
           ))}
         </div>
 
-        <p className="vc-sub" data-done={cap.done || undefined} aria-live="polite">
+        <p className="vb-sub" data-done={cap.done || undefined} aria-live="polite">
           {cap.done && (
             <svg viewBox="0 0 24 24" fill="none" aria-hidden>
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
@@ -118,7 +122,7 @@ function VoiceCard({ beat, onHover }: { beat: number; onHover: (v: boolean) => v
         </p>
       </div>
 
-      <a className="btn btn-fill" href="tel:+61340135000">
+      <a className="btn btn-fill vb-cta" href="tel:+61340135000">
         <span>Ring it and listen</span>
         <span className="tic">✆</span>
       </a>
@@ -247,7 +251,7 @@ export function Hero() {
           </figure>
 
           <div className="hg hg-voice">
-            <VoiceCard beat={i} onHover={setPaused} />
+            <VoiceBar beat={i} onHover={setPaused} />
           </div>
         </div>
       </div>

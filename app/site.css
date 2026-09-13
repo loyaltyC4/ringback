@@ -364,31 +364,30 @@ h1 .plain {
   grid-column: 1 / span 3;
   grid-row: 1;
 }
-/* claim pill sits above the tall video on the right, so the middle of row 1
-   is empty and the headline above can breathe centred */
+/* claim pill sits top-right, so the middle of row 1 is empty and the headline
+   above can breathe centred */
 .hg-claim {
   grid-column: 9 / span 4;
   grid-row: 1;
 }
-/* the tall frame now only occupies row 2 and pushes slightly past the wrap's
-   right edge — that opens up the centre of the composition */
+/* the two clips become a balanced pair across row 2 — equal landscape frames,
+   no cramped card wedged between them */
 .hg-tall {
-  grid-column: 9 / span 4;
+  grid-column: 1 / span 6;
   grid-row: 2;
-  margin-right: clamp(-40px, -2.4vw, -12px);
+  aspect-ratio: 16 / 10;
 }
-/* small frame bottom-left, pinned to a landscape ratio so the 16:9 clip
-   isn't cropped to a sliver by the row height */
 .hg-wide {
-  grid-column: 1 / span 3;
+  grid-column: 7 / span 6;
   grid-row: 2;
-  align-self: start;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 10;
   min-height: 0;
 }
+/* the voice bar is now a single slim strip spanning the full width beneath the
+   footage — the waveform on its side, so the hero keeps its height as air */
 .hg-voice {
-  grid-column: 4 / span 5;
-  grid-row: 2;
+  grid-column: 1 / span 12;
+  grid-row: 3;
 }
 
 .statpill {
@@ -459,9 +458,6 @@ h1 .plain {
   height: 100%;
   object-fit: cover;
 }
-.hg-tall {
-  min-height: clamp(210px, 26vh, 300px);
-}
 .hg-tall:hover,
 .hg-wide:hover {
   transform: translateY(-6px);
@@ -494,34 +490,36 @@ h1 .plain {
   padding: 6px 11px;
 }
 
-/* ---- voice card: waveform + one subtitle, the rest is whitespace ---- */
-.voicecard {
-  height: 100%;
+/* ---- voice bar: the waveform on its side — one slim strip, same palette ---- */
+.voicebar {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 2vw, 28px);
   background: var(--color-paper);
   border: 1px solid var(--hair-2);
-  border-radius: 26px;
+  border-radius: 999px;
   box-shadow: var(--sh-lg);
-  padding: 20px 22px 22px;
+  padding: 12px 14px 12px clamp(18px, 2vw, 26px);
 }
-.vc-top {
+.vb-id {
   display: flex;
   align-items: center;
   gap: 9px;
+  flex: none;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-ink-3);
-  flex: none;
 }
-.vc-num {
-  margin-left: auto;
+.vb-name {
+  color: var(--color-ink-2);
+}
+.vb-num {
   color: var(--color-forest);
   letter-spacing: 0.04em;
 }
-.vc-dot {
+.vb-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -529,7 +527,7 @@ h1 .plain {
   flex: none;
   animation: blip 1.8s var(--e) infinite;
 }
-.vc-dot[data-ringing] {
+.vb-dot[data-ringing] {
   background: var(--color-amber);
   animation-duration: 0.7s;
 }
@@ -545,29 +543,35 @@ h1 .plain {
   }
 }
 
-/* the stage holds the waveform and the caption, centred in the leftover space */
-.vc-stage {
+/* a thin vertical rule between the id and the live stage */
+.vb-id::after {
+  content: "";
+  width: 1px;
+  height: 22px;
+  background: var(--hair);
+  margin-left: clamp(4px, 1vw, 12px);
+}
+
+/* the stage holds the waveform with the caption riding beneath it */
+.vb-stage {
   flex: 1;
-  min-height: 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: clamp(18px, 3vh, 30px);
-  padding: clamp(14px, 3vh, 30px) 0;
+  gap: 8px;
 }
-.vc-wave {
+.vb-wave {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 3px;
-  height: clamp(52px, 8vh, 78px);
+  height: 38px;
   width: 100%;
   transition: opacity 0.6s var(--e);
 }
-.vc-wave i {
+.vb-wave i {
   flex: 1;
-  max-width: 5px;
+  max-width: 4px;
   height: 100%;
   border-radius: 3px;
   background: linear-gradient(180deg, var(--color-green), var(--color-forest));
@@ -587,39 +591,35 @@ h1 .plain {
   }
 }
 /* between turns the line goes quiet rather than stopping dead */
-.vc-wave[data-quiet] {
+.vb-wave[data-quiet] {
   opacity: 0.3;
 }
-.vc-wave[data-quiet] i {
+.vb-wave[data-quiet] i {
   animation-play-state: paused;
   transform: scaleY(0.06);
   transition: transform 0.7s var(--e);
 }
 
-.vc-sub {
-  position: relative;
+.vb-sub {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 9px;
-  text-align: center;
-  font-size: clamp(15.5px, 1.35vw, 18.5px);
+  gap: 8px;
+  font-size: 13.5px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.3;
   letter-spacing: -0.012em;
   color: var(--color-ink);
-  max-width: 30ch;
-  min-height: 2.8em;
-  margin: 0 auto;
+  min-height: 1.3em;
+  margin: 0;
   animation: capin 0.6s var(--e-out);
 }
-.vc-sub[data-done] {
+.vb-sub[data-done] {
   color: var(--color-forest);
   font-weight: 600;
 }
-.vc-sub svg {
-  width: 17px;
-  height: 17px;
+.vb-sub svg {
+  width: 16px;
+  height: 16px;
   flex: none;
   color: var(--color-green);
 }
@@ -633,17 +633,15 @@ h1 .plain {
     transform: none;
   }
 }
-.voicecard .btn {
+.voicebar .vb-cta {
   flex: none;
   align-self: center;
-  /* was a wide full-width fill — a compact pill under the caption reads
-     lighter and lets the waveform be the hero of the card */
-  padding: 10px 12px 10px 22px;
+  padding: 11px 14px 11px 24px;
   font-size: 14px;
 }
-.voicecard .btn .tic {
-  width: 26px;
-  height: 26px;
+.voicebar .vb-cta .tic {
+  width: 28px;
+  height: 28px;
   font-size: 12px;
 }
 
@@ -2145,21 +2143,23 @@ footer {
   }
   .hg-stat {
     grid-column: 1 / span 4;
+    grid-row: 1;
   }
   .hg-claim {
     grid-column: 5 / span 4;
-  }
-  .hg-voice {
-    grid-column: 1 / span 5;
-    grid-row: 2;
+    grid-row: 1;
   }
   .hg-tall {
-    grid-column: 6 / span 3;
-    grid-row: 1 / span 2;
-    min-height: 0;
+    grid-column: 1 / span 4;
+    grid-row: 2;
   }
   .hg-wide {
-    display: none;
+    grid-column: 5 / span 4;
+    grid-row: 2;
+  }
+  .hg-voice {
+    grid-column: 1 / span 8;
+    grid-row: 3;
   }
 }
 
@@ -2230,6 +2230,27 @@ footer {
   }
   .hg-wide {
     display: none;
+  }
+  /* the voice bar wraps: id + CTA on top, waveform + caption beneath */
+  .voicebar {
+    flex-wrap: wrap;
+    border-radius: 22px;
+    padding: 14px 16px;
+    row-gap: 12px;
+  }
+  .vb-id {
+    order: 1;
+  }
+  .vb-id::after {
+    display: none;
+  }
+  .vb-cta {
+    order: 2;
+    margin-left: auto;
+  }
+  .vb-stage {
+    order: 3;
+    flex-basis: 100%;
   }
   .statpill {
     justify-content: flex-start;
