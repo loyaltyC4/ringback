@@ -167,21 +167,6 @@ export function Hero() {
       </div>
 
       <div className="wrap hero-inner">
-        <div className="hero-say">
-          <h1>
-            <span className="wordpill">Every call</span>
-            <span className="wordorb" aria-hidden>
-              <PhoneGlyph />
-            </span>
-            <span className="plain">answered.</span>
-          </h1>
-          <p className="lede">
-            The AI receptionist for Australian trades. It picks up in two seconds,
-            books the job into your calendar, and{" "}
-            <b>follows up so the quote doesn&rsquo;t go cold.</b>
-          </p>
-        </div>
-
         <div className="hero-grid">
           <div className="hg hg-stat">
             <div className="statpill">
@@ -196,7 +181,49 @@ export function Hero() {
             </div>
           </div>
 
-          {/* the big frame: you're driving to the next job, it's handling the call */}
+          {/* small frame — hands full on the roof — sits bottom-left again */}
+          <figure className="hg hg-wide tile">
+            <video
+              ref={roofRef}
+              src={ROOF_MP4}
+              poster={ROOF_POSTER}
+              muted
+              loop
+              playsInline
+              autoPlay
+              preload="metadata"
+              aria-label="A tradesperson working on a roof with a cordless drill"
+            />
+            <div className="vidchips" aria-hidden>
+              {ROOF_CHIPS.map((c, k) => (
+                <span className="vidchip" key={c} data-on={k === i || undefined}>
+                  {c}
+                </span>
+              ))}
+            </div>
+          </figure>
+
+          {/* centered stage — headline, compact voice bar, lede. All in the
+              middle of the composition, flanked by the videos. */}
+          <div className="hg hg-say">
+            <h1>
+              <span className="wordpill">Every call</span>
+              <span className="wordorb" aria-hidden>
+                <PhoneGlyph />
+              </span>
+              <span className="plain">answered.</span>
+            </h1>
+            <div className="hero-voice-slot">
+              <VoiceBar beat={i} onHover={setPaused} />
+            </div>
+            <p className="lede">
+              The AI receptionist for Australian trades. It picks up in two seconds,
+              books the job into your calendar, and{" "}
+              <b>follows up so the quote doesn&rsquo;t go cold.</b>
+            </p>
+          </div>
+
+          {/* big tall frame — driving to the next job — right column, full height */}
           <figure className="hg hg-tall tile">
             <video
               ref={workRef}
@@ -227,32 +254,6 @@ export function Hero() {
               You&rsquo;re on the way
             </figcaption>
           </figure>
-
-          {/* the small frame: hands full on the roof */}
-          <figure className="hg hg-wide tile">
-            <video
-              ref={roofRef}
-              src={ROOF_MP4}
-              poster={ROOF_POSTER}
-              muted
-              loop
-              playsInline
-              autoPlay
-              preload="metadata"
-              aria-label="A tradesperson working on a roof with a cordless drill"
-            />
-            <div className="vidchips" aria-hidden>
-              {ROOF_CHIPS.map((c, k) => (
-                <span className="vidchip" key={c} data-on={k === i || undefined}>
-                  {c}
-                </span>
-              ))}
-            </div>
-          </figure>
-
-          <div className="hg hg-voice">
-            <VoiceBar beat={i} onHover={setPaused} />
-          </div>
         </div>
       </div>
     </header>

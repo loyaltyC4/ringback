@@ -271,19 +271,13 @@
   left: 1%;
 }
 
-.hero-say {
-  text-align: center;
-  /* wider frame so the wordpill + orb + "answered" line don't feel confined;
-     lets the H1 breathe closer to the actual visual centre */
-  max-width: 1080px;
-  margin: clamp(24px, 4.5vh, 56px) auto auto;
-}
 .hero-grid {
   /* grid pins to the bottom edge of the hero (above the marquee) */
   margin-top: clamp(22px, 3.2vh, 38px);
 }
 .hero h1 {
-  font-size: clamp(42px, 6.8vw, 88px);
+  /* sized to sit gracefully in the ~5-col centre column, flanked by videos */
+  font-size: clamp(38px, 5.4vw, 74px);
   letter-spacing: -0.055em;
   line-height: 0.88;
 }
@@ -360,34 +354,60 @@ h1 .plain {
   align-items: stretch;
   padding-bottom: 18px;
 }
+/* Row 1: pills flank an empty middle. Row 2: small roof left, centred stage
+   in the middle (headline + compact voice bar + lede), tall work video right.
+   The two videos frame the centred headline the way the Replit reference
+   frames its centre. */
 .hg-stat {
   grid-column: 1 / span 3;
   grid-row: 1;
 }
-/* claim pill sits top-right, so the middle of row 1 is empty and the headline
-   above can breathe centred */
 .hg-claim {
   grid-column: 9 / span 4;
   grid-row: 1;
 }
-/* the two clips become a balanced pair across row 2 — equal landscape frames,
-   no cramped card wedged between them */
-.hg-tall {
-  grid-column: 1 / span 6;
-  grid-row: 2;
-  aspect-ratio: 16 / 10;
-}
+/* small roof clip sits under the stat pill, left column, landscape ratio */
 .hg-wide {
-  grid-column: 7 / span 6;
+  grid-column: 1 / span 3;
   grid-row: 2;
-  aspect-ratio: 16 / 10;
+  align-self: end;
+  aspect-ratio: 16 / 11;
   min-height: 0;
 }
-/* the voice bar is now a single slim strip spanning the full width beneath the
-   footage — the waveform on its side, so the hero keeps its height as air */
-.hg-voice {
-  grid-column: 1 / span 12;
-  grid-row: 3;
+/* centred stage — the middle of the hero. Vertically centred on row 2. */
+.hg-say {
+  grid-column: 4 / span 5;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: clamp(16px, 2.4vh, 26px);
+  padding: 0 clamp(4px, 1vw, 14px);
+}
+.hg-say h1 {
+  margin: 0;
+}
+.hg-say .lede {
+  margin: 0;
+  max-width: 34ch;
+}
+.hero-voice-slot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+/* the compact voice bar inside the stage — narrower than the container so the
+   headline breathes and the videos feel balanced around it */
+.hero-voice-slot .voicebar {
+  width: min(100%, 460px);
+}
+/* tall work clip is back on the right, spanning row 2 full height */
+.hg-tall {
+  grid-column: 9 / span 4;
+  grid-row: 2;
+  margin-right: clamp(-40px, -2.4vw, -12px);
 }
 
 .statpill {
@@ -2149,17 +2169,18 @@ footer {
     grid-column: 5 / span 4;
     grid-row: 1;
   }
-  .hg-tall {
-    grid-column: 1 / span 4;
-    grid-row: 2;
-  }
   .hg-wide {
-    grid-column: 5 / span 4;
+    grid-column: 1 / span 3;
     grid-row: 2;
+    align-self: end;
   }
-  .hg-voice {
+  .hg-say {
     grid-column: 1 / span 8;
     grid-row: 3;
+  }
+  .hg-tall {
+    grid-column: 4 / span 5;
+    grid-row: 2;
   }
 }
 
@@ -2217,9 +2238,11 @@ footer {
     grid-column: span 1;
     grid-row: auto;
   }
-  .hg-voice {
+  .hg-say {
     grid-column: 1 / span 2;
     grid-row: auto;
+    order: -1;
+    padding: 8px 0 4px;
   }
   .hg-tall {
     grid-column: 1 / span 2;
@@ -2227,6 +2250,7 @@ footer {
     /* the clip is 9:16 — a 1.7:1 frame cropped it to a letterbox sliver */
     aspect-ratio: 1.12;
     min-height: 0;
+    margin-right: 0;
   }
   .hg-wide {
     display: none;
@@ -2362,7 +2386,7 @@ footer {
   }
   .hg-stat,
   .hg-claim,
-  .hg-voice,
+  .hg-say,
   .hg-tall {
     grid-column: 1 / -1;
   }
