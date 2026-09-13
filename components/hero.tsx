@@ -71,12 +71,11 @@ function useBars(n: number) {
   );
 }
 
-/* A slim horizontal voice bar — the waveform is the same green "sound bar",
-   just laid on its side so the hero keeps its height for whitespace instead of
-   a tall card. Left: who's calling. Centre: the live waveform + one caption.
-   Right: the call to action. */
+/* A compact voice bar — just the caller id, live waveform, and one caption
+   line. The CTA lives OUTSIDE the bar (as its own button in the stage) so the
+   bar itself stays small — the "sound bar in the photo" size. */
 function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => void }) {
-  const bars = useBars(56);
+  const bars = useBars(40);
   const cap = CAPTIONS[beat];
 
   return (
@@ -88,44 +87,36 @@ function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => vo
       <div className="vb-id">
         <span className="vb-dot" data-ringing={beat === 0 || undefined} />
         <span className="vb-name">Kedron Plumbing</span>
-        <span className="vb-num">(07) 3000 4182</span>
       </div>
 
-      <div className="vb-stage">
-        <div className="vb-wave" data-quiet={!cap.live || undefined} aria-hidden>
-          {bars.map((b, k) => (
-            <i
-              key={k}
-              style={{
-                ["--s" as string]: b.scale,
-                animationDelay: `${b.delay}s`,
-                animationDuration: `${b.dur}s`,
-              }}
+      <div className="vb-wave" data-quiet={!cap.live || undefined} aria-hidden>
+        {bars.map((b, k) => (
+          <i
+            key={k}
+            style={{
+              ["--s" as string]: b.scale,
+              animationDelay: `${b.delay}s`,
+              animationDuration: `${b.dur}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      <p className="vb-sub" data-done={cap.done || undefined} aria-live="polite">
+        {cap.done && (
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
+            <path
+              d="m8 12.5 2.5 2.5L16 9"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
-          ))}
-        </div>
-
-        <p className="vb-sub" data-done={cap.done || undefined} aria-live="polite">
-          {cap.done && (
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
-              <path
-                d="m8 12.5 2.5 2.5L16 9"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          )}
-          {cap.text}
-        </p>
-      </div>
-
-      <a className="btn btn-fill vb-cta" href="tel:+61340135000">
-        <span>Ring it and listen</span>
-        <span className="tic">✆</span>
-      </a>
+          </svg>
+        )}
+        {cap.text}
+      </p>
     </div>
   );
 }
@@ -215,6 +206,10 @@ export function Hero() {
             </h1>
             <div className="hero-voice-slot">
               <VoiceBar beat={i} onHover={setPaused} />
+              <a className="btn btn-fill hero-cta" href="tel:+61340135000">
+                <span>Ring it and listen</span>
+                <span className="tic">✆</span>
+              </a>
             </div>
             <p className="lede">
               The AI receptionist for Australian trades. It picks up in two seconds,
