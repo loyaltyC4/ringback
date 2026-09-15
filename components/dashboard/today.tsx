@@ -6,6 +6,7 @@ import { GREEN_MESH_DEEP } from "@/lib/shaders";
 import { NumberTicker } from "@/components/number-ticker";
 import { Arrow } from "@/components/site-chrome";
 import { useDayOne, EmptyToday } from "./empty";
+import { WelcomeBand } from "./convert";
 
 /* ============================================================
    TODAY
@@ -311,6 +312,7 @@ export function Today() {
   return (
     <>
       <TodayHero day={day} name="Dave" />
+      <WelcomeBand />
       <HotLeadBanner />
       <MoneyBar />
 

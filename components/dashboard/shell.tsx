@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Mark, Wave } from "@/components/start/primitives";
+import { TrialRibbon } from "./convert";
 
 /* ============================================================
    THE SHELL
@@ -341,6 +342,7 @@ export function DashShell({
 
       {/* ---------------- main column ---------------- */}
       <div className="main">
+        <TrialRibbon />
         <header className="top">
           <LivingAgent />
           <div className="top-right">

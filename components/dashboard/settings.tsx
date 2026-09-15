@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Kicker, ChipEditor } from "./primitives";
+import { InviteModal } from "./convert";
 
 /* ============================================================
    SETTINGS
@@ -241,6 +242,7 @@ function NotificationMatrix() {
    ============================================================ */
 
 export function Settings() {
+  const [invite, setInvite] = useState(false);
   const [afterHours] = useState<"take message" | "voicemail" | "book only" | "silent">("take message");
   const [holidays, setHolidays] = useState<string[]>(["Anzac Day", "Christmas Day", "Boxing Day", "New Year's Day"]);
   const [team] = useState([
@@ -356,7 +358,7 @@ export function Settings() {
             <Kicker>Team access</Kicker>
             <h2>Who can log in and see calls</h2>
           </div>
-          <button className="cd-btn cd-primary">+ Invite</button>
+          <button className="cd-btn cd-primary" onClick={() => setInvite(true)}>+ Invite</button>
         </header>
         <div className="team-list">
           {team.map((m) => (
@@ -379,6 +381,8 @@ export function Settings() {
           ))}
         </div>
       </section>
+
+      <InviteModal open={invite} onClose={() => setInvite(false)} />
 
       {/* ---------- Public holidays ---------- */}
       <section className="card">

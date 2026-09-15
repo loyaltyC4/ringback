@@ -134,7 +134,7 @@ export function Nav() {
         </div>
 
         <div className="nav-in nav-right">
-          <a className="nav-signin" href="/dashboard">
+          <a className="nav-signin" href="/signin">
             Sign in
           </a>
           {/* primary CTA is signup, not the demo call — the demo lives in the hero */}
@@ -165,7 +165,7 @@ export function Nav() {
         <a href="/start" onClick={() => setOpen(false)}>
           Start free ↗
         </a>
-        <a href="/dashboard" onClick={() => setOpen(false)}>
+        <a href="/signin" onClick={() => setOpen(false)}>
           Sign in
         </a>
         <a href="tel:+61340135000" onClick={() => setOpen(false)}>
