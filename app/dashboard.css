@@ -1212,9 +1212,24 @@
   isolation: isolate;
   vertical-align: middle;
 }
-.orb-hero { width: clamp(180px, 22vw, 260px); height: clamp(180px, 22vw, 260px); }
-.orb-card { width: 48px; height: 48px; }
-.orb-chip { width: 40px; height: 40px; }
+.orb-hero {
+  width: clamp(180px, 22vw, 260px);
+  height: clamp(180px, 22vw, 260px);
+  --blur-a: 46px;
+  --blur-b: 30px;
+}
+.orb-card {
+  width: 48px;
+  height: 48px;
+  --blur-a: 9px;
+  --blur-b: 6px;
+}
+.orb-chip {
+  width: 40px;
+  height: 40px;
+  --blur-a: 7px;
+  --blur-b: 5px;
+}
 
 .orb-halo {
   position: absolute;
@@ -1240,53 +1255,53 @@
   border-radius: 50%;
   overflow: hidden;
   background:
-    radial-gradient(circle at 35% 30%, var(--pa) 0%, var(--pb) 46%, var(--pc) 100%);
+    radial-gradient(circle at 32% 26%, var(--pa) 0%, var(--pb) 42%, var(--pc) 92%);
   box-shadow:
-    inset 0 -18% 34% -12% rgba(0, 0, 0, 0.42),
-    inset 0 12% 22% -6% rgba(255, 255, 255, 0.22),
+    inset 0 -24% 44% -14% rgba(0, 0, 0, 0.55),
+    inset 0 14% 26% -8% rgba(255, 255, 255, 0.26),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
     0 22px 44px -18px color-mix(in oklab, var(--pc) 60%, transparent);
 }
 .orb-aurora {
   position: absolute;
-  inset: -8%;
+  inset: -30%;
   background: conic-gradient(
     from 210deg,
     transparent 0deg,
-    var(--pa) 60deg,
-    transparent 130deg,
-    var(--ph) 210deg,
-    transparent 290deg,
-    var(--pa) 340deg,
+    var(--pa) 90deg,
+    transparent 200deg,
+    var(--ph) 290deg,
     transparent 360deg
   );
   mix-blend-mode: screen;
-  opacity: 0.66;
-  filter: blur(6px);
-  animation: orb-spin 14s linear infinite;
+  opacity: 0.42;
+  /* blur has to scale with the sphere or the conic seams read as spokes */
+  filter: blur(var(--blur-a, 12px));
+  animation: orb-spin 22s linear infinite;
 }
 .orb-band {
   position: absolute;
-  inset: 8% -4%;
+  inset: -20%;
   border-radius: 50%;
   background: conic-gradient(
     from 40deg,
     transparent 0deg,
-    var(--pa) 90deg,
-    transparent 200deg,
-    var(--ph) 300deg,
+    var(--pa) 120deg,
+    transparent 260deg,
     transparent 360deg
   );
-  mix-blend-mode: overlay;
-  opacity: 0.5;
-  filter: blur(3px);
-  animation: orb-spin 22s linear reverse infinite;
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+  filter: blur(var(--blur-b, 8px));
+  animation: orb-spin 34s linear reverse infinite;
 }
 .orb-shine {
   position: absolute;
-  inset: 4% 10% 60% 10%;
+  inset: 3% 16% 52% 16%;
   border-radius: 50%;
-  background: radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.62) 0%, transparent 70%);
-  opacity: 0.7;
+  background: radial-gradient(ellipse at 50% 22%, rgba(255, 255, 255, 0.78) 0%, transparent 72%);
+  opacity: 0.66;
+  filter: blur(1.5px);
   pointer-events: none;
 }
 .orb[data-speaking] .orb-halo { animation-duration: 1.4s; opacity: 0.42; }
