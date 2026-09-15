@@ -262,6 +262,12 @@ export function Footer() {
               <a href="tel:+61340135000">Ring the demo line</a>
               <a href="/dashboard">Demo dashboard</a>
             </div>
+            <div className="f-col f-col-legal">
+              <h5>Trust</h5>
+              <a href="/trust">What we have &amp; haven&rsquo;t</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/terms">Terms</a>
+            </div>
             <div className="f-col">
               <h5>Integrations</h5>
               <a href="#stages">ServiceM8</a>
