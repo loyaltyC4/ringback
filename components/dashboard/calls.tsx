@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Arrow } from "@/components/site-chrome";
 import { Kicker, TabPill, WaveformPlayer } from "./primitives";
+import { useDayOne, EmptyCalls } from "./empty";
 
 /* ============================================================
    CALLS — inbox + slide-over Detail
@@ -268,6 +269,9 @@ function CallDetail({ call, onClose }: { call: Call; onClose: () => void }) {
 /* ---------- The Calls page ---------- */
 
 export function Calls() {
+  const dayOne = useDayOne();
+  if (dayOne) return <EmptyCalls />;
+
   const [filter, setFilter] = useState<(typeof FILTERS)[number]["id"]>("all");
   const [q, setQ] = useState("");
   const [selected, setSelected] = useState<Call | null>(CALLS[0]);

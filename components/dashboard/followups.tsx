@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Arrow } from "@/components/site-chrome";
 import { Kicker, TabPill } from "./primitives";
+import { useDayOne, EmptyFollowups } from "./empty";
 
 /* ============================================================
    FOLLOW-UPS — the playbook editor
@@ -324,6 +325,9 @@ const FILTERS = [
 ] as const;
 
 export function Followups() {
+  const dayOne = useDayOne();
+  if (dayOne) return <EmptyFollowups />;
+
   const [filter, setFilter] = useState<(typeof FILTERS)[number]["id"]>("all");
   const [selectedId, setSelectedId] = useState<string>(PLAYS[0].id);
   const [statusOverride, setStatusOverride] = useState<Record<string, Playbook["status"]>>({});

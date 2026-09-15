@@ -5,6 +5,7 @@ import { ShaderBackground } from "@/components/shader-background";
 import { GREEN_MESH_DEEP } from "@/lib/shaders";
 import { Arrow } from "@/components/site-chrome";
 import { Kicker } from "./primitives";
+import { useDayOne, EmptyBilling } from "./empty";
 
 /* ============================================================
    BILLING — plan · usage · invoices
@@ -58,6 +59,9 @@ function UsageBar({ used, cap, label }: { used: number; cap: number; label: stri
 }
 
 export function Billing() {
+  const dayOne = useDayOne();
+  if (dayOne) return <EmptyBilling />;
+
   return (
     <>
       <header className="page-h">

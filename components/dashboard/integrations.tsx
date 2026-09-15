@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Kicker } from "./primitives";
+import { useDayOne, EmptyIntegrations } from "./empty";
 
 /* ============================================================
    INTEGRATIONS
@@ -230,6 +231,9 @@ function Group({
 }
 
 export function Integrations() {
+  const dayOne = useDayOne();
+  if (dayOne) return <EmptyIntegrations />;
+
   const [connected, setConnected] = useState<Set<string>>(new Set(INITIAL_CONNECTED));
   const [busy, setBusy] = useState<string | null>(null);
 

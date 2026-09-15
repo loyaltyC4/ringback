@@ -6,6 +6,7 @@ import { ShaderBackground } from "@/components/shader-background";
 import { GREEN_MESH_DEEP } from "@/lib/shaders";
 import { Arrow } from "@/components/site-chrome";
 import { Kicker, AreaChart, RangeSlider, TabPill } from "./primitives";
+import { useDayOne, EmptyValue } from "./empty";
 
 /* ============================================================
    VALUE — the "why you keep paying" screen
@@ -137,6 +138,9 @@ const RANGES = [
 ] as const;
 
 export function Value() {
+  const dayOne = useDayOne();
+  if (dayOne) return <EmptyValue />;
+
   const [range, setRange] = useState<(typeof RANGES)[number]["id"]>("m12");
   const roi = Math.round(TOTAL_MONTH / SUBS_MONTH);
 

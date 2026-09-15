@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ShaderBackground } from "@/components/shader-background";
 import { GREEN_MESH_DEEP } from "@/lib/shaders";
 import { Kicker, WaveformPlayer, SiriOrb, ORB_PALETTES } from "./primitives";
+import { useDayOne, EmptySimulation } from "./empty";
 
 /* ============================================================
    SIMULATION — the pre-launch trust gate
@@ -221,6 +222,9 @@ function PersonaCard({ p, open, onToggle }: { p: Persona; open: boolean; onToggl
 /* ---------- the page ---------- */
 
 export function Simulation() {
+  const dayOne = useDayOne();
+  if (dayOne) return <EmptySimulation />;
+
   const [open, setOpen] = useState<string | null>("emergency");
   const [ownerCall, setOwnerCall] = useState<"idle" | "ringing" | "done">("idle");
   const [rerunning, setRerunning] = useState(false);

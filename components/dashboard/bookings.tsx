@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Kicker, TabPill } from "./primitives";
+import { useDayOne, EmptyBookings } from "./empty";
 
 /* ============================================================
    BOOKINGS — week + month calendar with drag-to-reschedule
@@ -266,6 +267,9 @@ const VIEWS = [
 ] as const;
 
 export function Bookings() {
+  const dayOne = useDayOne();
+  if (dayOne) return <EmptyBookings />;
+
   const [view, setView] = useState<(typeof VIEWS)[number]["id"]>("week");
   const [weekOffset, setWeekOffset] = useState(0);
   const [monthOffset, setMonthOffset] = useState(0);

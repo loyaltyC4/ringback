@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { NumberTicker } from "@/components/number-ticker";
 import { Arrow } from "@/components/site-chrome";
 import { Kicker, TabPill, AreaChart } from "./primitives";
+import { useDayOne, EmptyAnalytics } from "./empty";
 
 /* ============================================================
    ANALYTICS — the "how is Emma actually performing" screen
@@ -193,6 +194,9 @@ const RANGES = [
 ] as const;
 
 export function Analytics() {
+  const dayOne = useDayOne();
+  if (dayOne) return <EmptyAnalytics />;
+
   const [range, setRange] = useState<Range>("30d");
   const kpis = KPIS[range];
   const newVsReturning = 68; // % new callers

@@ -5,6 +5,7 @@ import { ShaderBackground } from "@/components/shader-background";
 import { GREEN_MESH_DEEP } from "@/lib/shaders";
 import { NumberTicker } from "@/components/number-ticker";
 import { Arrow } from "@/components/site-chrome";
+import { useDayOne, EmptyToday } from "./empty";
 
 /* ============================================================
    TODAY
@@ -302,6 +303,9 @@ function TodayHero({ day, name }: { day: string; name: string }) {
    ============================================================ */
 
 export function Today() {
+  const dayOne = useDayOne();
+  if (dayOne) return <EmptyToday />;
+
   const now = new Date();
   const day = now.toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long" });
   return (
