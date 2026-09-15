@@ -488,6 +488,27 @@ h1 .plain {
   height: 100%;
   object-fit: cover;
 }
+
+/* clip stack: every clip in the queue is mounted + looping; opacity swaps as
+   the cycler advances so the transition is instant, no white flash while the
+   next mp4 buffers */
+.clip-stack .clip {
+  opacity: 0;
+  transition: opacity 0.9s var(--e);
+  will-change: opacity;
+}
+.clip-stack .clip[data-on] {
+  opacity: 1;
+}
+
+/* label pill for the small frame — smaller and softer than the tall one */
+.hg-wide .clip-label {
+  left: 12px;
+  bottom: 11px;
+  font-size: 9.5px;
+  padding: 6px 11px;
+}
+
 .hg-tall:hover,
 .hg-wide:hover {
   transform: translateY(-6px);
