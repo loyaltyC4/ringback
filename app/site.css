@@ -680,14 +680,22 @@ h1 .plain {
   font-size: 13.5px;
   line-height: 1.4;
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transform: translateY(-6px);
   transition:
     opacity 0.65s var(--e),
-    transform 0.65s var(--e);
+    transform 0.65s var(--e),
+    visibility 0s linear 0.65s;
 }
 .vidcap[data-on] {
   opacity: 1;
+  visibility: visible;
   transform: none;
+  transition:
+    opacity 0.65s var(--e),
+    transform 0.65s var(--e),
+    visibility 0s linear;
 }
 .vidcap.light {
   background: var(--color-paper);
@@ -729,14 +737,22 @@ h1 .plain {
   border-radius: 999px;
   white-space: nowrap;
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transform: translateY(5px);
   transition:
     opacity 0.6s var(--e),
-    transform 0.6s var(--e);
+    transform 0.6s var(--e),
+    visibility 0s linear 0.6s;
 }
 .vidchip[data-on] {
   opacity: 1;
+  visibility: visible;
   transform: none;
+  transition:
+    opacity 0.6s var(--e),
+    transform 0.6s var(--e),
+    visibility 0s linear;
 }
 
 /* ============================================================
