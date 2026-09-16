@@ -3,11 +3,11 @@
    This file is @imported at the TOP of globals.css, so the base rules there
    (.wrap, h1-h4, .kick, .btn ...) come LATER in the cascade and win ties.
    Any rule here that targets the same selector as a base rule must therefore
-   out-specify it — hence `.hero h1`, `.rail .rail-head`, `.strip .strip-head`.
+   out-specify it - hence `.hero h1`, `.rail .rail-head`, `.strip .strip-head`.
    ------------------------------------------------------------ */
 
 /* ============================================================
-   NAV — fluid island
+   NAV - fluid island
    ============================================================ */
 .nav {
   position: fixed;
@@ -225,12 +225,14 @@
    ============================================================ */
 .hero {
   position: relative;
-  /* leave 74px below the fold for the marquee — guaranteed to show the moving
-     logos in the first viewport on any screen ≥ ~740px tall */
-  min-height: calc(100dvh - 74px);
+  /* Size to the composition with a floor, not the whole viewport. Reserving a
+     full 100dvh left a large dead band below the trust beat on tall screens;
+     min() caps the hero at what the content needs while keeping a minimum
+     stature on short-but-wide laptops, and the marquee follows right under. */
+  min-height: min(740px, calc(100dvh - 74px));
   display: flex;
   flex-direction: column;
-  padding: clamp(66px, 7.5vh, 90px) 0 0;
+  padding: clamp(56px, 6vh, 84px) 0 clamp(20px, 3vh, 36px);
   overflow: hidden;
 }
 .hero-inner {
@@ -279,7 +281,7 @@
 }
 .hero h1 {
   /* sized so [pill + orb] fits on one line inside the centre column, then
-     "answered." on the second line — no three-line stack */
+     "answered." on the second line - no three-line stack */
   font-size: clamp(36px, 5.1vw, 70px);
   letter-spacing: -0.055em;
   line-height: 0.9;
@@ -469,7 +471,7 @@ h1 .plain {
   opacity: 1;
 }
 
-/* label pill for the small frame — smaller and softer than the tall one */
+/* label pill for the small frame - smaller and softer than the tall one */
 .hg-wide .clip-label {
   left: 12px;
   bottom: 11px;
@@ -509,7 +511,7 @@ h1 .plain {
   padding: 6px 11px;
 }
 
-/* ---- voice bar: one sleek black slab. No border, no outline — the bar is
+/* ---- voice bar: one sleek black slab. No border, no outline - the bar is
    the darkest object on the page and reads as hardware. Waveform left,
    caller + live caption centre, the page's single hero CTA welded in at the
    right as a nested pill. ---- */
@@ -794,7 +796,7 @@ h1 .plain {
   flex: 1;
   min-width: 0;
 }
-/* legacy — the stacked layout is gone but keep the class working in case */
+/* legacy - the stacked layout is gone but keep the class working in case */
 .strip .strip-head {
   margin-bottom: 12px;
 }
@@ -838,7 +840,7 @@ h1 .plain {
   height: 26px;
   flex: none;
   margin: 0 clamp(20px, 2.6vw, 40px);
-  /* the ink is only revealed through the logo's alpha mask — if masking were
+  /* the ink is only revealed through the logo's alpha mask - if masking were
      unsupported this would paint a solid rectangle, so it's guarded below */
   background-color: transparent;
   opacity: 0.72;
@@ -2266,7 +2268,7 @@ footer {
   .hg-tall {
     grid-column: 1 / span 2;
     grid-row: auto;
-    /* the clip is 9:16 — a 1.7:1 frame cropped it to a letterbox sliver */
+    /* the clip is 9:16 - a 1.7:1 frame cropped it to a letterbox sliver */
     aspect-ratio: 1.12;
     min-height: 0;
     margin-right: 0;
@@ -2373,7 +2375,7 @@ footer {
 }
 
 @media (max-width: 900px) {
-  /* let the marquee take the full row on phones — the label above wraps oddly
+  /* let the marquee take the full row on phones - the label above wraps oddly
      in a 390px viewport */
   .strip-row .kick {
     display: none;
