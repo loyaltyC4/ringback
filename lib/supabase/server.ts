@@ -19,7 +19,14 @@ export async function supabaseServer() {
       setAll(list: { name: string; value: string; options?: Record<string, unknown> }[]) {
         try {
           list.forEach(({ name, value, options }) => {
-            store.set({ name, value, ...(options ?? {}) } as Parameters<typeof store.set>[0]);
+            // next/headers' set() is overloaded; a narrow local signature keeps
+            // the supabase cookie shape assignable without reaching for any.
+            const set = store.set as unknown as (
+              n: string,
+              v: string,
+              o?: Record<string, unknown>,
+            ) => void;
+            set(name, value, options);
           });
         } catch {
           // called from a Server Component render, where cookies are read-only.

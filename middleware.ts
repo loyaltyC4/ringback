@@ -21,9 +21,12 @@ export async function middleware(req: NextRequest) {
       },
       setAll(list: { name: string; value: string; options?: Record<string, unknown> }[]) {
         list.forEach(({ name, value, options }) => {
-          res.cookies.set({ name, value, ...(options ?? {}) } as Parameters<
-            typeof res.cookies.set
-          >[0]);
+          const set = res.cookies.set as unknown as (
+            n: string,
+            v: string,
+            o?: Record<string, unknown>,
+          ) => void;
+          set(name, value, options);
         });
       },
     },
