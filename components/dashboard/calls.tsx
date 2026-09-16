@@ -6,7 +6,7 @@ import { Kicker, TabPill, WaveformPlayer } from "./primitives";
 import { useDayOne, EmptyCalls } from "./empty";
 
 /* ============================================================
-   CALLS — inbox + slide-over Detail
+   CALLS - inbox + slide-over Detail
    Left: filterable list. Right (or slide-over on mobile): the
    Detail with waveform, transcript, extracted fields, actions.
    ============================================================ */
@@ -34,7 +34,7 @@ const CALLS: Call[] = [
     name: "Sue Murphy",
     number: "+61 402 118 902",
     location: "Stafford, QLD",
-    job: "Hot water gone — booked",
+    job: "Hot water gone - booked",
     note: "Emergency · booked 2:15p",
     disp: "booked",
     time: "9:42a",
@@ -47,17 +47,17 @@ const CALLS: Call[] = [
       { field: "Access", value: "Side gate, dog is friendly" },
     ],
     transcript: [
-      { who: "emma", t: 0, text: "G'day, you've called Kedron Plumbing — this is Emma, Dave's AI receptionist. How can I help?" },
+      { who: "emma", t: 0, text: "G'day, you've called Kedron Plumbing - this is Emma, Dave's AI receptionist. How can I help?" },
       { who: "caller", t: 6, text: "Hi Emma, my hot water's died. Just totally gone." },
       { who: "emma", t: 12, text: "Sorry to hear that. Is water leaking from the unit anywhere right now?" },
       { who: "caller", t: 19, text: "No, no leak. It's just cold." },
-      { who: "emma", t: 23, text: "Right — that's not an emergency then, but we can get someone out today. Can I grab your address?" },
-      { who: "caller", t: 30, text: "14 Wilston Road, Stafford — 4053." },
-      { who: "emma", t: 37, text: "Perfect. Let me read that back — 14 Wilston Road, Stafford, four-oh-five-three. Yeah?" },
+      { who: "emma", t: 23, text: "Right - that's not an emergency then, but we can get someone out today. Can I grab your address?" },
+      { who: "caller", t: 30, text: "14 Wilston Road, Stafford - 4053." },
+      { who: "emma", t: 37, text: "Perfect. Let me read that back - 14 Wilston Road, Stafford, four-oh-five-three. Yeah?" },
       { who: "caller", t: 45, text: "That's right." },
       { who: "emma", t: 48, text: "Great. I've got Dave free at 2:15 this arvo. Shall I lock that in?" },
       { who: "caller", t: 55, text: "Yes please." },
-      { who: "emma", t: 58, text: "Done — you'll get a text confirmation. Anything about access we should know?" },
+      { who: "emma", t: 58, text: "Done - you'll get a text confirmation. Anything about access we should know?" },
       { who: "caller", t: 66, text: "Just come through the side gate. The dog's friendly." },
       { who: "emma", t: 72, text: "Noted. Talk soon." },
     ],
@@ -73,15 +73,15 @@ const CALLS: Call[] = [
     time: "9:04a",
     duration: 176,
     extracted: [
-      { field: "Job", value: "Bathroom rough-in — full reno" },
+      { field: "Job", value: "Bathroom rough-in - full reno" },
       { field: "Site", value: "27 Rode Rd, Wavell Heights" },
       { field: "Timeline", value: "Wants to start mid-October" },
       { field: "Docs", value: "Sent plans via email" },
     ],
     transcript: [
-      { who: "emma", t: 0, text: "G'day, Kedron Plumbing — Emma speaking. What can I do for you?" },
+      { who: "emma", t: 0, text: "G'day, Kedron Plumbing - Emma speaking. What can I do for you?" },
       { who: "caller", t: 5, text: "Yeah I'm looking for a quote on a bathroom reno rough-in." },
-      { who: "emma", t: 12, text: "Sure. I can't give you a number over the phone — Dave prefers to measure — but I can grab the details and get him out for a quote visit." },
+      { who: "emma", t: 12, text: "Sure. I can't give you a number over the phone - Dave prefers to measure - but I can grab the details and get him out for a quote visit." },
     ],
   },
   {
@@ -90,20 +90,20 @@ const CALLS: Call[] = [
     number: "+61 401 553 200",
     location: "Chermside, QLD",
     job: "Gas smell",
-    note: "Warm transfer didn't land — needs you",
+    note: "Warm transfer didn't land - needs you",
     disp: "warm",
     time: "7:31a",
     duration: 92,
-    escalation: "Rachel could smell gas at her back BBQ line. Emma triaged — turned the isolation valve off, left the house — then tried to warm-transfer to your mobile. You were on another job. She held Rachel on the line for 90s, then booked her a callback and told her to keep the area clear. Ring her back first thing.",
+    escalation: "Rachel could smell gas at her back BBQ line. Emma triaged - turned the isolation valve off, left the house - then tried to warm-transfer to your mobile. You were on another job. She held Rachel on the line for 90s, then booked her a callback and told her to keep the area clear. Ring her back first thing.",
     extracted: [
       { field: "Trigger", value: "Gas smell at BBQ line" },
       { field: "Safety", value: "Isolation valve OFF · left house" },
       { field: "Callback promised", value: "Between 8:00 and 8:30 am" },
     ],
     transcript: [
-      { who: "emma", t: 0, text: "Kedron Plumbing — Emma. Everything okay?" },
+      { who: "emma", t: 0, text: "Kedron Plumbing - Emma. Everything okay?" },
       { who: "caller", t: 3, text: "I can smell gas at my back BBQ." },
-      { who: "emma", t: 7, text: "Okay — this is an emergency. First, is there anyone in the house right now near the BBQ?" },
+      { who: "emma", t: 7, text: "Okay - this is an emergency. First, is there anyone in the house right now near the BBQ?" },
     ],
   },
   {
@@ -122,8 +122,8 @@ const CALLS: Call[] = [
       { field: "When", value: "Wed 7:00am" },
     ],
     transcript: [
-      { who: "emma", t: 0, text: "Kedron Plumbing — Emma, how can I help?" },
-      { who: "caller", t: 4, text: "Stormwater drain out the front — completely blocked, water pooling." },
+      { who: "emma", t: 0, text: "Kedron Plumbing - Emma, how can I help?" },
+      { who: "caller", t: 4, text: "Stormwater drain out the front - completely blocked, water pooling." },
     ],
   },
   {
@@ -140,10 +140,10 @@ const CALLS: Call[] = [
       { field: "Job", value: "Leaking kitchen mixer" },
       { field: "Address", value: "3 Barton St, Wavell Heights" },
       { field: "When", value: "Fri 10:30am" },
-      { field: "Notes", value: "New customer — no prior jobs" },
+      { field: "Notes", value: "New customer - no prior jobs" },
     ],
     transcript: [
-      { who: "emma", t: 0, text: "Kedron Plumbing — Emma speaking." },
+      { who: "emma", t: 0, text: "Kedron Plumbing - Emma speaking." },
       { who: "caller", t: 3, text: "Hi, my kitchen mixer's leaking from the base." },
     ],
   },
@@ -153,7 +153,7 @@ const CALLS: Call[] = [
     number: "+61 000 000 000",
     location: "Unknown",
     job: "\"Extended warranty\"",
-    note: "Robocall — blocked before it rang you",
+    note: "Robocall - blocked before it rang you",
     disp: "spam",
     time: "7:02a",
     duration: 12,
@@ -333,7 +333,7 @@ export function Calls() {
               <DispBadge d={c.disp} />
             </button>
           ))}
-          {!filtered.length && <p className="calls-empty">Nothing here yet — try a different filter.</p>}
+          {!filtered.length && <p className="calls-empty">Nothing here yet - try a different filter.</p>}
         </aside>
 
         <div className="calls-pane">

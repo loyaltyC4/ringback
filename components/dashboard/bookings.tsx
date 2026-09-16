@@ -5,11 +5,11 @@ import { Kicker, TabPill } from "./primitives";
 import { useDayOne, EmptyBookings } from "./empty";
 
 /* ============================================================
-   BOOKINGS — week + month calendar with drag-to-reschedule
+   BOOKINGS - week + month calendar with drag-to-reschedule
 
    Every job Emma put in the calendar. Two views:
-     · Week  — time-grid, 7 columns × hourly rows, jobs as blocks
-     · Month — day cells with job chips
+     · Week  - time-grid, 7 columns × hourly rows, jobs as blocks
+     · Month - day cells with job chips
    Drag a job to any slot (week) or day (month) to reschedule.
    Native HTML5 drag-and-drop; state is the single source of
    truth so both views stay in sync.
@@ -63,11 +63,11 @@ const SEED: Booking[] = [
   { id: "b1", caller: "Priya Patel", job: "Leaking mixer", where: "Wavell Heights", kind: "standard", date: D(0), start: 9.5, len: 1 },
   { id: "b2", caller: "Marco G", job: "Blocked stormwater", where: "Chermside West", kind: "standard", date: D(0), start: 12, len: 1.5 },
   { id: "b3", caller: "Sue Murphy", job: "HWS replacement", where: "Stafford", kind: "emergency", date: D(0), start: 14, len: 2 },
-  { id: "b4", caller: "Jim Taylor", job: "Reno rough-in — quote", where: "Wavell Heights", kind: "quote", date: D(1), start: 8, len: 1 },
+  { id: "b4", caller: "Jim Taylor", job: "Reno rough-in - quote", where: "Wavell Heights", kind: "quote", date: D(1), start: 8, len: 1 },
   { id: "b5", caller: "Anna Reyes", job: "Tap reseat ×3", where: "Nundah", kind: "standard", date: D(1), start: 10.5, len: 1 },
   { id: "b6", caller: "Ken Wright", job: "Dishwasher install", where: "Windsor", kind: "standard", date: D(2), start: 9, len: 1.5 },
   { id: "b7", caller: "Deb Nguyen", job: "Toilet cistern", where: "Kedron", kind: "standard", date: D(2), start: 13, len: 1 },
-  { id: "b8", caller: "Raj Kapoor", job: "Gas cooktop — quote", where: "Gordon Park", kind: "quote", date: D(3), start: 11, len: 1 },
+  { id: "b8", caller: "Raj Kapoor", job: "Gas cooktop - quote", where: "Gordon Park", kind: "quote", date: D(3), start: 11, len: 1 },
   { id: "b9", caller: "Tom Fisher", job: "Burst pipe follow-up", where: "Wooloowin", kind: "emergency", date: D(4), start: 8, len: 1.5 },
   { id: "b10", caller: "Ellie Ward", job: "Rangehood vent", where: "Stafford", kind: "standard", date: D(4), start: 14.5, len: 1 },
   { id: "b11", caller: "Sam O'Neil", job: "Hot water service", where: "Chermside", kind: "standard", date: D(5), start: 9, len: 1 },
@@ -77,7 +77,7 @@ const KIND_LABEL: Record<Kind, string> = { emergency: "Emergency", standard: "St
 
 /* ---------- week grid ---------- */
 
-const HOURS = Array.from({ length: 11 }, (_, i) => 7 + i); // 7am–5pm
+const HOURS = Array.from({ length: 11 }, (_, i) => 7 + i); // 7am-5pm
 const ROW_PX = 62;
 
 function WeekView({
@@ -161,7 +161,7 @@ function WeekView({
                     setOverCell(null);
                   }}
                   style={{ top: top + 2, height: Math.max(height, 30) }}
-                  title={`${b.caller} — ${b.job}`}
+                  title={`${b.caller} - ${b.job}`}
                 >
                   <span className="cw-ev-time">{fmtHour(b.start)}</span>
                   <b className="cw-ev-caller">{b.caller}</b>
@@ -243,7 +243,7 @@ function MonthView({
                       setDragId(null);
                       setOverDay(null);
                     }}
-                    title={`${b.caller} — ${b.job} · ${fmtHour(b.start)}`}
+                    title={`${b.caller} - ${b.job} · ${fmtHour(b.start)}`}
                   >
                     <span className="cm-chip-t">{fmtHour(b.start)}</span>
                     {b.caller}
@@ -292,7 +292,7 @@ export function Bookings() {
     }
   };
 
-  const weekLabel = `${weekStart.getDate()} ${MONTHS[weekStart.getMonth()].slice(0, 3)} – ${addDays(weekStart, 6).getDate()} ${MONTHS[addDays(weekStart, 6).getMonth()].slice(0, 3)}`;
+  const weekLabel = `${weekStart.getDate()} ${MONTHS[weekStart.getMonth()].slice(0, 3)} - ${addDays(weekStart, 6).getDate()} ${MONTHS[addDays(weekStart, 6).getMonth()].slice(0, 3)}`;
   const monthLabel = `${MONTHS[monthAnchor.getMonth()]} ${monthAnchor.getFullYear()}`;
 
   const weekCount = bookings.filter((b) => {

@@ -14,9 +14,9 @@ const THREAD = [
   { who: "them", text: "“Sent you the quote for the rough-in last Tuesday.”" },
   {
     who: "us",
-    text: "“Hi Jim — just checking that quote landed. Happy to pencil in a start date if the numbers work?”",
+    text: "“Hi Jim - just checking that quote landed. Happy to pencil in a start date if the numbers work?”",
   },
-  { who: "them", text: "“Yeah go on then — week after next?”" },
+  { who: "them", text: "“Yeah go on then - week after next?”" },
   {
     who: "us",
     text: "“Done. I've held Mon the 22nd, 7am start. Dan will confirm the day before.”",
@@ -38,7 +38,7 @@ export function Bento() {
           </h2>
           <p>
             Answering is table stakes. RingBack keeps working after the phone goes down
-            — chasing quotes, rescuing no-shows, and asking for the review you&rsquo;d
+            - chasing quotes, rescuing no-shows, and asking for the review you&rsquo;d
             never get round to.
           </p>
         </div>
@@ -57,7 +57,7 @@ export function Bento() {
             <div className="foot">
               <span className="l">Follow-ups</span>
               <p>
-                Quotes get chased on day three, day seven and day fourteen — in your
+                Quotes get chased on day three, day seven and day fourteen - in your
                 voice, until you say stop.
               </p>
             </div>
@@ -117,7 +117,7 @@ export function Bento() {
 const CHECKS = [
   "Trained on your services, pricing and tone from your website",
   "Recognises repeat callers and pulls up their history",
-  "Locked to your rules — it never quotes, never over-promises",
+  "Locked to your rules - it never quotes, never over-promises",
   "Every call transcribed and summarised to your phone",
 ];
 
@@ -132,7 +132,7 @@ export function StatSplit() {
             <div className="bigfig">
               <NumberTicker value={62} />%
               <span className="sub">
-                of calls to a trade business go unanswered — and 85% of those callers
+                of calls to a trade business go unanswered - and 85% of those callers
                 never ring back. They just book the next mob.
               </span>
             </div>
@@ -193,7 +193,7 @@ const PLAYS: Play[] = [
   {
     tab: "Missed call",
     head: "Rings back the ones that hung up.",
-    body: "If a caller drops before the conversation gets anywhere, RingBack texts them inside sixty seconds and offers to book — before they scroll to the next name.",
+    body: "If a caller drops before the conversation gets anywhere, RingBack texts them inside sixty seconds and offers to book - before they scroll to the next name.",
     cards: [
       { label: "Text sent", value: "within 60s", sub: "While they're still looking" },
       { label: "Reply rate", value: "38%", sub: "Of dropped callers respond" },
@@ -203,7 +203,7 @@ const PLAYS: Play[] = [
   {
     tab: "Quote sent",
     head: "Chases the quote three times, politely.",
-    body: "Day three, day seven, day fourteen — then it stops. Each message references the actual job, not a generic nudge, and offers to hold a start date.",
+    body: "Day three, day seven, day fourteen - then it stops. Each message references the actual job, not a generic nudge, and offers to hold a start date.",
     cards: [
       { label: "Cadence", value: "3 · 7 · 14 days", sub: "Then it leaves them alone" },
       { label: "Converted", value: "1 in 4", sub: "Quotes that had gone quiet" },
@@ -223,7 +223,7 @@ const PLAYS: Play[] = [
   {
     tab: "Review",
     head: "Asks for the review while they're still happy.",
-    body: "Two hours after you mark the job done — the window where people actually leave five stars. It only asks customers whose job went cleanly.",
+    body: "Two hours after you mark the job done - the window where people actually leave five stars. It only asks customers whose job went cleanly.",
     cards: [
       { label: "Timing", value: "+2 hours", sub: "After you close the job" },
       { label: "Filtered", value: "Clean jobs only", sub: "Complaints route to you instead" },
@@ -319,7 +319,7 @@ export function FollowUpTabs() {
                 </div>
                 <div className="tp-media">
                   <div className="tp-canvas">
-                    {/* only the visible pane gets a WebGL context — five live
+                    {/* only the visible pane gets a WebGL context - five live
                         canvases here pushed the page to 11 contexts, close to
                         the per-page ceiling browsers enforce */}
                     {k === i && (
@@ -377,7 +377,7 @@ export function Proof() {
               <h3>Ring the demo line right now.</h3>
               <p>
                 It&rsquo;s a live agent for a fictional Brisbane plumber, answering
-                24/7. Try to trip it up — ask for a price, describe an emergency, talk
+                24/7. Try to trip it up - ask for a price, describe an emergency, talk
                 over the top of it. That&rsquo;s the fastest honest test there is.
               </p>
               <a className="go" href="tel:+61340135000">
@@ -390,7 +390,7 @@ export function Proof() {
               <span className="num">02</span>
               <h3>Look through the dashboard.</h3>
               <p>
-                The full operator view — calls, transcripts, bookings, recovered
+                The full operator view - calls, transcripts, bookings, recovered
                 revenue, follow-up performance. Populated with demo data so you can see
                 exactly what you&rsquo;d be looking at on a Tuesday morning.
               </p>
@@ -409,7 +409,7 @@ export function Proof() {
    SECURITY & PRIVACY
 
    Every claim here is either an architectural fact or an explicit
-   commitment. No certification language — RingBack holds none, and the
+   commitment. No certification language - RingBack holds none, and the
    closing note says so rather than implying otherwise.
    ============================================================ */
 
@@ -495,7 +495,7 @@ const SECURITY = [
   {
     icon: <IcNoTrain />,
     title: "Your calls are not training data",
-    text: "Nothing said on your line is used to train or fine-tune a model — not ours, not a vendor's.",
+    text: "Nothing said on your line is used to train or fine-tune a model - not ours, not a vendor's.",
   },
   {
     icon: <IcExport />,
@@ -581,7 +581,7 @@ const PLAN_FEATURES = [
 const COMPARE = [
   { label: "Full-time receptionist, loaded", value: "$6,500/mo" },
   { label: "Part-time office admin", value: "$2,900/mo" },
-  { label: "Traditional answering service", value: "$400–900/mo" },
+  { label: "Traditional answering service", value: "$400-900/mo" },
   { label: "RingBack, founding rate", value: "$150/mo", win: true },
 ];
 
@@ -598,7 +598,7 @@ export function Pricing() {
             Simple pricing. <span className="g">No lock-in.</span>
           </h2>
           <p>
-            Start with a 7-day free trial — no credit card. Cancel any time, keep your
+            Start with a 7-day free trial - no credit card. Cancel any time, keep your
             number.
           </p>
         </div>
@@ -671,15 +671,15 @@ const FAQS = [
   },
   {
     q: "What happens when it can't help?",
-    a: "It stops trying. Anything outside its rules gets a warm hand-off to your mobile with the caller's name, number and problem already captured — or a callback booked in if you're unreachable.",
+    a: "It stops trying. Anything outside its rules gets a warm hand-off to your mobile with the caller's name, number and problem already captured - or a callback booked in if you're unreachable.",
   },
   {
     q: "Can it promise a price?",
-    a: "No — and that's deliberate. It's locked out of quoting, discounting and committing to scope. It gathers the job details and books the visit. You keep every pricing conversation.",
+    a: "No - and that's deliberate. It's locked out of quoting, discounting and committing to scope. It gathers the job details and books the visit. You keep every pricing conversation.",
   },
   {
     q: "Won't the follow-ups annoy my customers?",
-    a: "They're capped and they stop on reply. A quote gets three messages across a fortnight and then nothing. Win-backs go once. Review requests only go to customers whose job went cleanly — anyone unhappy routes to you instead. You can switch any playbook off, and every message is in your voice, referencing the actual job.",
+    a: "They're capped and they stop on reply. A quote gets three messages across a fortnight and then nothing. Win-backs go once. Review requests only go to customers whose job went cleanly - anyone unhappy routes to you instead. You can switch any playbook off, and every message is in your voice, referencing the actual job.",
   },
   {
     q: "Does it work with my job software?",
@@ -736,7 +736,7 @@ export function FinalCta() {
             <h2>Let the next call become the next job.</h2>
             <p>
               Ring the demo line and hear exactly what your customers would hear. No
-              form, no sales call — just pick up your phone.
+              form, no sales call - just pick up your phone.
             </p>
             <div className="row">
               <a className="btn btn-fill" href="/start">

@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 
    A first-run walkthrough for someone who has never seen the
    product. One spotlight ring on the thing being talked about,
-   one black dock at the bottom carrying the copy — the same
+   one black dock at the bottom carrying the copy - the same
    hardware register as the marketing hero's voice bar.
 
    Steps span pages: advancing to a step on another route does a
@@ -106,7 +106,7 @@ export function Tour() {
     try {
       if (!window.localStorage.getItem(KEY)) setOffer(true);
     } catch {
-      /* private mode — just don't offer */
+      /* private mode - just don't offer */
     }
   }, []);
 

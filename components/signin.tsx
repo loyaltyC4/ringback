@@ -12,7 +12,7 @@ import { SiriOrb, ORB_PALETTES } from "@/components/dashboard/primitives";
    any product: the dominant churn mode for AI receptionists is
    the owner forgetting it's working. A login form is a toll
    gate. So the right half of this page is a standing report of
-   what Emma did while they were gone — every single time they
+   what Emma did while they were gone - every single time they
    come back, before they've even typed an email.
 
    Magic link only. Tradies are on a job site, gloved, one
@@ -133,7 +133,7 @@ export function SignIn() {
               </form>
 
               <p className="si-alt">
-                Haven&rsquo;t set her up yet? <a href="/start">Start a free trial</a> — seven days, no card.
+                Haven&rsquo;t set her up yet? <a href="/start">Start a free trial</a> - seven days, no card.
               </p>
             </>
           )}

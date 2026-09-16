@@ -22,7 +22,7 @@ type NavItem = {
   badge?: number;
 };
 
-/* ---------- glyphs (thin line, 1.6px stroke — dashboard style) ---------- */
+/* ---------- glyphs (thin line, 1.6px stroke - dashboard style) ---------- */
 
 function IcToday({ className }: { className?: string }) {
   return (
@@ -175,7 +175,7 @@ const NAV: NavItem[] = [
 ];
 
 /* ============================================================
-   LIVING AGENT — the thin sentence that says what Emma is doing
+   LIVING AGENT - the thin sentence that says what Emma is doing
    right now. Cycles through a handful of honest states rather
    than being a live socket. Green pulse when she's on a call,
    amber if there's an escalation waiting.
@@ -220,7 +220,7 @@ function LivingAgent() {
 
 /* ============================================================
    NOTIFICATION TRAY
-   Not a modal, not a page — a dropdown from the bell. Actions
+   Not a modal, not a page - a dropdown from the bell. Actions
    that need the owner's yes/no; nothing you can dismiss without
    deciding.
    ============================================================ */
@@ -235,7 +235,7 @@ type Notice = {
 const NOTICES: Notice[] = [
   {
     kind: "escalation",
-    title: "Rachel Byrne — warm transfer didn't connect",
+    title: "Rachel Byrne - warm transfer didn't connect",
     meta: "7:31am · Emma left the caller with a callback slot",
     cta: "Listen back",
   },

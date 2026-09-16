@@ -51,7 +51,7 @@ export function Arrow({ className }: { className?: string }) {
   );
 }
 
-/** scroll-reveal — one observer for every .rv on the page */
+/** scroll-reveal - one observer for every .rv on the page */
 export function useReveals() {
   useEffect(() => {
     const els = Array.from(document.querySelectorAll<HTMLElement>(".rv"));
@@ -83,7 +83,7 @@ export function useReveals() {
 }
 
 /* ============================================================
-   NAV — fluid island
+   NAV - fluid island
    ============================================================ */
 
 const LINKS = [
@@ -137,7 +137,7 @@ export function Nav() {
           <a className="nav-signin" href="/signin">
             Sign in
           </a>
-          {/* primary CTA is signup, not the demo call — the demo lives in the hero */}
+          {/* primary CTA is signup, not the demo call - the demo lives in the hero */}
           <a className="btn btn-fill btn-sm" href="/start">
             <span>Start free</span>
             <span className="tic">↗</span>
@@ -195,7 +195,7 @@ const TOOLS = [
 export function IntegrationStrip() {
   return (
     <section className="strip">
-      {/* label left, moving marks right — single row keeps the whole strip
+      {/* label left, moving marks right - single row keeps the whole strip
           shallow enough to sit inside the first viewport */}
       <div className="strip-row wrap">
         <span className="kick">

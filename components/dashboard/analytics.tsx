@@ -7,7 +7,7 @@ import { Kicker, TabPill, AreaChart } from "./primitives";
 import { useDayOne, EmptyAnalytics } from "./empty";
 
 /* ============================================================
-   ANALYTICS — the "how is Emma actually performing" screen
+   ANALYTICS - the "how is Emma actually performing" screen
 
    1. Action-required strip (only the things that need a human)
    2. Money + performance KPIs with period deltas
@@ -20,8 +20,8 @@ import { useDayOne, EmptyAnalytics } from "./empty";
 
 type Alert = { kind: "escalation" | "gap" | "spike"; text: string; when: string };
 const ALERTS: Alert[] = [
-  { kind: "escalation", text: "Rachel Byrne's gas-smell warm transfer never connected — still needs a callback", when: "7:31am" },
-  { kind: "gap", text: "3 callers this week asked about heat pumps — Emma has no answer on file", when: "this week" },
+  { kind: "escalation", text: "Rachel Byrne's gas-smell warm transfer never connected - still needs a callback", when: "7:31am" },
+  { kind: "gap", text: "3 callers this week asked about heat pumps - Emma has no answer on file", when: "this week" },
   { kind: "spike", text: "Tuesday 8am is your busiest hour and your highest miss rate before Emma", when: "trend" },
 ];
 
@@ -58,7 +58,7 @@ const KPIS: Record<Range, Kpi[]> = {
 };
 
 function Delta({ v, invert }: { v: number; invert?: boolean }) {
-  if (v === 0) return <span className="kpi-delta kpi-flat">—</span>;
+  if (v === 0) return <span className="kpi-delta kpi-flat">-</span>;
   const good = invert ? v < 0 : v > 0;
   return (
     <span className="kpi-delta" data-good={good || undefined} data-bad={!good || undefined}>
@@ -70,7 +70,7 @@ function Delta({ v, invert }: { v: number; invert?: boolean }) {
 /* ---------- 3. busiest-hours heat map ---------- */
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const HOURS = Array.from({ length: 12 }, (_, i) => 7 + i); // 7am–6pm
+const HOURS = Array.from({ length: 12 }, (_, i) => 7 + i); // 7am-6pm
 
 /** deterministic call-volume surface: weekday mornings hot, weekends light */
 function heatValue(day: number, hour: number) {

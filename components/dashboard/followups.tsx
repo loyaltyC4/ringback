@@ -6,10 +6,10 @@ import { Kicker, TabPill } from "./primitives";
 import { useDayOne, EmptyFollowups } from "./empty";
 
 /* ============================================================
-   FOLLOW-UPS — the playbook editor
+   FOLLOW-UPS - the playbook editor
 
    Left: list of playbooks with live/paused pill and outbound
-   count. Right: the selected playbook's detail — timeline of
+   count. Right: the selected playbook's detail - timeline of
    steps (day 0, day 3, day 7), template preview, channel chip,
    and guardrails card (DNC hours, opt-outs, per-recipient
    throttle). The visual grammar is timeline-on-a-rail, so it
@@ -19,7 +19,7 @@ import { useDayOne, EmptyFollowups } from "./empty";
 type Channel = "sms" | "call" | "email";
 
 type Step = {
-  when: string;        // human label ("Same day, 12 min after") — the trigger
+  when: string;        // human label ("Same day, 12 min after") - the trigger
   delayHours: number;  // for the rail rendering
   channel: Channel;
   subject?: string;
@@ -43,7 +43,7 @@ const PLAYS: Playbook[] = [
     id: "missed-call",
     name: "Missed-call rescue",
     trigger: "Emma didn't answer in time",
-    description: "The classic. Fires the second a call rings out — before the caller shops around.",
+    description: "The classic. Fires the second a call rings out - before the caller shops around.",
     status: "live",
     sentLastWeek: 32,
     successPct: 48,
@@ -52,17 +52,17 @@ const PLAYS: Playbook[] = [
         when: "Within 60 seconds",
         delayHours: 0,
         channel: "sms",
-        body: "G'day, this is {business}. Sorry we missed your call — Dave's on the tools. Reply here with what you need and we'll ring back within the hour.",
+        body: "G'day, this is {business}. Sorry we missed your call - Dave's on the tools. Reply here with what you need and we'll ring back within the hour.",
       },
       {
         when: "If no reply in 4 hours",
         delayHours: 4,
         channel: "call",
-        body: "Callback attempt — Emma tries the number once, in a business-hours window only.",
+        body: "Callback attempt - Emma tries the number once, in a business-hours window only.",
       },
     ],
     guardrails: [
-      "Never sends between 8pm and 7am — quiet hours locked",
+      "Never sends between 8pm and 7am - quiet hours locked",
       "One touch per number per week, ever",
       "Stops on any 'STOP', 'unsub', or complaint word",
     ],
@@ -80,20 +80,20 @@ const PLAYS: Playbook[] = [
         when: "Day 2, 10am",
         delayHours: 48,
         channel: "sms",
-        body: "Hi {first_name}, Dave from {business} — did the quote for {job} land okay? Happy to walk you through any of it.",
+        body: "Hi {first_name}, Dave from {business} - did the quote for {job} land okay? Happy to walk you through any of it.",
       },
       {
         when: "Day 5, 10am",
         delayHours: 120,
         channel: "sms",
-        body: "Hey {first_name}, just checking in on the {job} quote — availability's tightening for {month}, keen to lock a date if you're ready.",
+        body: "Hey {first_name}, just checking in on the {job} quote - availability's tightening for {month}, keen to lock a date if you're ready.",
       },
       {
         when: "Day 9, 10am",
         delayHours: 216,
         channel: "email",
         subject: "Closing your {business} quote #{quote_no}",
-        body: "Hi {first_name}, no worries either way — we'll close this quote out on our end tomorrow unless you'd like it kept open. Reply and we'll hold it.",
+        body: "Hi {first_name}, no worries either way - we'll close this quote out on our end tomorrow unless you'd like it kept open. Reply and we'll hold it.",
       },
     ],
     guardrails: [
@@ -115,7 +115,7 @@ const PLAYS: Playbook[] = [
         when: "10 minutes after the slot started",
         delayHours: 0,
         channel: "sms",
-        body: "Hi {first_name}, Dave from {business} — I'm at your place but no answer. Give me a bell on 07 3013 5000 or reply here and we'll sort a new time.",
+        body: "Hi {first_name}, Dave from {business} - I'm at your place but no answer. Give me a bell on 07 3013 5000 or reply here and we'll sort a new time.",
       },
       {
         when: "Next morning if still no reply",
@@ -142,7 +142,7 @@ const PLAYS: Playbook[] = [
         when: "2 hours after mark-done",
         delayHours: 2,
         channel: "sms",
-        body: "Hi {first_name} — Dave here. Really appreciated the work today. If you've got 30 seconds, a Google review would mean a lot: {review_link}",
+        body: "Hi {first_name} - Dave here. Really appreciated the work today. If you've got 30 seconds, a Google review would mean a lot: {review_link}",
       },
     ],
     guardrails: [
@@ -182,7 +182,7 @@ const PLAYS: Playbook[] = [
     id: "winback",
     name: "Winback (annual)",
     trigger: "12 months since last job",
-    description: "Draft — waiting on Dave's approval of the tone.",
+    description: "Draft - waiting on Dave's approval of the tone.",
     status: "draft",
     sentLastWeek: 0,
     successPct: 0,
@@ -191,7 +191,7 @@ const PLAYS: Playbook[] = [
         when: "12 months on-the-dot",
         delayHours: 8760,
         channel: "sms",
-        body: "Hi {first_name}, Dave from {business} — noticed it's been a year. Hot water systems love an annual check. Reply Y and I'll book one in for you.",
+        body: "Hi {first_name}, Dave from {business} - noticed it's been a year. Hot water systems love an annual check. Reply Y and I'll book one in for you.",
       },
     ],
     guardrails: [
@@ -309,7 +309,7 @@ function PlaybookDetail({ p, onToggleStatus }: { p: Playbook; onToggleStatus: ()
 
       <p className="cd-legal">
         Every follow-up is stamped &ldquo;from {"{business}"} via RingBack&rdquo; and honours the Australian
-        Do-Not-Call and SPAM Acts — the second a recipient replies STOP, this playbook stops for that number forever.
+        Do-Not-Call and SPAM Acts - the second a recipient replies STOP, this playbook stops for that number forever.
       </p>
     </section>
   );

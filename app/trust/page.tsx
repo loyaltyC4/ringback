@@ -5,7 +5,7 @@ import "../legal.css";
 
 export const metadata: Metadata = {
   title: "Trust · RingBack",
-  description: "What RingBack has actually done to protect you — and what it hasn't done yet.",
+  description: "What RingBack has actually done to protect you - and what it hasn't done yet.",
 };
 
 export default function TrustPage() {

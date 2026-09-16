@@ -9,13 +9,13 @@ import { Kicker, AreaChart, RangeSlider, TabPill } from "./primitives";
 import { useDayOne, EmptyValue } from "./empty";
 
 /* ============================================================
-   VALUE — the "why you keep paying" screen
+   VALUE - the "why you keep paying" screen
 
    1. Hero: recovered revenue this month + 49× ROI pill
    2. Area chart over the last 12 weeks
-   3. Loss calculator — interactive sliders that make the
+   3. Loss calculator - interactive sliders that make the
       subscription price look silly next to the missed-call cost
-   4. Weekly digest preview — the SMS Emma sends every Monday
+   4. Weekly digest preview - the SMS Emma sends every Monday
    ============================================================ */
 
 const WEEKLY: Record<string, { label: string; value: number }[]> = {
@@ -60,9 +60,9 @@ function LossCalculator() {
 
       <div className="loss-grid">
         <div className="loss-inputs">
-          <RangeSlider label={`Calls per week — ${callsPerWk}`} value={callsPerWk} min={5} max={120} step={1} onChange={setCalls} />
-          <RangeSlider label={`Missed before Emma — ${missPct}%`} value={missPct} min={0} max={70} step={1} onChange={setMiss} />
-          <RangeSlider label={`Average job value — $${avgJob}`} value={avgJob} min={150} max={4000} step={50} onChange={setAvgJob} />
+          <RangeSlider label={`Calls per week - ${callsPerWk}`} value={callsPerWk} min={5} max={120} step={1} onChange={setCalls} />
+          <RangeSlider label={`Missed before Emma - ${missPct}%`} value={missPct} min={0} max={70} step={1} onChange={setMiss} />
+          <RangeSlider label={`Average job value - $${avgJob}`} value={avgJob} min={150} max={4000} step={50} onChange={setAvgJob} />
         </div>
 
         <div className="loss-out">
@@ -109,7 +109,7 @@ function DigestPreview() {
         <div className="phone-in">
           <span className="phone-from">RingBack</span>
           <div className="phone-bubble">
-            <b>Kedron Plumbing — last week</b>
+            <b>Kedron Plumbing - last week</b>
             <p>
               Emma answered <b>47 calls</b>. Booked <b>29 jobs</b> (worth ~$18,420) and caught <b>7</b>
               missed-call leads that would&rsquo;ve gone to voicemail. <b>1 warm-transfer</b> escalated to your mobile.

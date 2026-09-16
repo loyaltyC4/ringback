@@ -6,7 +6,7 @@ import { GREEN_MESH, GREEN_MESH_DEEP } from "@/lib/shaders";
 import { Mark, Shimmer, Tick, Wave } from "./primitives";
 
 /* ============================================================
-   1 · BUSINESS — the entry
+   1 · BUSINESS - the entry
    One question, everything else deferred. The ambient tiles are
    the tools they already run rather than decorative shapes, so the
    first thing the page says is "we fit into your world".
@@ -97,7 +97,7 @@ export function StageBusiness({ onNext }: { onNext: () => void }) {
 }
 
 /* ============================================================
-   2 · LEARN — show the work
+   2 · LEARN - show the work
    The wait is the product. Left: what the machine is doing.
    Right: their receptionist's card filling in with real values, so
    they watch something being built for them rather than a spinner.
@@ -114,11 +114,11 @@ const CRAWL = [
 
 const LEARNED: { k: string; v: string; late?: boolean }[] = [
   { k: "Business", v: "Kedron Plumbing" },
-  { k: "Greeting", v: "“You've reached Kedron Plumbing — this is Emma.”" },
+  { k: "Greeting", v: "“You've reached Kedron Plumbing - this is Emma.”" },
   { k: "Services", v: "Blocked drains · Hot water · Burst pipes · Gas fitting · Roof leaks · Taps" },
   { k: "Service area", v: "Stafford, Chermside, Kedron, Wavell Heights + 18 more" },
-  { k: "Hours", v: "Mon–Fri 7am–4pm · after-hours emergencies" },
-  { k: "Callout", v: "Listed on site — never quoted aloud", late: true },
+  { k: "Hours", v: "Mon-Fri 7am-4pm · after-hours emergencies" },
+  { k: "Callout", v: "Listed on site - never quoted aloud", late: true },
 ];
 
 export function StageLearn({ onNext }: { onNext: () => void }) {
@@ -147,7 +147,7 @@ export function StageLearn({ onNext }: { onNext: () => void }) {
         </span>
         <h1>Reading kedronplumbing.com.au</h1>
         <p className="st-lede">
-          Your receptionist builds herself from what I find. Correct anything after —
+          Your receptionist builds herself from what I find. Correct anything after -
           nothing here is locked.
         </p>
 
@@ -170,7 +170,7 @@ export function StageLearn({ onNext }: { onNext: () => void }) {
 
         {done && (
           <button className="btn btn-fill lr-cta" onClick={onNext}>
-            <span>Looks right — keep going</span>
+            <span>Looks right - keep going</span>
             <span className="tic">→</span>
           </button>
         )}
@@ -198,7 +198,7 @@ export function StageLearn({ onNext }: { onNext: () => void }) {
 }
 
 /* ============================================================
-   4 · HEAR IT — the aha
+   4 · HEAR IT - the aha
    The one moment the whole flow exists to produce. Celebrated on
    the value captured, not on the task completed.
    ============================================================ */
@@ -280,7 +280,7 @@ export function StageHear({ onNext }: { onNext: () => void }) {
                 She just booked you <span className="w">a job.</span>
               </h1>
               <p>
-                That&rsquo;s a real caller handled end to end — no price invented, no
+                That&rsquo;s a real caller handled end to end - no price invented, no
                 detail missed.
               </p>
             </div>
@@ -290,9 +290,9 @@ export function StageHear({ onNext }: { onNext: () => void }) {
             <div className="hr-transcript">
               <span className="hp-kick">What she said</span>
               {[
-                ["Emma", "G'day, you've reached Kedron Plumbing — this is Emma. How can I help?"],
+                ["Emma", "G'day, you've reached Kedron Plumbing - this is Emma. How can I help?"],
                 ["Caller", "Hot water's gone, there's water all over the laundry floor."],
-                ["Emma", "Right, let's stop the damage first — is the water still running?"],
+                ["Emma", "Right, let's stop the damage first - is the water still running?"],
                 ["Caller", "Yeah it is."],
                 ["Emma", "There'll be a tap at the front near the meter. Turn it clockwise till it stops. I'll get Dave to you between 2 and 4 today."],
               ].map(([who, line], k) => (
@@ -308,9 +308,9 @@ export function StageHear({ onNext }: { onNext: () => void }) {
               {[
                 ["Caller", "Sue Murphy · 0412 884 317"],
                 ["Job", "Hot water system failed, leaking"],
-                ["Urgency", "Emergency — water isolated"],
+                ["Urgency", "Emergency - water isolated"],
                 ["Suburb", "Stafford · in your area"],
-                ["Booked", "Today, 2:00–4:00pm"],
+                ["Booked", "Today, 2:00-4:00pm"],
                 ["Value", "~$780 estimated"],
               ].map(([k, v]) => (
                 <div className="hp-row" key={k}>
@@ -331,7 +331,7 @@ export function StageHear({ onNext }: { onNext: () => void }) {
 }
 
 /* ============================================================
-   5 · REHEARSAL — the trust gate
+   5 · REHEARSAL - the trust gate
    Twelve callers she has to survive before she's allowed near a
    real one. Go-live stays blocked until the owner rings her too.
    ============================================================ */
@@ -395,7 +395,7 @@ export function StageRehearsal({ onNext }: { onNext: () => void }) {
                 {state === "pass"
                   ? "Passed ×3"
                   : state === "fixed"
-                    ? "Failed once — rule added"
+                    ? "Failed once - rule added"
                     : state === "running"
                       ? "Running…"
                       : "Queued"}
@@ -412,7 +412,7 @@ export function StageRehearsal({ onNext }: { onNext: () => void }) {
               {PERSONAS.length - fixed} passed clean, {fixed} fixed and re-run.
             </b>
             <p>
-              She&rsquo;s ready — but go-live stays locked until you&rsquo;ve rung her
+              She&rsquo;s ready - but go-live stays locked until you&rsquo;ve rung her
               yourself. That&rsquo;s the whole point.
             </p>
           </div>
@@ -422,7 +422,7 @@ export function StageRehearsal({ onNext }: { onNext: () => void }) {
               <span className="tic">✆</span>
             </a>
             <button className="btn btn-fill" onClick={onNext}>
-              <span>I&rsquo;ve heard her — go live</span>
+              <span>I&rsquo;ve heard her - go live</span>
               <span className="tic">→</span>
             </button>
           </div>
@@ -433,7 +433,7 @@ export function StageRehearsal({ onNext }: { onNext: () => void }) {
 }
 
 /* ============================================================
-   6 · GO LIVE — KYC, reframed
+   6 · GO LIVE - KYC, reframed
    Not an identity check. Connecting a phone line, which is what it
    actually is. The one-day wait is a narrated state with a working
    demo number underneath it.
@@ -471,7 +471,7 @@ export function StageLive() {
         </h1>
         <p className="st-lede">
           Because it&rsquo;s a real number on a real carrier, they need to know whose
-          business it is — same as any phone service. About five minutes.
+          business it is - same as any phone service. About five minutes.
         </p>
 
         <label className="bigfield sm">
@@ -513,7 +513,7 @@ export function StageLive() {
             <b>(07) 3000 4182</b>
             <p>
               Your demo number is already live. Point your ads or your Google listing at
-              it today — nothing has to wait for the paperwork.
+              it today - nothing has to wait for the paperwork.
             </p>
           </div>
         </div>

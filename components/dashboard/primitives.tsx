@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /* ============================================================
-   PRIMITIVES — shared bits for the dashboard pages
+   PRIMITIVES - shared bits for the dashboard pages
    Kicker, Card, Kbd, SiriOrb, WaveformPlayer, AreaChart,
    RangeSlider, ChipEditor.
    ============================================================ */
@@ -34,7 +34,7 @@ export function TabPill({ items, value, onChange }: { items: readonly { id: stri
 }
 
 /* ============================================================
-   SIRI ORB — pure CSS aurora sphere.
+   SIRI ORB - pure CSS aurora sphere.
    Layers: base gradient (voice palette) + rotating conic aurora
    band + slow-breathing halo. Morphs when props.palette changes.
    Give it size="hero" for the big centrepiece, size="chip" for
@@ -88,7 +88,7 @@ export function SiriOrb({
 }
 
 /* ============================================================
-   WAVEFORM PLAYER — scrubbable, deterministic bars, clean chrome
+   WAVEFORM PLAYER - scrubbable, deterministic bars, clean chrome
    Bars generated from a seeded sine so the same call always shows
    the same waveform. Progress fills bars up to `progress`.
    ============================================================ */
@@ -185,7 +185,7 @@ export function WaveformPlayer({
 }
 
 /* ============================================================
-   AREA CHART — SVG, gradient fill, single series, hover halo
+   AREA CHART - SVG, gradient fill, single series, hover halo
    Data is a series of {label, value}. Hero chart for Value page.
    ============================================================ */
 
@@ -285,7 +285,7 @@ export function AreaChart({
 }
 
 /* ============================================================
-   RANGE SLIDER — labeled ticks, big number readout
+   RANGE SLIDER - labeled ticks, big number readout
    ============================================================ */
 
 export function RangeSlider({
@@ -328,7 +328,7 @@ export function RangeSlider({
 }
 
 /* ============================================================
-   CHIP EDITOR — add / remove tokens (used for never-quote,
+   CHIP EDITOR - add / remove tokens (used for never-quote,
    emergency-triggers, service-area etc.)
    ============================================================ */
 

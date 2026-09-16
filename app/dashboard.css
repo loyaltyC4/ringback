@@ -1,5 +1,5 @@
 /* ============================================================
-   DASHBOARD — /dashboard and its children
+   DASHBOARD - /dashboard and its children
    Same tokens as marketing (imported via globals.css), inverted
    density: paper cards on bone canvas, hairlines instead of
    borders, mono for kickers, display type only on section heroes.
@@ -452,7 +452,7 @@
 }
 
 /* ============================================================
-   TODAY — hero band
+   TODAY - hero band
    ============================================================ */
 .th {
   position: relative;
@@ -516,7 +516,7 @@
 }
 
 /* ============================================================
-   HOT LEAD BANNER — amber, deliberately loud, dismissible
+   HOT LEAD BANNER - amber, deliberately loud, dismissible
    ============================================================ */
 .hot {
   display: grid;
@@ -937,7 +937,7 @@
 }
 
 /* ============================================================
-   RESPONSIVE — dashboard folds to a single column on tablet,
+   RESPONSIVE - dashboard folds to a single column on tablet,
    sidebar becomes a bottom bar on phones
    ============================================================ */
 @media (max-width: 1080px) {
@@ -1065,7 +1065,7 @@
 }
 
 /* ============================================================
-   PAGE HEADER — pattern used by every non-Today page
+   PAGE HEADER - pattern used by every non-Today page
    ============================================================ */
 
 .page-h {
@@ -1114,7 +1114,7 @@
 }
 
 /* ============================================================
-   TABPILL — GovDash-style tab strip with a leading dot on active
+   TABPILL - GovDash-style tab strip with a leading dot on active
    ============================================================ */
 
 .tabpill {
@@ -1171,7 +1171,7 @@
 }
 
 /* ============================================================
-   CARD — the neutral white surface used by most sections
+   CARD - the neutral white surface used by most sections
    ============================================================ */
 
 .card {
@@ -1203,7 +1203,7 @@
 }
 
 /* ============================================================
-   SIRI ORB — aurora sphere
+   SIRI ORB - aurora sphere
    ============================================================ */
 
 .orb {
@@ -1248,7 +1248,7 @@
 .orb-core {
   position: relative;
   /* a <span> is inline by default, so width/height were being ignored and the
-     core collapsed to 0x0 — leaving only the blurred halo visible */
+     core collapsed to 0x0 - leaving only the blurred halo visible */
   display: block;
   width: 100%;
   height: 100%;
@@ -1488,7 +1488,7 @@
 .chips[data-tone="danger"] .chip { border-color: rgba(179, 42, 42, 0.24); background: #fdecec; color: #a33030; }
 
 /* ============================================================
-   CALLS — page layout
+   CALLS - page layout
    ============================================================ */
 
 .calls {
@@ -1653,7 +1653,7 @@
 .cd-legal { font-size: 11.5px; color: var(--color-ink-3); margin-top: 14px; line-height: 1.55; }
 
 /* ============================================================
-   MY AGENT — hero and voice picker
+   MY AGENT - hero and voice picker
    ============================================================ */
 
 .agent-hero {
@@ -1894,7 +1894,7 @@
 .sandbox-form input::placeholder { color: rgba(247, 245, 238, 0.42); }
 
 /* ============================================================
-   VALUE — hero + chart + calculator + digest
+   VALUE - hero + chart + calculator + digest
    ============================================================ */
 
 .val-hero {
@@ -2063,7 +2063,7 @@
 }
 
 /* ============================================================
-   PAGE HEADER — utilities used by Follow-ups + Settings
+   PAGE HEADER - utilities used by Follow-ups + Settings
    ============================================================ */
 .page-h-right {
   display: flex;
@@ -2086,7 +2086,7 @@
 }
 
 /* ============================================================
-   FOLLOW-UPS — page layout
+   FOLLOW-UPS - page layout
    ============================================================ */
 
 .pb-page {
@@ -2307,7 +2307,7 @@
 .pb-guards li svg { color: var(--color-forest); margin-top: 3px; flex: none; }
 
 /* ============================================================
-   SETTINGS — panels and controls
+   SETTINGS - panels and controls
    ============================================================ */
 
 .settings-grid-2 {
@@ -2785,7 +2785,7 @@
 }
 
 /* ============================================================
-   BOOKINGS — calendar (week + month) with drag-to-reschedule
+   BOOKINGS - calendar (week + month) with drag-to-reschedule
    ============================================================ */
 
 .cal-bar {
@@ -3309,7 +3309,7 @@
 }
 
 /* ============================================================
-   SIMULATION — trust gate
+   SIMULATION - trust gate
    ============================================================ */
 
 /* gate hero */
@@ -3720,7 +3720,7 @@
 }
 
 /* ============================================================
-   DAY ONE — empty states
+   DAY ONE - empty states
    Double-bezel trays, anticipatory ghost previews, staggered
    entry. Nothing here is a shimmer skeleton: shimmer says
    "loading, wait", these say "this is what lands here".
@@ -3779,7 +3779,7 @@
   text-align: center;
   gap: clamp(26px, 3.4vw, 40px);
 }
-/* a single soft green bloom behind the copy — the only gradient */
+/* a single soft green bloom behind the copy - the only gradient */
 .ez-core::before {
   content: "";
   position: absolute;
@@ -3995,7 +3995,7 @@
   padding: 4px 9px;
   border-radius: 7px;
 }
-/* the live slot — the one row that isn't ghosted */
+/* the live slot - the one row that isn't ghosted */
 .ez-row-live {
   background: linear-gradient(120deg, var(--green-soft), var(--color-paper) 74%);
   box-shadow: inset 0 0 0 1px rgba(31, 111, 74, 0.22);
@@ -4197,7 +4197,7 @@
 }
 
 /* ============================================================
-   TRIAL RIBBON — a value counter that happens to have a due
+   TRIAL RIBBON - a value counter that happens to have a due
    date, NOT a countdown that happens to mention value. The ask
    is welded to the proof.
    ============================================================ */
@@ -4346,7 +4346,7 @@
 }
 
 /* ============================================================
-   PAY SHEET — slides up over the page so the value stays
+   PAY SHEET - slides up over the page so the value stays
    visible behind it. Never its own route.
    ============================================================ */
 
@@ -4445,7 +4445,7 @@
   line-height: 1.58;
   color: var(--color-ink-2);
 }
-/* the proof block — always above the payment fields */
+/* the proof block - always above the payment fields */
 .ps-proof {
   width: 100%;
   padding: 13px 16px;
@@ -4641,7 +4641,7 @@
 }
 
 /* ============================================================
-   WELCOME BAND — first visit on Today. In-page, not a modal:
+   WELCOME BAND - first visit on Today. In-page, not a modal:
    a modal gets dismissed on reflex.
    ============================================================ */
 
@@ -4743,7 +4743,7 @@
 }
 
 /* ============================================================
-   INVITE MODAL — centred, not a bottom sheet
+   INVITE MODAL - centred, not a bottom sheet
    ============================================================ */
 
 .im-wrap {
@@ -4888,7 +4888,9 @@
 .tour-offer-in {
   position: fixed;
   z-index: 92;
-  left: 50%;
+  /* centred on the main column, not the window - the 232px sidebar would
+     otherwise pull the dock visually left of the content it describes */
+  left: calc(50% + 116px);
   bottom: clamp(18px, 3vh, 32px);
   transform: translateX(-50%);
   display: flex;
@@ -5086,6 +5088,7 @@
 
 @media (max-width: 900px) {
   .tour-dock {
+    left: 50%;
     flex-wrap: wrap;
     bottom: 86px;
     padding: 14px 16px;

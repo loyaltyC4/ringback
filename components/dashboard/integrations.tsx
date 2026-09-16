@@ -74,7 +74,7 @@ const ACCOUNTING: Integration[] = [
     slug: "xero",
     name: "Xero",
     category: "Accounting",
-    blurb: "Match callers to Xero contacts and flag when a caller has an overdue invoice — so review requests skip them.",
+    blurb: "Match callers to Xero contacts and flag when a caller has an overdue invoice - so review requests skip them.",
     syncs: [
       { dir: "in", text: "Contacts → caller matching" },
       { dir: "in", text: "Invoice status → follow-up guardrails" },
@@ -272,7 +272,7 @@ export function Integrations() {
           </svg>
         </span>
         <p>
-          Emma reads and writes only what each job needs — never your bank feeds or payroll. You can disconnect
+          Emma reads and writes only what each job needs - never your bank feeds or payroll. You can disconnect
           any tool in one click and every sync stops immediately. Data stays in Australia.
         </p>
       </div>
@@ -284,7 +284,7 @@ export function Integrations() {
       <section className="intg-request">
         <div>
           <b>Run something else?</b>
-          <span>Fergus, ServiceTitan, Google Sheets, a custom CRM — tell us and we&rsquo;ll wire it up. Most take a week.</span>
+          <span>Fergus, ServiceTitan, Google Sheets, a custom CRM - tell us and we&rsquo;ll wire it up. Most take a week.</span>
         </div>
         <button className="cd-btn">Request an integration</button>
       </section>

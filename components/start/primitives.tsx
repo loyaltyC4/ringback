@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 /* ============================================================
    STREAMING TEXT
    The agent's lines arrive word by word rather than pasting in
-   whole. Words, not characters — character-by-character reads as
+   whole. Words, not characters - character-by-character reads as
    a gimmick at this length and reflows the line constantly.
    ============================================================ */
 
@@ -58,7 +58,7 @@ export function Streaming({
 }
 
 /* ============================================================
-   SHIMMER — for "the machine is working" status lines
+   SHIMMER - for "the machine is working" status lines
    ============================================================ */
 
 export function Shimmer({ children }: { children: React.ReactNode }) {
@@ -164,7 +164,7 @@ export function Mic({ className }: { className?: string }) {
 }
 
 /* ============================================================
-   LIVE WAVEFORM — smaller sibling of the marketing-site one
+   LIVE WAVEFORM - smaller sibling of the marketing-site one
    ============================================================ */
 
 export function Wave({ bars = 28, quiet }: { bars?: number; quiet?: boolean }) {

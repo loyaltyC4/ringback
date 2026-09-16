@@ -7,17 +7,17 @@ import { Kicker, WaveformPlayer, SiriOrb, ORB_PALETTES } from "./primitives";
 import { useDayOne, EmptySimulation } from "./empty";
 
 /* ============================================================
-   SIMULATION — the pre-launch trust gate
+   SIMULATION - the pre-launch trust gate
 
    Before Emma answers a single real call, she's run against 12
    caller personas, ≥3 times each. This screen is the scorecard.
    Go-live is BLOCKED until (a) all 12 pass and (b) the owner has
-   rung her himself. That gate is the whole point — proof, not
+   rung her himself. That gate is the whole point - proof, not
    reassurance.
 
    Per-persona: a pass/fixed badge, run tally, expandable playback
-   (waveform + the exact pass criteria, each ticked), and — where a
-   run failed — the auto-proposed fix that's now applied.
+   (waveform + the exact pass criteria, each ticked), and - where a
+   run failed - the auto-proposed fix that's now applied.
    ============================================================ */
 
 type Status = "pass" | "fixed";
@@ -49,7 +49,7 @@ const PERSONAS: Persona[] = [
   },
   {
     id: "emergency",
-    name: "Emergency — distressed",
+    name: "Emergency - distressed",
     scenario: "Active gas leak, caller panicking",
     passMeans: "Triaged, safety instruction given, live-transferred",
     status: "pass",
@@ -101,7 +101,7 @@ const PERSONAS: Persona[] = [
     seed: "sim-accent",
     duration: 128,
     checks: ["Read back suburb + address", "Slowed pace when confidence dropped", "Fell back to SMS on low ASR confidence", "No mis-heard address booked"],
-    fix: "Run 1 booked a mis-heard suburb (“Sandgate” vs “Stafford”). Emma auto-proposed an SMS fallback whenever ASR confidence drops below 0.7 — applied, and it's passed every run since.",
+    fix: "Run 1 booked a mis-heard suburb (“Sandgate” vs “Stafford”). Emma auto-proposed an SMS fallback whenever ASR confidence drops below 0.7 - applied, and it's passed every run since.",
   },
   {
     id: "repeat",
@@ -271,7 +271,7 @@ export function Simulation() {
           <div className="sim-hero-copy">
             <h2>{allPass ? "She's passing every caller type." : "Almost there."}</h2>
             <p>
-              Emma has been run against all 12 caller personas — the happy homeowner right through to the
+              Emma has been run against all 12 caller personas - the happy homeowner right through to the
               adversarial prompt-injector. {allPass ? "One needed a fix; she wrote it herself and re-passed." : ""} The
               last thing standing between here and go-live is you: <b>ring her yourself.</b>
             </p>
@@ -301,7 +301,7 @@ export function Simulation() {
             </span>
             <div>
               <b>You ring her yourself</b>
-              <span>{ownerCall === "done" ? "Done — you've heard her handle a live call" : "The one check we won't skip for you"}</span>
+              <span>{ownerCall === "done" ? "Done - you've heard her handle a live call" : "The one check we won't skip for you"}</span>
             </div>
           </div>
         </div>
@@ -353,7 +353,7 @@ export function Simulation() {
       </section>
 
       <p className="cd-legal">
-        Every failed run saves its audio + transcript and becomes a permanent regression test — so a bug Emma fixes
+        Every failed run saves its audio + transcript and becomes a permanent regression test - so a bug Emma fixes
         once can never quietly come back. Any change to pricing, emergency rules, or blocked phrases still needs your approval.
       </p>
     </>

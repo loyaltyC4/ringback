@@ -7,7 +7,7 @@ import { InviteModal } from "./convert";
 /* ============================================================
    SETTINGS
 
-   Not one page pretending to be five — a real settings surface
+   Not one page pretending to be five - a real settings surface
    with these panels:
      · Business identity
      · Business hours (with the after-hours behaviour)
@@ -73,7 +73,7 @@ const EVENTS: Event[] = [
 ];
 
 /* ============================================================
-   HOURS EDITOR — 7-day grid with sliders per day
+   HOURS EDITOR - 7-day grid with sliders per day
    ============================================================ */
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
@@ -113,7 +113,7 @@ function HoursEditor() {
                 onChange={(e) => setHours({ ...hours, [d]: { ...day, open: e.target.value } })}
                 disabled={!day.on}
               />
-              <span>—</span>
+              <span>-</span>
               <input
                 type="time"
                 value={day.close}
@@ -137,7 +137,7 @@ function diff(a: string, b: string) {
 }
 
 /* ============================================================
-   ESCALATION EDITOR — ordered list of numbers to try
+   ESCALATION EDITOR - ordered list of numbers to try
    ============================================================ */
 
 type Escalation = { name: string; number: string; wait: number };
@@ -146,7 +146,7 @@ function EscalationEditor() {
   const [rows, setRows] = useState<Escalation[]>([
     { name: "Dave (owner)", number: "+61 402 118 900", wait: 20 },
     { name: "Mick (2IC)", number: "+61 403 442 118", wait: 20 },
-    { name: "After-hours voicemail", number: "—", wait: 0 },
+    { name: "After-hours voicemail", number: "-", wait: 0 },
   ]);
 
   return (
@@ -188,7 +188,7 @@ function EscalationEditor() {
 }
 
 /* ============================================================
-   NOTIFICATION MATRIX — event × channel grid
+   NOTIFICATION MATRIX - event × channel grid
    ============================================================ */
 
 function NotificationMatrix() {
@@ -347,7 +347,7 @@ export function Settings() {
         </header>
         <NotificationMatrix />
         <p className="sub muted">
-          These fire immediately unless it&rsquo;s after quiet hours (10pm–6am), when everything except Warm-transfer holds until morning.
+          These fire immediately unless it&rsquo;s after quiet hours (10pm-6am), when everything except Warm-transfer holds until morning.
         </p>
       </section>
 

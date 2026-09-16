@@ -3,7 +3,7 @@
 import { PhoneGlyph } from "@/components/site-chrome";
 
 /* ============================================================
-   LEGAL — designed, not templated.
+   LEGAL - designed, not templated.
 
    These are conversion surfaces, not disclaimers. A tradie
    handing over his business phone line reads these. So: short
@@ -56,7 +56,7 @@ function LegalChrome({
 
       <footer className="lg-foot">
         <p>
-          Questions about any of this? <a href="mailto:hello@ringback.au">hello@ringback.au</a> — a person
+          Questions about any of this? <a href="mailto:hello@ringback.au">hello@ringback.au</a> - a person
           reads it.
         </p>
         <span>© {new Date().getFullYear()} RingBack · Brisbane, Australia</span>
@@ -122,7 +122,7 @@ export function Privacy() {
     >
       <Plain
         items={[
-          "We record and transcribe calls to your business line — that's the product.",
+          "We record and transcribe calls to your business line - that's the product.",
           "Callers are told at the start of every call, before they say anything.",
           "We don't sell anything to anyone, ever.",
           "We don't train AI models on your calls.",
@@ -138,7 +138,7 @@ export function Privacy() {
         </p>
         <p>
           <b>Your callers&rsquo; calls.</b> Audio recording, transcript, phone number, and whatever details
-          they give Emma — name, address, what&rsquo;s wrong, when they&rsquo;re free. This is the substance
+          they give Emma - name, address, what&rsquo;s wrong, when they&rsquo;re free. This is the substance
           of the service.
         </p>
         <p>
@@ -182,7 +182,7 @@ export function Privacy() {
           anything else.
         </p>
         <p className="lg-note">
-          We maintain a current list of these sub-processors. Email us and we&rsquo;ll send it — we&rsquo;d
+          We maintain a current list of these sub-processors. Email us and we&rsquo;ll send it - we&rsquo;d
           rather answer honestly than publish a page that goes stale.
         </p>
       </S>
@@ -213,7 +213,7 @@ export function Privacy() {
           asking.
         </p>
         <p>
-          If you think we&rsquo;ve mishandled your information, tell us first — we&rsquo;d like the chance to
+          If you think we&rsquo;ve mishandled your information, tell us first - we&rsquo;d like the chance to
           fix it. If we don&rsquo;t resolve it, you can escalate to the Office of the Australian Information
           Commissioner.
         </p>
@@ -259,7 +259,7 @@ export function Terms() {
       <S n="02" title="Money">
         <p>
           The trial is seven days and needs no payment details. After it, the founding rate is $150 per month
-          for three months, then $299 per month. Flat — we do not bill per minute or per call, and there are
+          for three months, then $299 per month. Flat - we do not bill per minute or per call, and there are
           no add-on tiers.
         </p>
         <p>
@@ -272,7 +272,7 @@ export function Terms() {
       <S n="03" title="Your side of it">
         <p>
           You need the authority to redirect the phone number you connect, and to authorise call recording on
-          it. The rules you give Emma — pricing, emergencies, service area — are yours, and you&rsquo;re
+          it. The rules you give Emma - pricing, emergencies, service area - are yours, and you&rsquo;re
           responsible for them being lawful and accurate.
         </p>
         <p>
@@ -291,8 +291,8 @@ export function Terms() {
           <p>
             She is still software talking to strangers, and she will sometimes mishear a suburb, misjudge an
             unusual call, or hand over when she could have handled it. Every failure is recorded and becomes
-            a test. But if your business cannot tolerate any error on any call, an AI receptionist —
-            ours or anyone&rsquo;s — is the wrong purchase today.
+            a test. But if your business cannot tolerate any error on any call, an AI receptionist -
+            ours or anyone&rsquo;s - is the wrong purchase today.
           </p>
         </div>
       </S>
@@ -304,7 +304,7 @@ export function Terms() {
           the operating history would be a number we made up.
         </p>
         <p>
-          If Emma goes down, calls fail over according to the escalation chain you set in Settings — so the
+          If Emma goes down, calls fail over according to the escalation chain you set in Settings - so the
           worst case is your line behaves the way it did before you met us.
         </p>
       </S>
@@ -333,13 +333,13 @@ export function Terms() {
 }
 
 /* ============================================================
-   TRUST — the real hero of the three
+   TRUST - the real hero of the three
    ============================================================ */
 
 const HAVE = [
   { t: "AI disclosure on every call", d: "The caller is told before they speak. On by default." },
   { t: "Recording notice in the greeting", d: "Written to satisfy the strictest Australian state." },
-  { t: "Hard-coded never-quote", d: "Emma cannot price a job outside your approved list. Not a prompt — a constraint." },
+  { t: "Hard-coded never-quote", d: "Emma cannot price a job outside your approved list. Not a prompt - a constraint." },
   { t: "Owner approval on rule changes", d: "Pricing, emergency triggers and blocked phrases never change without you ticking." },
   { t: "Encryption in transit and at rest", d: "Standard TLS and encrypted storage across the stack." },
   { t: "Logged internal access", d: "When a human at RingBack opens a recording, it's recorded." },
@@ -416,7 +416,7 @@ export function Trust() {
             ))}
           </ul>
           <p className="lg-col-foot">
-            If any of these is a hard requirement for your business, we are not the right choice today —
+            If any of these is a hard requirement for your business, we are not the right choice today -
             and we&rsquo;d rather you knew that before you ported a number than after.
           </p>
         </section>
@@ -433,7 +433,7 @@ export function Trust() {
             <b>It quoted a price it shouldn&rsquo;t have</b>
             <p>
               You can be held to what your AI tells a customer. So never-quote isn&rsquo;t advice we give the
-              model — it&rsquo;s a hard gate. Jobs on your never-quote list get details captured and a quote
+              model - it&rsquo;s a hard gate. Jobs on your never-quote list get details captured and a quote
               visit booked, full stop.
             </p>
           </div>
@@ -450,7 +450,7 @@ export function Trust() {
             <b>It missed a real emergency</b>
             <p>
               You define the triggers. When one fires, she runs safety steps, keeps the caller on the line and
-              rings your mobile — and she can&rsquo;t book that call as routine instead.
+              rings your mobile - and she can&rsquo;t book that call as routine instead.
             </p>
           </div>
         </div>
@@ -459,7 +459,7 @@ export function Trust() {
       <S n="02" title="Why go-live is gated">
         <p>
           Before Emma answers a single real customer she&rsquo;s run against twelve caller personas, three
-          times each — and you have to ring her yourself. We won&rsquo;t skip that last step for you, because
+          times each - and you have to ring her yourself. We won&rsquo;t skip that last step for you, because
           the whole point is that you&rsquo;ve heard her work before a stranger does.
         </p>
       </S>
@@ -468,7 +468,7 @@ export function Trust() {
         <p>
           Every failed call is saved with audio and transcript and becomes a permanent regression test, so the
           same mistake can&rsquo;t quietly come back. If something goes wrong on your line,{" "}
-          <a href="mailto:hello@ringback.au">email us</a> — it becomes a test the same day.
+          <a href="mailto:hello@ringback.au">email us</a> - it becomes a test the same day.
         </p>
       </S>
     </LegalChrome>

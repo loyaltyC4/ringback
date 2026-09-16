@@ -33,7 +33,7 @@ const TRIAL = {
 };
 
 /* ============================================================
-   TRIAL RIBBON — sits above the top bar for the whole trial
+   TRIAL RIBBON - sits above the top bar for the whole trial
    ============================================================ */
 
 export function TrialRibbon() {
@@ -79,7 +79,7 @@ export function TrialRibbon() {
                 </svg>
               </span>
             </button>
-            {/* the deadline is deliberately quiet — it is not the argument */}
+            {/* the deadline is deliberately quiet - it is not the argument */}
             <span className="tr-when">
               Trial runs to {TRIAL.endsOn}
               <button className="tr-x" onClick={() => setDismissed(true)} aria-label="Hide for now">
@@ -97,7 +97,7 @@ export function TrialRibbon() {
 }
 
 /* ============================================================
-   PAY SHEET — never a separate page. Slides up over whatever
+   PAY SHEET - never a separate page. Slides up over whatever
    the owner was already looking at, so the value context stays
    on screen behind it.
    ============================================================ */
@@ -148,7 +148,7 @@ export function PaySheet({ open, onClose }: { open: boolean; onClose: () => void
             </span>
             <h2>She&rsquo;s yours.</h2>
             <p>
-              Locked at <b>${TRIAL.price}/mo</b> for three months. Nothing changes on your line — Emma
+              Locked at <b>${TRIAL.price}/mo</b> for three months. Nothing changes on your line - Emma
               just keeps answering.
             </p>
             <button className="ez-cta" onClick={onClose}>
@@ -178,7 +178,7 @@ export function PaySheet({ open, onClose }: { open: boolean; onClose: () => void
                 <span className="ps-per">/mo</span>
               </h2>
               <p className="ps-terms">
-                Three months at this rate, then ${TRIAL.regular}. Flat — no per-minute billing, no add-ons,
+                Three months at this rate, then ${TRIAL.regular}. Flat - no per-minute billing, no add-ons,
                 no surprises on the invoice.
               </p>
               <div className="ps-proof">
@@ -253,7 +253,7 @@ export function PaySheet({ open, onClose }: { open: boolean; onClose: () => void
                 />
               </svg>
               <span>
-                30-day money back, no questions. Cancel from this screen any time — no phone call, no
+                30-day money back, no questions. Cancel from this screen any time - no phone call, no
                 retention offer.
               </span>
             </div>
@@ -265,7 +265,7 @@ export function PaySheet({ open, onClose }: { open: boolean; onClose: () => void
 }
 
 /* ============================================================
-   WELCOME — the first-visit band on Today. Not a modal: a modal
+   WELCOME - the first-visit band on Today. Not a modal: a modal
    gets dismissed reflexively. This sits in the page and turns
    into a celebration once the owner rings the line.
    ============================================================ */
@@ -285,7 +285,7 @@ export function WelcomeBand() {
           <>
             <b>That&rsquo;s exactly what every caller gets.</b>
             <span>
-              She&rsquo;ll do that on every real call from now on — and everything she captures lands on
+              She&rsquo;ll do that on every real call from now on - and everything she captures lands on
               this page.
             </span>
           </>
@@ -321,7 +321,7 @@ export function WelcomeBand() {
 }
 
 /* ============================================================
-   TEAM INVITE — small modal. Shows the invitee's-eye view,
+   TEAM INVITE - small modal. Shows the invitee's-eye view,
    because the hesitation is "will this be weird for my 2IC".
    ============================================================ */
 
@@ -365,7 +365,7 @@ export function InviteModal({ open, onClose }: { open: boolean; onClose: () => v
             <h2>Invites away.</h2>
             <p>
               {emails.length} {emails.length === 1 ? "person" : "people"} will get a link that signs them
-              straight in — no password to set up.
+              straight in - no password to set up.
             </p>
             <button className="ez-ghost" onClick={onClose}>
               Close
@@ -377,7 +377,7 @@ export function InviteModal({ open, onClose }: { open: boolean; onClose: () => v
               <span className="ez-eyebrow">Team access</span>
               <h2>Who else should see the calls?</h2>
               <p>
-                Handy for a 2IC or an office manager. They get the same call feed and bookings — billing
+                Handy for a 2IC or an office manager. They get the same call feed and bookings - billing
                 and Emma&rsquo;s rules stay yours alone.
               </p>
             </header>

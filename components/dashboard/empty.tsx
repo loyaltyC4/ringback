@@ -5,7 +5,7 @@ import { Kicker } from "./primitives";
 import { SiriOrb, ORB_PALETTES } from "./primitives";
 
 /* ============================================================
-   DAY ONE — the empty states
+   DAY ONE - the empty states
 
    The research is unambiguous: ~80% of new users abandon in the
    first week when the zero state is a blank screen, and the
@@ -13,12 +13,12 @@ import { SiriOrb, ORB_PALETTES } from "./primitives";
    SaaS. So none of these say "no data yet".
 
    Every one of them does three things instead:
-     1. ANTICIPATE — shows the shape of the value that's coming,
+     1. ANTICIPATE - shows the shape of the value that's coming,
         as ghosted projection rows in the real layout.
-     2. BENCHMARK — an honest category number, so the blank page
+     2. BENCHMARK - an honest category number, so the blank page
         still carries an argument ("trades near you miss ~4 calls
-        a day — your first one lands here").
-     3. OFFER ONE ACTION — ring your own line. That's the aha, and
+        a day - your first one lands here").
+     3. OFFER ONE ACTION - ring your own line. That's the aha, and
         top-quartile SaaS gets users to it inside 24 hours.
 
    Preview any of them live with ?state=empty on the URL.
@@ -126,7 +126,7 @@ export function GhostButton({ children, href = "#" }: { children: React.ReactNod
 
 /* ---------- ghost primitives: the shape of value, greyed ----------
    Deliberately NOT shimmer skeletons. Shimmer says "loading, wait".
-   These say "this is what lands here" — real labels, ghosted ink. */
+   These say "this is what lands here" - real labels, ghosted ink. */
 
 export function GhostRows({ rows }: { rows: { a: string; b: string; c?: string }[] }) {
   return (
@@ -207,7 +207,7 @@ export function EmptyCalls() {
       eyebrow="Your inbox"
       title={
         <>
-          No calls yet — <span className="ez-em">but she&rsquo;s listening.</span>
+          No calls yet - <span className="ez-em">but she&rsquo;s listening.</span>
         </>
       }
       body={
@@ -245,7 +245,7 @@ export function EmptyBookings() {
       body={
         <>
           When Emma books a job she drops it straight onto this calendar and texts the caller a
-          confirmation. Drag anything to reschedule — the customer gets told automatically.
+          confirmation. Drag anything to reschedule - the customer gets told automatically.
         </>
       }
       action={<RingYourLine label="Book a test job" />}
@@ -303,7 +303,7 @@ export function EmptyFollowups() {
       <GhostRows
         rows={[
           { a: "Missed-call rescue", b: "Fires within 60 seconds of a rung-out call", c: "Armed" },
-          { a: "Quote chase", b: "Day 2, day 5, day 9 — then stops", c: "Armed" },
+          { a: "Quote chase", b: "Day 2, day 5, day 9 - then stops", c: "Armed" },
           { a: "Review request", b: "2 hours after you mark a job done", c: "Armed" },
         ]}
       />
@@ -325,7 +325,7 @@ export function EmptyValue() {
       body={
         <>
           This is the only number that decides whether Emma is worth keeping. It counts the jobs she booked
-          from calls that would have gone to voicemail — nothing else.
+          from calls that would have gone to voicemail - nothing else.
         </>
       }
       action={<RingYourLine />}
@@ -366,7 +366,7 @@ export function EmptyAnalytics() {
       body={
         <>
           We could fill this page with charts of nothing. Instead: once about <b>20 calls</b> have come
-          through, the heat map will show you exactly which hours your phone actually rings — and which
+          through, the heat map will show you exactly which hours your phone actually rings - and which
           ones you&rsquo;re losing.
         </>
       }
@@ -400,7 +400,7 @@ export function EmptySimulation() {
       }
       body={
         <>
-          Before Emma answers a real customer, she gets run against twelve kinds of caller — the distressed
+          Before Emma answers a real customer, she gets run against twelve kinds of caller - the distressed
           emergency, the price shopper, the angry one, the prompt-injector, the pocket dial. Three runs each.
         </>
       }
@@ -480,7 +480,7 @@ export function EmptyBilling() {
       body={
         <>
           Seven days, everything switched on, no payment details taken. When you&rsquo;re ready, the founding
-          rate is <b>$150/mo</b> for three months and then <b>$299</b> — flat, no per-minute billing, no
+          rate is <b>$150/mo</b> for three months and then <b>$299</b> - flat, no per-minute billing, no
           add-ons.
         </>
       }
@@ -488,7 +488,7 @@ export function EmptyBilling() {
       benchmark={
         <>
           Thirty-day money-back guarantee. The <b>#1</b> complaint about every competitor in this category is
-          billing surprises — so there aren&rsquo;t any here.
+          billing surprises - so there aren&rsquo;t any here.
         </>
       }
     />

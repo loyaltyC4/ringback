@@ -20,17 +20,17 @@ import { WelcomeBand } from "./convert";
 
    Everything else is one click away in the sidebar. Nothing on
    this screen requires scrolling below the fold to answer those
-   three questions — the density is honest, not tight.
+   three questions - the density is honest, not tight.
    ============================================================ */
 
 /* ---------- 1. HOT LEAD BANNER
    Only renders when there are calls needing you. Amber, dismissible
-   per session. Deliberately loud — this is the one thing the design
+   per session. Deliberately loud - this is the one thing the design
    agrees can shout. */
 
 type Hot = { name: string; kind: string; when: string; job: string };
 const HOT: Hot[] = [
-  { name: "Rachel Byrne", kind: "Gas smell · Chermside", when: "7:31am", job: "warm-transfer didn't land — Emma booked her a callback slot" },
+  { name: "Rachel Byrne", kind: "Gas smell · Chermside", when: "7:31am", job: "warm-transfer didn't land - Emma booked her a callback slot" },
   { name: "Jim Taylor", kind: "Reno rough-in quote · Wavell", when: "9:04am", job: "measured last week · Emma promised the quote by end of day" },
 ];
 
@@ -131,7 +131,7 @@ function MoneyBar() {
 
 /* ---------- 3. TODAY'S BOOKINGS
    Compact strip. Sorted by time. Every card is a real bookable
-   slot — Emma pushed it into your calendar and told the caller.
+   slot - Emma pushed it into your calendar and told the caller.
    Tap a card → drawer with the full call (built in Calls). */
 
 type Booking = { time: string; caller: string; job: string; where: string; tag: "emergency" | "standard" | "quote" };
@@ -139,7 +139,7 @@ const BOOKINGS: Booking[] = [
   { time: "9:30a", caller: "Priya Patel", job: "Leaking mixer", where: "Wavell Heights", tag: "standard" },
   { time: "12:15p", caller: "Marco G", job: "Blocked stormwater", where: "Chermside West", tag: "standard" },
   { time: "2:15p", caller: "Sue Murphy", job: "HWS replacement", where: "Stafford", tag: "emergency" },
-  { time: "4:00p", caller: "Jim Taylor", job: "Reno rough-in — quote", where: "Wavell Heights", tag: "quote" },
+  { time: "4:00p", caller: "Jim Taylor", job: "Reno rough-in - quote", where: "Wavell Heights", tag: "quote" },
 ];
 
 function TodayBookings() {
@@ -174,15 +174,15 @@ function TodayBookings() {
 /* ---------- 4. CALL FEED
    The recent-calls list. Row is the whole story: caller, job in
    two words, disposition badge, timer. Tap → detail drawer (built
-   in Calls) — from Today the whole row is a link. */
+   in Calls) - from Today the whole row is a link. */
 
 type Disp = "booked" | "message" | "warm" | "spam";
 type Call = { name: string; job: string; note: string; disp: Disp; time: string };
 const CALLS: Call[] = [
   { name: "Sue Murphy", job: "HWS gone", note: "Emergency · booked 2:15p", disp: "booked", time: "9:42a" },
   { name: "Jim Taylor", job: "Reno rough-in quote", note: "Details captured · quote callback Fri", disp: "message", time: "9:04a" },
-  { name: "Rachel Byrne", job: "Gas smell", note: "Warm transfer didn't land — needs you", disp: "warm", time: "7:31a" },
-  { name: "+61 Unknown", job: "\"Extended warranty\"", note: "Robocall — blocked before it rang you", disp: "spam", time: "7:02a" },
+  { name: "Rachel Byrne", job: "Gas smell", note: "Warm transfer didn't land - needs you", disp: "warm", time: "7:31a" },
+  { name: "+61 Unknown", job: "\"Extended warranty\"", note: "Robocall - blocked before it rang you", disp: "spam", time: "7:02a" },
   { name: "Marco G", job: "Blocked stormwater", note: "Booked Wed 7am · Chermside West", disp: "booked", time: "6:55a" },
   { name: "Priya Patel", job: "Leaking tap", note: "Booked Fri 10:30 · first-time caller", disp: "booked", time: "Yest" },
 ];
@@ -221,7 +221,7 @@ function CallFeed() {
             <div className="feed-body">
               <div className="feed-top">
                 <b>{c.name}</b>
-                <span className="feed-job">— {c.job}</span>
+                <span className="feed-job">- {c.job}</span>
               </div>
               <span className="feed-note">{c.note}</span>
             </div>
@@ -236,7 +236,7 @@ function CallFeed() {
 
 /* ---------- 5. FOLLOW-UPS SCHEDULED
    What will run automatically today, so nothing feels magical.
-   Each row is a promise the agent is going to keep — the owner
+   Each row is a promise the agent is going to keep - the owner
    can pause any playbook. Empty state is opinionated. */
 
 type Sched = { play: string; who: string; note: string; at: string };
@@ -278,7 +278,7 @@ function ScheduledFollowups() {
   );
 }
 
-/* ---------- 6. THE TOP OF TODAY — the shader header, only place
+/* ---------- 6. THE TOP OF TODAY - the shader header, only place
    the marketing-site grain is allowed on the dashboard. */
 
 function TodayHero({ day, name }: { day: string; name: string }) {
@@ -300,7 +300,7 @@ function TodayHero({ day, name }: { day: string; name: string }) {
 }
 
 /* ============================================================
-   TODAY — composed
+   TODAY - composed
    ============================================================ */
 
 export function Today() {

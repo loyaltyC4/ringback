@@ -10,7 +10,7 @@ import { Mic, Streaming, Tick, Wave } from "./primitives";
    right. Two things make this different from a form:
 
    1. The artefact is executable. Every confirmed answer becomes a
-      rule in the agent's config with a source stamp — not a field
+      rule in the agent's config with a source stamp - not a field
       in a profile. The owner is watching their receptionist's
       judgement get written.
    2. Read-back validation. The agent proposes the rule in plain
@@ -18,7 +18,7 @@ import { Mic, Streaming, Tick, Wave } from "./primitives";
       silently, which is what earns trust for a thing that will
       answer the phone unsupervised.
 
-   Questions the website already answered are skipped explicitly —
+   Questions the website already answered are skipped explicitly -
    the agent says so, which buys credibility for the ones it does ask.
    ============================================================ */
 
@@ -54,7 +54,7 @@ const TURNS: Turn[] = [
   {
     block: "Emergencies",
     say: [
-      "I've read kedronplumbing.com.au, so I'll skip everything it already told me — your services, your suburbs, your hours are in.",
+      "I've read kedronplumbing.com.au, so I'll skip everything it already told me - your services, your suburbs, your hours are in.",
       "Let's start with the one that actually keeps you up. What counts as an emergency worth ringing your mobile at 11pm?",
     ],
     kind: "multi",
@@ -75,7 +75,7 @@ const TURNS: Turn[] = [
   {
     block: "Emergencies",
     say: [
-      "Good. Now the bit a form can't get at — think of the last one that came in after hours. What did they actually say when you picked up?",
+      "Good. Now the bit a form can't get at - think of the last one that came in after hours. What did they actually say when you picked up?",
     ],
     kind: "text",
     placeholder: "“There's water coming through the kitchen ceiling…”",
@@ -93,7 +93,7 @@ const TURNS: Turn[] = [
     ],
     kind: "chips",
     choices: [
-      { text: "Nothing — never quote", note: "Safest. Most operators pick this." },
+      { text: "Nothing - never quote", note: "Safest. Most operators pick this." },
       { text: "Callout fee only" },
       { text: "Callout + standard hourly" },
     ],
@@ -101,7 +101,7 @@ const TURNS: Turn[] = [
       block: "Pricing",
       label: "Quoting",
       value:
-        p[0] === "Nothing — never quote"
+        p[0] === "Nothing - never quote"
           ? "Never states a price. Says “Dave will confirm on site” and books the visit."
           : `May state: ${p[0]}. Everything else → “Dave will confirm on site.”`,
     }),
@@ -109,7 +109,7 @@ const TURNS: Turn[] = [
   {
     block: "Service area",
     say: [
-      "Your site lists Brisbane Northside. Someone rings from Ipswich — forty minutes the wrong way. What do I do?",
+      "Your site lists Brisbane Northside. Someone rings from Ipswich - forty minutes the wrong way. What do I do?",
     ],
     kind: "chips",
     choices: [
@@ -190,14 +190,14 @@ const TURNS: Turn[] = [
     block: "War stories",
     say: [
       "Last one, and it's the most useful thing you'll tell me.",
-      "Think of a call that went badly — a job you lost, or a customer who got the wrong end of the stick. What happened?",
+      "Think of a call that went badly - a job you lost, or a customer who got the wrong end of the stick. What happened?",
     ],
     kind: "text",
     placeholder: "“Bloke rang about a leaking tap, my apprentice quoted him $90 over the phone and it turned out to be…”",
     readback: () => ({
       block: "War stories",
       label: "Learned from",
-      value: "Never estimate on a tap job sight-unseen — books an inspection instead",
+      value: "Never estimate on a tap job sight-unseen - books an inspection instead",
     }),
   },
 ];
@@ -276,7 +276,7 @@ export function Interview({ onDone }: { onDone: () => void }) {
             </h1>
             <p>
               Your website told me what you do. It can&rsquo;t tell me how you judge.
-              Answer out loud if your hands are full — every answer becomes a rule you
+              Answer out loud if your hands are full - every answer becomes a rule you
               approve before it goes anywhere near a caller.
             </p>
           </div>
@@ -303,7 +303,7 @@ export function Interview({ onDone }: { onDone: () => void }) {
             ),
           )}
 
-          {/* the line currently in flight — finished lines live in msgs */}
+          {/* the line currently in flight - finished lines live in msgs */}
           {t && said < t.say.length && (
             <div className="iv-msg agent" key={`${turn}-${said}`}>
               {said === 0 && <span className="iv-who">Emma</span>}
@@ -337,7 +337,7 @@ export function Interview({ onDone }: { onDone: () => void }) {
                     next();
                   }}
                 >
-                  Not quite — I&rsquo;ll reword it
+                  Not quite - I&rsquo;ll reword it
                 </button>
               </div>
             </div>
@@ -349,13 +349,13 @@ export function Interview({ onDone }: { onDone: () => void }) {
                 That&rsquo;s your rulebook.{" "}
                 <span className="g">
                   {rules.length === 0
-                    ? "Nothing locked in yet — we can do this later."
+                    ? "Nothing locked in yet - we can do this later."
                     : `${rules.length} rule${rules.length === 1 ? "" : "s"}, all in your words.`}
                 </span>
               </h2>
               <p>
                 {rules.length === 0
-                  ? "You skipped the lot, which is fine — she'll run on the trade defaults until you come back to it."
+                  ? "You skipped the lot, which is fine - she'll run on the trade defaults until you come back to it."
                   : "Next I'll read it back on a call so you can hear how it sounds coming out of her mouth."}
               </p>
               <button className="btn btn-fill" onClick={onDone}>
@@ -410,7 +410,7 @@ export function Interview({ onDone }: { onDone: () => void }) {
               {t.kind === "multi" && picked.length > 0 ? (
                 <button className="btn btn-fill btn-sm" onClick={() => answer(picked)}>
                   <span>
-                    {picked.length} chosen — next
+                    {picked.length} chosen - next
                   </span>
                   <span className="tic">→</span>
                 </button>
@@ -420,7 +420,7 @@ export function Interview({ onDone }: { onDone: () => void }) {
                   onClick={() => {
                     setMsgs((m) => [
                       ...m,
-                      { who: "owner", text: "Not sure — remind me later" },
+                      { who: "owner", text: "Not sure - remind me later" },
                     ]);
                     next();
                   }}
@@ -473,7 +473,7 @@ export function Interview({ onDone }: { onDone: () => void }) {
               <div key={g.block}>
                 {g.items.length === 0 ? (
                   <p className="bk-empty">
-                    Nothing here yet — this fills in as you answer.
+                    Nothing here yet - this fills in as you answer.
                   </p>
                 ) : (
                   g.items.map((r) => (

@@ -8,7 +8,7 @@ import { Kicker } from "./primitives";
 import { useDayOne, EmptyBilling } from "./empty";
 
 /* ============================================================
-   BILLING — plan · usage · invoices
+   BILLING - plan · usage · invoices
 
    Deliberately boring in structure but honest about the math.
    Left column: plan card + payment method + upgrade prompt.
@@ -83,7 +83,7 @@ export function Billing() {
               <span className="bill-per">/mo</span>
             </h2>
             <p>
-              You&rsquo;re on the founding rate — locked in until {PLAN.renews}. Your reversion price after that is
+              You&rsquo;re on the founding rate - locked in until {PLAN.renews}. Your reversion price after that is
               ${PLAN.regular}/mo. No add-ons, no metering surprises, no per-minute charges.
             </p>
           </div>
@@ -109,7 +109,7 @@ export function Billing() {
             <UsageBar {...USAGE.numbers} />
           </div>
           <p className="sub muted">
-            You&rsquo;ll get a heads-up email at 80% of any cap. Overages don&rsquo;t bill silently — they pause the
+            You&rsquo;ll get a heads-up email at 80% of any cap. Overages don&rsquo;t bill silently - they pause the
             offending capability and ask you if you want to top up.
           </p>
         </section>

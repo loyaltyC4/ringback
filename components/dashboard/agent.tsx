@@ -5,12 +5,12 @@ import { Arrow } from "@/components/site-chrome";
 import { Kicker, RangeSlider, ChipEditor, SiriOrb, ORB_PALETTES, OrbPalette } from "./primitives";
 
 /* ============================================================
-   MY AGENT — the Voice Studio + Behaviour + Knowledge
+   MY AGENT - the Voice Studio + Behaviour + Knowledge
 
    Hero: giant Siri orb representing Emma. Below the orb, a strip
    of voice-chips (small orbs) to switch between the four AU
-   voices. Everything else — greeting, disclosure, sliders, chip
-   editors — lives in stark white cards under the hero.
+   voices. Everything else - greeting, disclosure, sliders, chip
+   editors - lives in stark white cards under the hero.
    ============================================================ */
 
 type Voice = {
@@ -28,7 +28,7 @@ const VOICES: Voice[] = [
     name: "Emma",
     who: "Warm, Brisbane",
     accent: "AU · Coastal",
-    sample: "G'day, you've called Kedron Plumbing — this is Emma. How can I help?",
+    sample: "G'day, you've called Kedron Plumbing - this is Emma. How can I help?",
     palette: ORB_PALETTES.emma,
   },
   {
@@ -36,7 +36,7 @@ const VOICES: Voice[] = [
     name: "Hannah",
     who: "Bright, Adelaide",
     accent: "AU · Central",
-    sample: "Hi there, Kedron Plumbing — Hannah speaking. What can I do for you?",
+    sample: "Hi there, Kedron Plumbing - Hannah speaking. What can I do for you?",
     palette: ORB_PALETTES.hannah,
   },
   {
@@ -44,7 +44,7 @@ const VOICES: Voice[] = [
     name: "Jack",
     who: "Calm, Melbourne",
     accent: "AU · Southern",
-    sample: "Kedron Plumbing, Jack here — how's it going?",
+    sample: "Kedron Plumbing, Jack here - how's it going?",
     palette: ORB_PALETTES.jack,
   },
   {
@@ -134,7 +134,7 @@ export function AgentStudio() {
   const voice = VOICES.find((v) => v.id === voiceId)!;
 
   const [greeting, setGreeting] = useState<string>(
-    "G'day, you've called Kedron Plumbing — this is {voice}, {owner}'s AI receptionist. How can I help?",
+    "G'day, you've called Kedron Plumbing - this is {voice}, {owner}'s AI receptionist. How can I help?",
   );
   const [disclosure, setDisclosure] = useState(true);
   const [cautious, setCautious] = useState(72);
@@ -193,7 +193,7 @@ export function AgentStudio() {
         </header>
         <VoicePicker picked={voiceId} onPick={setVoiceId} />
         <p className="sub muted">
-          Four voices, pre-screened for a natural Australian accent — the number-one complaint about US receptionists.
+          Four voices, pre-screened for a natural Australian accent - the number-one complaint about US receptionists.
           Every one records the caller&rsquo;s <b>consent to be recorded</b> as part of the greeting.
         </p>
       </section>
@@ -264,7 +264,7 @@ export function AgentStudio() {
           </header>
           <ChipEditor values={neverQuote} onChange={setNeverQuote} tone="warn" placeholder="Add a job type she must never price" />
           <p className="sub muted">
-            Add the jobs Dave always measures himself. When one comes up, Emma captures the details and books a quote visit — she never invents a number.
+            Add the jobs Dave always measures himself. When one comes up, Emma captures the details and books a quote visit - she never invents a number.
           </p>
         </section>
 
@@ -277,7 +277,7 @@ export function AgentStudio() {
           </header>
           <ChipEditor values={emergency} onChange={setEmergency} tone="danger" placeholder="Add an emergency trigger" />
           <p className="sub muted">
-            When a caller uses one of these terms — or Emma&rsquo;s triage detects the situation — she walks them through safety, then rings your mobile live.
+            When a caller uses one of these terms - or Emma&rsquo;s triage detects the situation - she walks them through safety, then rings your mobile live.
           </p>
         </section>
       </div>

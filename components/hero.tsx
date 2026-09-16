@@ -34,7 +34,7 @@ type Clip = {
   captions?: readonly ({ tone: "light" | "dark"; text: string } | null)[]; // for the tall frame
 };
 
-/** small frame — intimate / close, "hands-on-a-tool" shots */
+/** small frame - intimate / close, "hands-on-a-tool" shots */
 const SMALL_QUEUE: Clip[] = [
   {
     mp4: ROOF_MP4,
@@ -65,7 +65,7 @@ const SMALL_QUEUE: Clip[] = [
   },
 ];
 
-/** tall frame — wider / atmospheric, "in-motion" shots */
+/** tall frame - wider / atmospheric, "in-motion" shots */
 const TALL_QUEUE: Clip[] = [
   {
     mp4: WORK_MP4,
@@ -74,10 +74,10 @@ const TALL_QUEUE: Clip[] = [
     aria: "A tradesperson walking to their work ute at sunrise",
     captions: [
       null,
-      { tone: "light", text: "“G’day, you’ve reached Kedron Plumbing — this is Emma.”" },
+      { tone: "light", text: "“G’day, you’ve reached Kedron Plumbing - this is Emma.”" },
       { tone: "dark", text: "“My hot water system’s just let go, there’s water everywhere.”" },
       { tone: "light", text: "“Is it still leaking, or have you got the water off at the mains?”" },
-      { tone: "light", text: "“Dan can be there Thursday between 2 and 4 — I’ve held it for you.”" },
+      { tone: "light", text: "“Dan can be there Thursday between 2 and 4 - I’ve held it for you.”" },
       null,
     ],
   },
@@ -87,10 +87,10 @@ const TALL_QUEUE: Clip[] = [
     aria: "A landscaper riding a commercial mower across a suburban lawn at golden hour",
     captions: [
       null,
-      { tone: "light", text: "“G’day, you’ve reached Kedron Plumbing — this is Emma.”" },
+      { tone: "light", text: "“G’day, you’ve reached Kedron Plumbing - this is Emma.”" },
       { tone: "dark", text: "“Yeah, the front lawn’s ruined and I need a quote.”" },
-      { tone: "light", text: "“No worries — what suburb are you in?”" },
-      { tone: "light", text: "“Dan’s free Friday morning — I’ve locked in 8:30 for a look.”" },
+      { tone: "light", text: "“No worries - what suburb are you in?”" },
+      { tone: "light", text: "“Dan’s free Friday morning - I’ve locked in 8:30 for a look.”" },
       null,
     ],
   },
@@ -139,7 +139,7 @@ function useCycler(len: number, intervalMs: number, initialDelayMs = 0) {
 }
 
 /* ============================================================
-   VOICE BAR — compact horizontal pill: caller id, waveform,
+   VOICE BAR - compact horizontal pill: caller id, waveform,
    one caption line. CTA lives outside so the bar stays small.
    ============================================================ */
 
@@ -150,12 +150,12 @@ const CAPTIONS: Cap[] = [
   { text: "“G’day, you’ve reached Kedron Plumbing.”", live: true },
   { text: "“My hot water system’s just let go.”", live: true },
   { text: "Emergency · water off at the mains", live: true },
-  { text: "All booked — Thursday, 2:15pm", live: false, done: true },
+  { text: "All booked - Thursday, 2:15pm", live: false, done: true },
   { text: "Details texted to Dave", live: false, done: true },
 ];
 
 /**
- * Deterministic bar heights — a random() here would differ between the server
+ * Deterministic bar heights - a random() here would differ between the server
  * and client render. Three sines at incommensurate frequencies under a slow
  * envelope, so the line has loud and quiet passages instead of the even comb
  * a single sine produces.
@@ -225,7 +225,7 @@ function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => vo
 }
 
 /* ============================================================
-   CLIP STACK — every clip in a queue is mounted and looping;
+   CLIP STACK - every clip in a queue is mounted and looping;
    only the current one is visible via a CSS opacity crossfade.
    That way the transition is instant and buttery instead of a
    flash of white while the next file loads.
@@ -277,7 +277,7 @@ export function Hero() {
 
       <div className="wrap hero-inner">
         <div className="hero-grid">
-          {/* small frame — cycles through intimate close-up trade shots */}
+          {/* small frame - cycles through intimate close-up trade shots */}
           <figure className="hg hg-wide tile clip-stack">
             <ClipStack queue={SMALL_QUEUE} current={smallIdx} />
             <div className="vidchips" aria-hidden>
@@ -293,7 +293,7 @@ export function Hero() {
             </figcaption>
           </figure>
 
-          {/* centered stage — headline, compact voice bar, lede */}
+          {/* centered stage - headline, compact voice bar, lede */}
           <div className="hg hg-say">
             <h1>
               <span className="wordpill">Every call</span>
@@ -312,7 +312,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* tall frame — cycles through wider atmospheric trade shots */}
+          {/* tall frame - cycles through wider atmospheric trade shots */}
           <figure className="hg hg-tall tile clip-stack">
             <ClipStack queue={TALL_QUEUE} current={tallIdx} />
             <div className="vidcaps" aria-hidden>
