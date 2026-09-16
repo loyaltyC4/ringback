@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       event.type === "customer.subscription.updated" ||
       event.type === "customer.subscription.deleted"
     ) {
-      const obj = event.data.object as Record<string, unknown>;
+      const obj = event.data.object as unknown as Record<string, unknown>;
       const email =
         (obj.customer_email as string) ||
         ((obj.customer_details as Record<string, string> | undefined)?.email ?? "");

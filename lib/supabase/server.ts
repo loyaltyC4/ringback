@@ -16,9 +16,11 @@ export async function supabaseServer() {
       getAll() {
         return store.getAll();
       },
-      setAll(list) {
+      setAll(list: { name: string; value: string; options?: Record<string, unknown> }[]) {
         try {
-          list.forEach(({ name, value, options }) => store.set(name, value, options));
+          list.forEach(({ name, value, options }) => {
+            store.set({ name, value, ...(options ?? {}) } as Parameters<typeof store.set>[0]);
+          });
         } catch {
           // called from a Server Component render, where cookies are read-only.
           // The middleware refreshes the session instead.

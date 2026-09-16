@@ -14,7 +14,8 @@ export async function POST(req: Request) {
 
   let email = "";
   try {
-    ({ email } = (await req.json()) as { email?: string });
+    const body = (await req.json()) as { email?: string };
+    email = body.email ?? "";
   } catch {
     return NextResponse.json({ ok: false, reason: "bad_request" }, { status: 400 });
   }
