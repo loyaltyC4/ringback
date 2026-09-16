@@ -84,9 +84,14 @@ export function SignIn() {
                 We&rsquo;ve texted a sign-in link to the mobile on <b>{email}</b>. It works for fifteen
                 minutes, once.
               </p>
-              <button className="ez-ghost" onClick={() => setSent(false)}>
-                Use a different address
-              </button>
+              <div className="si-sent-act">
+                <button className="ez-ghost" onClick={() => setSent(false)}>
+                  Use a different address
+                </button>
+                <a className="ez-ghost" href="/dashboard?tour=0">
+                  Walk the demo dashboard
+                </a>
+              </div>
             </div>
           ) : (
             <>

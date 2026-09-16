@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Mark, Wave } from "@/components/start/primitives";
 import { TrialRibbon } from "./convert";
+import { Tour, TourButton } from "./tour";
 
 /* ============================================================
    THE SHELL
@@ -346,6 +347,7 @@ export function DashShell({
         <header className="top">
           <LivingAgent />
           <div className="top-right">
+            <TourButton />
             <button
               className="bell"
               aria-label="Notifications"
@@ -361,6 +363,8 @@ export function DashShell({
 
         <main className="stage" id="dash-stage">{children}</main>
       </div>
+
+      <Tour />
     </div>
   );
 }

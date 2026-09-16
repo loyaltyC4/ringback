@@ -389,3 +389,13 @@
     justify-content: center;
   }
 }
+
+.si-sent-act {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.si-sent-act a {
+  text-decoration: none;
+}
