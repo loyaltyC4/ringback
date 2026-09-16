@@ -278,7 +278,7 @@
 .hero h1 {
   /* sized so [pill + orb] fits on one line inside the centre column, then
      "answered." on the second line — no three-line stack */
-  font-size: clamp(34px, 4.6vw, 62px);
+  font-size: clamp(36px, 5.1vw, 70px);
   letter-spacing: -0.055em;
   line-height: 0.9;
   white-space: nowrap;
@@ -363,32 +363,23 @@ h1 .plain {
    in the middle (headline + compact voice bar + lede), tall work video right.
    The two videos frame the centred headline the way the Replit reference
    frames its centre. */
-.hg-stat {
-  grid-column: 1 / span 3;
-  grid-row: 1;
-}
-.hg-claim {
-  grid-column: 9 / span 4;
-  grid-row: 1;
-}
-/* small roof clip left, tall work clip right, centred stage between */
 .hg-wide {
   grid-column: 1 / span 3;
-  grid-row: 2;
+  grid-row: 1;
   align-self: end;
   aspect-ratio: 16 / 11;
   min-height: 0;
 }
 .hg-say {
   grid-column: 4 / span 6;
-  grid-row: 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: clamp(18px, 2.6vh, 28px);
-  padding: 0 clamp(6px, 1.2vw, 18px);
+  gap: clamp(16px, 2.2vh, 24px);
+  padding: 0 clamp(6px, 1.2vw, 16px);
   min-width: 0;
 }
 .hg-say h1 {
@@ -396,77 +387,51 @@ h1 .plain {
 }
 .hg-say .lede {
   margin: 0;
-  max-width: 36ch;
+  max-width: 38ch;
 }
 .hero-voice-slot {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-.hero-cta {
-  padding: 11px 14px 11px 22px;
-  font-size: 14px;
-}
-.hero-cta .tic {
-  width: 28px;
-  height: 28px;
-  font-size: 12px;
+  justify-content: center;
 }
 .hg-tall {
   grid-column: 10 / span 3;
-  grid-row: 2;
+  grid-row: 1;
   margin-right: clamp(-40px, -2.4vw, -12px);
 }
 
-.statpill {
-  height: 100%;
-  width: 100%;
+/* ---- trust beat: one thin row closing the composition. No dots, no pills,
+   just four facts separated by hairlines. ---- */
+.hg-beat {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: clamp(14px, 2vh, 22px) 0 0;
+  padding: clamp(12px, 1.6vh, 16px) 0 0;
+  border-top: 1px solid var(--hair);
+  list-style: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  background: var(--color-bone-2);
-  border-radius: 999px;
-  padding: 14px 30px 14px 32px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  transition: transform 0.7s var(--e);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
 }
-.statpill:hover {
-  transform: translateY(-3px);
-}
-.statpill b {
-  font-family: var(--font-display);
-  font-size: clamp(34px, 3.8vw, 52px);
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 0.9;
-}
-.statpill span {
-  font-size: 14.5px;
-  line-height: 1.24;
+.hg-beat li {
+  padding: 0 clamp(14px, 2vw, 28px);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.006em;
   color: var(--color-ink-2);
-  max-width: 8ch;
-  font-weight: 500;
+  line-height: 1.3;
 }
-.claimpill {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  border: 1px solid var(--hair);
-  border-radius: 999px;
-  padding: 15px 30px;
-  font-size: 15.5px;
-  font-weight: 500;
-  line-height: 1.32;
-  transition:
-    transform 0.7s var(--e),
-    border-color 0.5s var(--e);
+.hg-beat li + li {
+  border-left: 1px solid var(--hair);
 }
-.claimpill:hover {
-  transform: translateY(-3px);
-  border-color: rgba(20, 18, 14, 0.3);
+.hg-beat b {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.04em;
+  color: var(--color-ink);
 }
 
 .tile {
@@ -541,39 +506,89 @@ h1 .plain {
   padding: 6px 11px;
 }
 
-/* ---- voice bar: a small pill — dot + name, live waveform, caption line ---- */
+/* ---- voice bar: one sleek black slab. No border, no outline — the bar is
+   the darkest object on the page and reads as hardware. Waveform left,
+   caller + live caption centre, the page's single hero CTA welded in at the
+   right as a nested pill. ---- */
 .voicebar {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 8px;
-  background: var(--color-paper);
-  border: 1px solid var(--hair-2);
-  border-radius: 22px;
-  box-shadow: var(--sh-lg);
-  padding: 14px 18px 14px 18px;
-  width: 100%;
-  max-width: 380px;
-}
-.vb-id {
   display: flex;
   align-items: center;
-  gap: 9px;
-  flex: none;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-ink-3);
+  gap: clamp(12px, 1.4vw, 18px);
+  width: 100%;
+  max-width: 520px;
+  background: #0c0a07;
+  border-radius: 20px;
+  padding: 10px 10px 10px 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 34px 70px -34px rgba(12, 10, 7, 0.72);
+  transition: transform 0.7s var(--e);
 }
-.vb-name {
-  color: var(--color-ink-2);
+.voicebar:hover {
+  transform: translateY(-2px);
+}
+.vb-wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+  width: clamp(78px, 8vw, 104px);
+  height: 30px;
+  transition: opacity 0.6s var(--e);
+}
+.vb-wave i {
+  flex: 1;
+  max-width: 2.5px;
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #7ef0a8, var(--color-green));
+  transform: scaleY(calc(var(--s) * 0.34));
+  transform-origin: center;
+  animation-name: vcbar;
+  animation-iteration-count: infinite;
+  animation-timing-function: var(--e);
+}
+@keyframes vcbar {
+  0%,
+  100% {
+    transform: scaleY(calc(var(--s) * 0.16));
+  }
+  50% {
+    transform: scaleY(var(--s));
+  }
+}
+.vb-wave[data-quiet] {
+  opacity: 0.38;
+}
+.vb-wave[data-quiet] i {
+  animation-play-state: paused;
+  transform: scaleY(0.06);
+  transition: transform 0.7s var(--e);
+}
+.vb-stage {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  text-align: left;
+}
+.vb-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 231, 0.48);
 }
 .vb-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--color-green);
+  background: var(--color-green-2, #3fd07a);
   flex: none;
   animation: blip 1.8s var(--e) infinite;
 }
@@ -592,77 +607,72 @@ h1 .plain {
     transform: scale(0.7);
   }
 }
-.vb-wave {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  height: 36px;
-  width: 100%;
-  transition: opacity 0.6s var(--e);
-}
-.vb-wave i {
-  flex: 1;
-  max-width: 3px;
-  height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(180deg, var(--color-green), var(--color-forest));
-  transform: scaleY(calc(var(--s) * 0.34));
-  transform-origin: center;
-  animation-name: vcbar;
-  animation-iteration-count: infinite;
-  animation-timing-function: var(--e);
-}
-@keyframes vcbar {
-  0%,
-  100% {
-    transform: scaleY(calc(var(--s) * 0.16));
-  }
-  50% {
-    transform: scaleY(var(--s));
-  }
-}
-.vb-wave[data-quiet] {
-  opacity: 0.3;
-}
-.vb-wave[data-quiet] i {
-  animation-play-state: paused;
-  transform: scaleY(0.06);
-  transition: transform 0.7s var(--e);
-}
 .vb-sub {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-align: center;
-  font-size: 13.5px;
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.012em;
-  color: var(--color-ink);
-  min-height: 1.4em;
   margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: -0.012em;
+  color: rgba(247, 245, 238, 0.94);
+  min-height: 1.32em;
   animation: capin 0.6s var(--e-out);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
 .vb-sub[data-done] {
-  color: var(--color-forest);
+  color: #7ef0a8;
   font-weight: 600;
-}
-.vb-sub svg {
-  width: 16px;
-  height: 16px;
-  flex: none;
-  color: var(--color-green);
 }
 @keyframes capin {
   from {
     opacity: 0;
-    transform: translateY(7px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
     transform: none;
   }
+}
+.vb-cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #f7f5ee;
+  color: var(--color-ink);
+  border-radius: 999px;
+  padding: 7px 7px 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    transform 0.6s var(--e),
+    background-color 0.5s var(--e);
+}
+.vb-cta i {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-forest);
+  color: #f7f5ee;
+  transition: transform 0.6s var(--e);
+}
+.vb-cta i svg {
+  width: 13px;
+  height: 13px;
+}
+.vb-cta:hover i {
+  transform: translate(2px, -1px) scale(1.06);
+}
+.vb-cta:active {
+  transform: scale(0.985);
 }
 
 /* ---- captions and chips that sit over the footage ---- */
@@ -2177,26 +2187,21 @@ footer {
   .hero-grid {
     grid-template-columns: repeat(8, 1fr);
   }
-  .hg-stat {
-    grid-column: 1 / span 4;
-    grid-row: 1;
-  }
-  .hg-claim {
-    grid-column: 5 / span 4;
-    grid-row: 1;
-  }
   .hg-wide {
     grid-column: 1 / span 3;
-    grid-row: 2;
+    grid-row: 1;
     align-self: end;
-  }
-  .hg-say {
-    grid-column: 1 / span 8;
-    grid-row: 3;
   }
   .hg-tall {
     grid-column: 4 / span 5;
+    grid-row: 1;
+  }
+  .hg-say {
+    grid-column: 1 / span 8;
     grid-row: 2;
+  }
+  .hg-beat {
+    grid-row: 3;
   }
 }
 
@@ -2249,11 +2254,6 @@ footer {
   .hero-grid {
     grid-template-columns: 1fr 1fr;
   }
-  .hg-stat,
-  .hg-claim {
-    grid-column: span 1;
-    grid-row: auto;
-  }
   .hg-say {
     grid-column: 1 / span 2;
     grid-row: auto;
@@ -2278,11 +2278,8 @@ footer {
     padding: 14px 16px;
     row-gap: 12px;
   }
-  .vb-id {
+  .vb-wave {
     order: 1;
-  }
-  .vb-id::after {
-    display: none;
   }
   .vb-cta {
     order: 2;
@@ -2292,8 +2289,16 @@ footer {
     order: 3;
     flex-basis: 100%;
   }
-  .statpill {
-    justify-content: flex-start;
+  .vb-sub {
+    white-space: normal;
+  }
+  .hg-beat {
+    grid-row: auto;
+    gap: 8px 0;
+  }
+  .hg-beat li {
+    font-size: 12.5px;
+    padding: 0 12px;
   }
 
   /* rail unpins and stacks */
@@ -2400,10 +2405,9 @@ footer {
   .hero-grid {
     grid-template-columns: 1fr;
   }
-  .hg-stat,
-  .hg-claim,
   .hg-say,
-  .hg-tall {
+  .hg-tall,
+  .hg-beat {
     grid-column: 1 / -1;
   }
   .tabnav {

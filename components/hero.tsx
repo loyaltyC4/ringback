@@ -182,7 +182,7 @@ function useBars(n: number) {
 }
 
 function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => void }) {
-  const bars = useBars(40);
+  const bars = useBars(34);
   const cap = CAPTIONS[beat];
 
   return (
@@ -191,11 +191,6 @@ function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => vo
       onMouseEnter={() => onHover(true)}
       onMouseLeave={() => onHover(false)}
     >
-      <div className="vb-id">
-        <span className="vb-dot" data-ringing={beat === 0 || undefined} />
-        <span className="vb-name">Kedron Plumbing</span>
-      </div>
-
       <div className="vb-wave" data-quiet={!cap.live || undefined} aria-hidden>
         {bars.map((b, k) => (
           <i
@@ -209,21 +204,22 @@ function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => vo
         ))}
       </div>
 
-      <p className="vb-sub" data-done={cap.done || undefined} aria-live="polite">
-        {cap.done && (
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
-            <path
-              d="m8 12.5 2.5 2.5L16 9"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        )}
-        {cap.text}
-      </p>
+      <div className="vb-stage">
+        <span className="vb-id">
+          <span className="vb-dot" data-ringing={beat === 0 || undefined} />
+          Kedron Plumbing
+        </span>
+        <p className="vb-sub" data-done={cap.done || undefined} aria-live="polite">
+          {cap.text}
+        </p>
+      </div>
+
+      <a className="vb-cta" href="tel:+61340135000">
+        <span>Ring it and listen</span>
+        <i aria-hidden>
+          <PhoneGlyph />
+        </i>
+      </a>
     </div>
   );
 }
@@ -281,19 +277,6 @@ export function Hero() {
 
       <div className="wrap hero-inner">
         <div className="hero-grid">
-          <div className="hg hg-stat">
-            <div className="statpill">
-              <b>2s</b>
-              <span>to pick up.</span>
-            </div>
-          </div>
-
-          <div className="hg hg-claim">
-            <div className="claimpill">
-              Answers in your business name — day, night, Sunday arvo.
-            </div>
-          </div>
-
           {/* small frame — cycles through intimate close-up trade shots */}
           <figure className="hg hg-wide tile clip-stack">
             <ClipStack queue={SMALL_QUEUE} current={smallIdx} />
@@ -319,18 +302,14 @@ export function Hero() {
               </span>
               <span className="plain">answered.</span>
             </h1>
-            <div className="hero-voice-slot">
-              <VoiceBar beat={i} onHover={setPaused} />
-              <a className="btn btn-fill hero-cta" href="tel:+61340135000">
-                <span>Ring it and listen</span>
-                <span className="tic">✆</span>
-              </a>
-            </div>
             <p className="lede">
-              The AI receptionist for Australian trades. It picks up in two seconds,
-              books the job into your calendar, and{" "}
+              The AI receptionist for Australian trades. Picks up in two seconds, books
+              the job into your calendar, and{" "}
               <b>follows up so the quote doesn&rsquo;t go cold.</b>
             </p>
+            <div className="hero-voice-slot">
+              <VoiceBar beat={i} onHover={setPaused} />
+            </div>
           </div>
 
           {/* tall frame — cycles through wider atmospheric trade shots */}
@@ -354,6 +333,15 @@ export function Hero() {
               {tallClip.label}
             </figcaption>
           </figure>
+
+          <ul className="hg hg-beat">
+            <li>
+              <b>2s</b> to pick up
+            </li>
+            <li>Answers in your business name</li>
+            <li>Day, night, Sunday arvo</li>
+            <li>No card for 7 days</li>
+          </ul>
         </div>
       </div>
     </header>
