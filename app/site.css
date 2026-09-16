@@ -370,9 +370,10 @@ h1 .plain {
 .hg-wide {
   grid-column: 1 / span 3;
   grid-row: 1;
-  align-self: end;
-  aspect-ratio: 16 / 11;
+  align-self: center;
+  aspect-ratio: 4 / 5;
   min-height: 0;
+  margin-left: clamp(-40px, -2.4vw, -12px);
 }
 .hg-say {
   grid-column: 4 / span 6;
@@ -401,7 +402,9 @@ h1 .plain {
 .hg-tall {
   grid-column: 10 / span 3;
   grid-row: 1;
-  min-height: clamp(300px, 40vh, 470px);
+  align-self: center;
+  aspect-ratio: 4 / 5;
+  min-height: 0;
   margin-right: clamp(-40px, -2.4vw, -12px);
 }
 
@@ -471,10 +474,13 @@ h1 .plain {
   opacity: 1;
 }
 
-/* label pill for the small frame - smaller and softer than the tall one */
+/* label pill for the small frame - smaller and softer than the tall one, and
+   pinned to the TOP so it never collides with the cycling status chips that
+   live along the bottom edge */
 .hg-wide .clip-label {
+  top: 12px;
+  bottom: auto;
   left: 12px;
-  bottom: 11px;
   font-size: 9.5px;
   padding: 6px 11px;
 }
@@ -505,8 +511,9 @@ h1 .plain {
 }
 
 .hg-wide figcaption {
+  top: 12px;
+  bottom: auto;
   left: 12px;
-  bottom: 11px;
   font-size: 9.5px;
   padding: 6px 11px;
 }
@@ -2192,14 +2199,20 @@ footer {
   .hero-grid {
     grid-template-columns: repeat(8, 1fr);
   }
+  /* below 1100 the headline drops under a single row of two equal frames */
   .hg-wide {
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 4;
     grid-row: 1;
-    align-self: end;
+    align-self: stretch;
+    aspect-ratio: 16 / 10;
+    margin-left: 0;
   }
   .hg-tall {
-    grid-column: 4 / span 5;
+    grid-column: 5 / span 4;
     grid-row: 1;
+    align-self: stretch;
+    aspect-ratio: 16 / 10;
+    margin-right: 0;
   }
   .hg-say {
     grid-column: 1 / span 8;
