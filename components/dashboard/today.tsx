@@ -7,6 +7,14 @@ import { NumberTicker } from "@/components/number-ticker";
 import { Arrow } from "@/components/site-chrome";
 import { useDayOne, EmptyToday } from "./empty";
 import { WelcomeBand } from "./convert";
+import type {
+  BookingView,
+  CallView,
+  HotView,
+  Range,
+  SchedView,
+  TodayView,
+} from "@/lib/view";
 
 /* ============================================================
    TODAY
@@ -28,15 +36,14 @@ import { WelcomeBand } from "./convert";
    per session. Deliberately loud - this is the one thing the design
    agrees can shout. */
 
-type Hot = { name: string; kind: string; when: string; job: string };
-const HOT: Hot[] = [
+const HOT: HotView[] = [
   { name: "Rachel Byrne", kind: "Gas smell · Chermside", when: "7:31am", job: "warm-transfer didn't land - Emma booked her a callback slot" },
   { name: "Jim Taylor", kind: "Reno rough-in quote · Wavell", when: "9:04am", job: "measured last week · Emma promised the quote by end of day" },
 ];
 
-function HotLeadBanner() {
+function HotLeadBanner({ rows = HOT }: { rows?: HotView[] }) {
   const [dismissed, setDismissed] = useState(false);
-  if (dismissed || HOT.length === 0) return null;
+  if (dismissed || rows.length === 0) return null;
   return (
     <div className="hot" role="alert">
       <div className="hot-mark" aria-hidden>
@@ -45,10 +52,10 @@ function HotLeadBanner() {
       </div>
       <div className="hot-body">
         <b>
-          {HOT.length} call{HOT.length === 1 ? "" : "s"} need you today
+          {rows.length} call{rows.length === 1 ? "" : "s"} need you today
         </b>
         <div className="hot-rows">
-          {HOT.map((h) => (
+          {rows.map((h) => (
             <a className="hot-row" key={h.name} href={`/dashboard/calls`}>
               <span className="hot-name">{h.name}</span>
               <span className="hot-kind">{h.kind}</span>
@@ -71,7 +78,6 @@ function HotLeadBanner() {
    fold. Range toggle changes the number and the sparkline.
    Reads a fake-but-plausible series so demo doesn't lie. */
 
-type Range = "today" | "week" | "month";
 const MONEY: Record<Range, { total: number; jobs: number; series: number[] }> = {
   today: { total: 1480, jobs: 3, series: [80, 210, 340, 340, 520, 800, 1080, 1280, 1480] },
   week: { total: 12420, jobs: 21, series: [900, 2100, 3400, 5600, 7800, 10200, 12420] },
@@ -92,9 +98,9 @@ function Spark({ series, width = 200, height = 44 }: { series: number[]; width?:
   );
 }
 
-function MoneyBar() {
+function MoneyBar({ money = MONEY }: { money?: TodayView["money"] }) {
   const [range, setRange] = useState<Range>("today");
-  const m = MONEY[range];
+  const m = money[range];
   return (
     <section className="money" aria-label="Recovered revenue">
       <div className="money-l">
@@ -134,28 +140,27 @@ function MoneyBar() {
    slot - Emma pushed it into your calendar and told the caller.
    Tap a card → drawer with the full call (built in Calls). */
 
-type Booking = { time: string; caller: string; job: string; where: string; tag: "emergency" | "standard" | "quote" };
-const BOOKINGS: Booking[] = [
+const BOOKINGS: BookingView[] = [
   { time: "9:30a", caller: "Priya Patel", job: "Leaking mixer", where: "Wavell Heights", tag: "standard" },
   { time: "12:15p", caller: "Marco G", job: "Blocked stormwater", where: "Chermside West", tag: "standard" },
   { time: "2:15p", caller: "Sue Murphy", job: "HWS replacement", where: "Stafford", tag: "emergency" },
   { time: "4:00p", caller: "Jim Taylor", job: "Reno rough-in - quote", where: "Wavell Heights", tag: "quote" },
 ];
 
-function TodayBookings() {
+function TodayBookings({ rows = BOOKINGS }: { rows?: BookingView[] }) {
   return (
     <section className="bookings">
       <header className="sec-h">
         <div>
           <span className="k-kick">Today · bookings Emma held for you</span>
-          <h2>{BOOKINGS.length} on your books</h2>
+          <h2>{rows.length} on your books</h2>
         </div>
         <a className="sec-more" href="/dashboard/bookings">
           See the week <Arrow />
         </a>
       </header>
       <div className="book-strip">
-        {BOOKINGS.map((b) => (
+        {rows.map((b) => (
           <a className="book" key={b.caller} href="/dashboard/calls" data-tag={b.tag}>
             <span className="book-time">{b.time}</span>
             <b className="book-caller">{b.caller}</b>
@@ -176,9 +181,7 @@ function TodayBookings() {
    two words, disposition badge, timer. Tap → detail drawer (built
    in Calls) - from Today the whole row is a link. */
 
-type Disp = "booked" | "message" | "warm" | "spam";
-type Call = { name: string; job: string; note: string; disp: Disp; time: string };
-const CALLS: Call[] = [
+const CALLS: CallView[] = [
   { name: "Sue Murphy", job: "HWS gone", note: "Emergency · booked 2:15p", disp: "booked", time: "9:42a" },
   { name: "Jim Taylor", job: "Reno rough-in quote", note: "Details captured · quote callback Fri", disp: "message", time: "9:04a" },
   { name: "Rachel Byrne", job: "Gas smell", note: "Warm transfer didn't land - needs you", disp: "warm", time: "7:31a" },
@@ -187,7 +190,7 @@ const CALLS: Call[] = [
   { name: "Priya Patel", job: "Leaking tap", note: "Booked Fri 10:30 · first-time caller", disp: "booked", time: "Yest" },
 ];
 
-function DispBadge({ d }: { d: Disp }) {
+function DispBadge({ d }: { d: CallView["disp"] }) {
   const label = d === "booked" ? "Booked" : d === "message" ? "Message" : d === "warm" ? "Warm transfer" : "Spam";
   return (
     <span className="cf-badge" data-d={d}>
@@ -196,7 +199,7 @@ function DispBadge({ d }: { d: Disp }) {
   );
 }
 
-function CallFeed() {
+function CallFeed({ rows = CALLS }: { rows?: CallView[] }) {
   return (
     <section className="feed">
       <header className="sec-h">
@@ -209,7 +212,7 @@ function CallFeed() {
         </a>
       </header>
       <div className="feed-list">
-        {CALLS.map((c) => (
+        {rows.map((c) => (
           <a className="feed-row" key={c.name + c.time} href="/dashboard/calls">
             <span className="feed-av" aria-hidden>
               {c.name
@@ -239,28 +242,27 @@ function CallFeed() {
    Each row is a promise the agent is going to keep - the owner
    can pause any playbook. Empty state is opinionated. */
 
-type Sched = { play: string; who: string; note: string; at: string };
-const SCHED: Sched[] = [
+const SCHED: SchedView[] = [
   { play: "Quote chase", who: "Jim Taylor", note: "Day 3 · bathroom rough-in", at: "9:00a" },
   { play: "No-show rescue", who: "Ken Wright", note: "Missed yesterday's slot", at: "10:30a" },
   { play: "Review request", who: "Anna R", note: "2h after mark-done", at: "1:15p" },
   { play: "Missed-call text", who: "0402 111 902", note: "Sent · awaiting reply", at: "6:44a" },
 ];
 
-function ScheduledFollowups() {
+function ScheduledFollowups({ rows = SCHED }: { rows?: SchedView[] }) {
   return (
     <section className="sched">
       <header className="sec-h">
         <div>
           <span className="k-kick">Follow-ups Emma will run today</span>
-          <h2>4 going out</h2>
+          <h2>{rows.length} going out</h2>
         </div>
         <a className="sec-more" href="/dashboard/followups">
           Playbooks <Arrow />
         </a>
       </header>
       <div className="sched-list">
-        {SCHED.map((s) => (
+        {rows.map((s) => (
           <div className="sched-row" key={s.who + s.at}>
             <span className="sched-play">{s.play}</span>
             <div className="sched-body">
@@ -293,7 +295,7 @@ function TodayHero({ day, name }: { day: string; name: string }) {
           G&rsquo;day {name}. Here&rsquo;s{" "}
           <span className="th-em">how she went while you were on the tools.</span>
         </h1>
-        <p className="th-day">{day} · Brisbane Northside</p>
+        <p className="th-day">{day}</p>
       </div>
     </section>
   );
@@ -303,25 +305,32 @@ function TodayHero({ day, name }: { day: string; name: string }) {
    TODAY - composed
    ============================================================ */
 
-export function Today() {
+export function Today({ live }: { live?: TodayView | null }) {
   const dayOne = useDayOne();
   if (dayOne) return <EmptyToday />;
 
   const now = new Date();
   const day = now.toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long" });
+
+  // live is null on an install with no database, or when nobody is signed in:
+  // every section falls back to its fixture so the demo dashboard still reads
+  // like a working business.
   return (
     <>
-      <TodayHero day={day} name="Dave" />
+      <TodayHero
+        day={`${day} · ${live?.area || "Brisbane Northside"}`}
+        name={live?.name ?? "Dave"}
+      />
       <WelcomeBand />
-      <HotLeadBanner />
-      <MoneyBar />
+      <HotLeadBanner rows={live?.hot} />
+      <MoneyBar money={live?.money} />
 
       <div className="two">
-        <TodayBookings />
-        <ScheduledFollowups />
+        <TodayBookings rows={live?.bookings} />
+        <ScheduledFollowups rows={live?.sched} />
       </div>
 
-      <CallFeed />
+      <CallFeed rows={live?.calls} />
     </>
   );
 }
