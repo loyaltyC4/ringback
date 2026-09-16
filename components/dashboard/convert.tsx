@@ -118,12 +118,24 @@ export function PaySheet({ open, onClose }: { open: boolean; onClose: () => void
     };
   }, [open, onClose]);
 
-  const submit = () => {
+  const submit = async () => {
     setBusy(true);
-    window.setTimeout(() => {
-      setBusy(false);
-      setDone(true);
-    }, 1400);
+    // Stripe Checkout when billing is wired; the demo build answers 503 and we
+    // show the confirmed state so the walkthrough still completes.
+    try {
+      const r = await fetch("/api/stripe/checkout", { method: "POST" });
+      if (r.ok) {
+        const { url } = (await r.json()) as { url?: string };
+        if (url) {
+          window.location.assign(url);
+          return;
+        }
+      }
+    } catch {
+      /* unconfigured or offline - fall through to the demo state */
+    }
+    setBusy(false);
+    setDone(true);
   };
 
   return (

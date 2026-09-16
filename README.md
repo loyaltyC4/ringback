@@ -76,3 +76,25 @@ npm run build   # production build + type check
 
 Deploys are automatic from `main` via Vercel. The project framework preset must
 stay set to **Next.js**.
+
+## Wiring the plumbing (environment variables)
+
+Everything below is optional. With none of it set the app runs as a complete
+demo: fixtures on every screen, the guided tour, the open demo dashboard. Each
+variable switches one real system on.
+
+| Variable | Switches on |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Database reads + magic-link auth. `/dashboard` starts requiring a session (add `?demo=1` to view fixtures). |
+| `SUPABASE_SERVICE_ROLE_KEY` | Trusted server writes: telephony + Stripe webhooks, tenant provisioning. |
+| `STRIPE_SECRET_KEY` / `STRIPE_PRICE_FOUNDING` | Real Stripe Checkout behind the pay sheet. |
+| `STRIPE_WEBHOOK_SECRET` | Signature verification on `/api/stripe/webhook`. |
+| `CALL_WEBHOOK_SECRET` | Accepts inbound calls on `/api/calls/inbound` (header `x-ringback-secret`). |
+| `NEXT_PUBLIC_SITE_URL` | Absolute URLs in auth + checkout redirects. |
+
+Database: run `db/schema.sql` then `db/002_product.sql` on the project. Both are
+idempotent and both enable row level security scoped to the owner's email.
+
+Telephony is deliberately provider-agnostic: `/api/calls/inbound` takes a
+normalised payload (tenant, caller, call, optional booking) so a vendor adapter
+is a thin translation layer instead of the vendor's shape reaching the database.

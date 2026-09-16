@@ -37,14 +37,23 @@ export function SignIn() {
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
     setBusy(true);
-    window.setTimeout(() => {
-      setBusy(false);
-      setSent(true);
-    }, 1100);
+    // Real auth when the install is wired; the demo build answers 503 and we
+    // still show the sent state so the walkthrough reads the same either way.
+    try {
+      await fetch("/api/auth/magic-link", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+    } catch {
+      /* offline or unconfigured - fall through to the demo state */
+    }
+    setBusy(false);
+    setSent(true);
   };
 
   return (
