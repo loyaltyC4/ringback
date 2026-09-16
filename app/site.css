@@ -263,34 +263,35 @@
   border-radius: 999px;
   display: block;
 }
+/* four corner shapes, like the Replit reference: they hold the corners so the
+   scattered field reads as intentional, airy space rather than emptiness */
 .hero-ghosts i:nth-child(1) {
-  width: 240px;
-  height: 118px;
-  top: 13%;
-  left: -108px;
+  width: clamp(200px, 22vw, 320px);
+  height: 132px;
+  top: 6%;
+  left: -80px;
 }
 .hero-ghosts i:nth-child(2) {
-  width: 250px;
-  height: 112px;
-  top: 7%;
-  right: -112px;
+  width: clamp(200px, 22vw, 320px);
+  height: 132px;
+  top: 6%;
+  right: -80px;
 }
 .hero-ghosts i:nth-child(3) {
-  width: 200px;
-  height: 104px;
-  bottom: 8%;
-  left: 1%;
+  width: clamp(180px, 18vw, 280px);
+  height: 120px;
+  bottom: 4%;
+  left: -60px;
+}
+.hero-ghosts i:nth-child(4) {
+  width: clamp(180px, 18vw, 280px);
+  height: 120px;
+  bottom: 4%;
+  right: -60px;
 }
 
-.hero-grid {
-  /* the composition sits optically centred in the hero; on tall viewports it
-     grows with the space instead of leaving a dead band above the marquee */
-  margin-top: clamp(14px, 2vh, 30px);
-}
 .hero h1 {
-  /* sized so [pill + orb] fits on one line inside the centre column, then
-     "answered." on the second line - no three-line stack */
-  font-size: clamp(36px, 5.1vw, 70px);
+  font-size: clamp(40px, 5.6vw, 78px);
   letter-spacing: -0.055em;
   line-height: 0.9;
   white-space: nowrap;
@@ -362,92 +363,126 @@ h1 .plain {
   font-weight: 600;
 }
 
-/* ---- the scatter grid ---- */
-.hero-grid {
+/* ============================================================
+   HERO SCATTER  (Replit Agent-4 style field)
+
+   A 12-col grid where the pieces are deliberately scattered and
+   airy: headline pill+orb centred at the top, a wide stat pill
+   and an outlined claim pill on the next band, a tall clip anchored
+   to the right, a small clip lower-left, and the black voice-bar
+   card as the interactive centrepiece. The whole field is vertically
+   centred inside the full-height fold, with the corner ghost shapes
+   holding the edges.
+   ============================================================ */
+.hero-scatter {
+  flex: 1 1 auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  column-gap: clamp(16px, 2.1vw, 30px);
-  row-gap: clamp(12px, 1.8vh, 22px);
-  align-items: stretch;
-  padding-bottom: 18px;
-}
-/* Row 1: pills flank an empty middle. Row 2: small roof left, centred stage
-   in the middle (headline + compact voice bar + lede), tall work video right.
-   The two videos frame the centred headline the way the Replit reference
-   frames its centre. */
-.hg-wide {
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  align-self: center;
-  aspect-ratio: 4 / 5;
-  min-height: 0;
-  margin-left: clamp(-40px, -2.4vw, -12px);
-}
-.hg-say {
-  grid-column: 4 / span 6;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
+  column-gap: clamp(16px, 2vw, 34px);
+  row-gap: clamp(20px, 4vh, 52px);
+  align-content: center;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: clamp(16px, 2.2vh, 24px);
-  padding: 0 clamp(6px, 1.2vw, 16px);
-  min-width: 0;
-}
-.hg-say h1 {
-  margin: 0;
-}
-.hg-say .lede {
-  margin: 0;
-  max-width: 38ch;
-}
-.hero-voice-slot {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.hg-tall {
-  grid-column: 10 / span 3;
-  grid-row: 1;
-  align-self: center;
-  aspect-ratio: 4 / 5;
-  min-height: 0;
-  margin-right: clamp(-40px, -2.4vw, -12px);
 }
 
-/* ---- trust beat: one thin row closing the composition. No dots, no pills,
-   just four facts separated by hairlines. ---- */
-.hg-beat {
-  grid-column: 1 / -1;
+.hg-head {
+  grid-column: 3 / 11;
+  grid-row: 1;
+  justify-self: center;
+  text-align: center;
+  margin: 0;
+}
+
+.hg-stat {
+  grid-column: 1 / 6;
   grid-row: 2;
-  margin: clamp(14px, 2vh, 22px) 0 0;
-  padding: clamp(12px, 1.6vh, 16px) 0 0;
-  border-top: 1px solid var(--hair);
-  list-style: none;
+}
+.hg-claim {
+  grid-column: 6 / 9;
+  grid-row: 2;
+}
+/* tall clip on the right, spanning the stat/claim band down into the card
+   band so it reads as the dominant image, like the reference's photo */
+.hg-tall {
+  grid-column: 9 / 13;
+  grid-row: 2 / span 2;
+  align-self: stretch;
+  min-height: clamp(320px, 46vh, 520px);
+  margin-right: clamp(-48px, -3vw, -16px);
+}
+.hg-small {
+  grid-column: 2 / 5;
+  grid-row: 3;
+  align-self: center;
+  aspect-ratio: 16 / 11;
+  margin-left: clamp(-48px, -3vw, -16px);
+}
+.hg-card {
+  grid-column: 5 / 9;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(16px, 2.4vh, 26px);
+  min-width: 0;
+}
+.hg-card .lede {
+  margin: 0;
+  max-width: 42ch;
+  text-align: left;
+}
+
+/* ---- stat pill: grey slab, big number left, label right ---- */
+.statpill {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  background: var(--color-bone-2);
+  border-radius: 999px;
+  padding: clamp(16px, 2vh, 26px) clamp(26px, 3vw, 40px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.7s var(--e);
 }
-.hg-beat li {
-  padding: 0 clamp(14px, 2vw, 28px);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: -0.006em;
-  color: var(--color-ink-2);
-  line-height: 1.3;
+.statpill:hover {
+  transform: translateY(-3px);
 }
-.hg-beat li + li {
-  border-left: 1px solid var(--hair);
-}
-.hg-beat b {
+.statpill b {
   font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 68px);
   font-weight: 800;
-  font-size: 15px;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+}
+.statpill span {
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.25;
+  color: var(--color-ink-2);
+  max-width: 12ch;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* ---- claim pill: outlined, quiet ---- */
+.claimpill {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  border: 1px solid var(--hair);
+  border-radius: 28px;
+  padding: clamp(16px, 2vh, 24px) clamp(20px, 2vw, 30px);
+  font-size: clamp(15px, 1.3vw, 17.5px);
+  font-weight: 500;
+  line-height: 1.34;
   color: var(--color-ink);
+  transition:
+    transform 0.7s var(--e),
+    border-color 0.5s var(--e);
+}
+.claimpill:hover {
+  transform: translateY(-3px);
+  border-color: rgba(20, 18, 14, 0.3);
 }
 
 .tile {
@@ -485,7 +520,7 @@ h1 .plain {
 /* label pill for the small frame - smaller and softer than the tall one, and
    pinned to the TOP so it never collides with the cycling status chips that
    live along the bottom edge */
-.hg-wide .clip-label {
+.hg-small .clip-label {
   top: 12px;
   bottom: auto;
   left: 12px;
@@ -494,7 +529,7 @@ h1 .plain {
 }
 
 .hg-tall:hover,
-.hg-wide:hover {
+.hg-small:hover {
   transform: translateY(-6px);
 }
 .tile figcaption {
@@ -518,7 +553,7 @@ h1 .plain {
   border-radius: 999px;
 }
 
-.hg-wide figcaption {
+.hg-small figcaption {
   top: 12px;
   bottom: auto;
   left: 12px;
@@ -2204,30 +2239,44 @@ footer {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1100px) {
-  .hero-grid {
+  .hero-scatter {
     grid-template-columns: repeat(8, 1fr);
+    row-gap: clamp(16px, 3vh, 34px);
   }
-  /* below 1100 the headline drops under a single row of two equal frames */
-  .hg-wide {
-    grid-column: 1 / span 4;
+  .hg-head {
+    grid-column: 1 / 9;
     grid-row: 1;
-    align-self: stretch;
-    aspect-ratio: 16 / 10;
-    margin-left: 0;
   }
-  .hg-tall {
-    grid-column: 5 / span 4;
-    grid-row: 1;
-    align-self: stretch;
-    aspect-ratio: 16 / 10;
-    margin-right: 0;
-  }
-  .hg-say {
-    grid-column: 1 / span 8;
+  .hg-stat {
+    grid-column: 1 / 5;
     grid-row: 2;
   }
-  .hg-beat {
+  .hg-claim {
+    grid-column: 5 / 9;
+    grid-row: 2;
+  }
+  .hg-tall {
+    grid-column: 5 / 9;
     grid-row: 3;
+    align-self: stretch;
+    aspect-ratio: 16 / 11;
+    min-height: 0;
+    margin-right: 0;
+  }
+  .hg-small {
+    grid-column: 1 / 5;
+    grid-row: 3;
+    align-self: stretch;
+    aspect-ratio: 16 / 11;
+    margin-left: 0;
+  }
+  .hg-card {
+    grid-column: 1 / 9;
+    grid-row: 4;
+    align-items: center;
+  }
+  .hg-card .lede {
+    text-align: center;
   }
 }
 
@@ -2277,24 +2326,38 @@ footer {
   .hero-ghosts {
     display: none;
   }
-  .hero-grid {
-    grid-template-columns: 1fr 1fr;
+  /* single column stack on phones: headline, stat, claim, clip, card */
+  .hero-scatter {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: clamp(16px, 3vh, 26px);
   }
-  .hg-say {
-    grid-column: 1 / span 2;
-    grid-row: auto;
+  .hg-head {
+    justify-self: stretch;
     order: -1;
-    padding: 8px 0 4px;
+    padding: 4px 0;
+  }
+  .hg-stat,
+  .hg-claim,
+  .hg-card {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .hg-card {
+    align-items: center;
+  }
+  .hg-card .lede {
+    text-align: center;
   }
   .hg-tall {
-    grid-column: 1 / span 2;
+    grid-column: auto;
     grid-row: auto;
-    /* the clip is 9:16 - a 1.7:1 frame cropped it to a letterbox sliver */
-    aspect-ratio: 1.12;
+    aspect-ratio: 16 / 11;
     min-height: 0;
     margin-right: 0;
   }
-  .hg-wide {
+  .hg-small {
     display: none;
   }
   /* the voice bar wraps: id + CTA on top, waveform + caption beneath */
@@ -2317,14 +2380,6 @@ footer {
   }
   .vb-sub {
     white-space: normal;
-  }
-  .hg-beat {
-    grid-row: auto;
-    gap: 8px 0;
-  }
-  .hg-beat li {
-    font-size: 12.5px;
-    padding: 0 12px;
   }
 
   /* rail unpins and stacks */
@@ -2428,12 +2483,8 @@ footer {
   .sec {
     padding: 74px 0;
   }
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
-  .hg-say,
   .hg-tall,
-  .hg-beat {
+  .hg-card {
     grid-column: 1 / -1;
   }
   .tabnav {

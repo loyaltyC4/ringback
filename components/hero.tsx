@@ -269,51 +269,43 @@ export function Hero() {
 
   return (
     <header className="hero" id="top">
+      {/* decorative hairline shapes filling the four corners, so the scatter
+          breathes into the whole viewport without feeling empty */}
       <div className="hero-ghosts" aria-hidden>
+        <i />
         <i />
         <i />
         <i />
       </div>
 
       <div className="wrap hero-inner">
-        <div className="hero-grid">
-          {/* small frame - cycles through intimate close-up trade shots */}
-          <figure className="hg hg-wide tile clip-stack">
-            <ClipStack queue={SMALL_QUEUE} current={smallIdx} />
-            <div className="vidchips" aria-hidden>
-              {(smallClip.chips ?? []).map((c, k) => (
-                <span className="vidchip" key={`${smallIdx}-${c}`} data-on={k === i || undefined}>
-                  {c}
-                </span>
-              ))}
-            </div>
-            <figcaption className="clip-label">
-              <span className="tick" />
-              {smallClip.label}
-            </figcaption>
-          </figure>
+        <div className="hero-scatter">
+          {/* headline pill + phone orb, centred at the top of the field */}
+          <h1 className="hg-head">
+            <span className="wordpill">Every call</span>
+            <span className="wordorb" aria-hidden>
+              <PhoneGlyph />
+            </span>
+            <span className="plain">answered.</span>
+          </h1>
 
-          {/* centered stage - headline, compact voice bar, lede */}
-          <div className="hg hg-say">
-            <h1>
-              <span className="wordpill">Every call</span>
-              <span className="wordorb" aria-hidden>
-                <PhoneGlyph />
-              </span>
-              <span className="plain">answered.</span>
-            </h1>
-            <p className="lede">
-              The AI receptionist for Australian trades. Picks up in two seconds, books
-              the job into your calendar, and{" "}
-              <b>follows up so the quote doesn&rsquo;t go cold.</b>
-            </p>
-            <div className="hero-voice-slot">
-              <VoiceBar beat={i} onHover={setPaused} />
+          {/* wide stat pill, left */}
+          <div className="hg-stat">
+            <div className="statpill">
+              <b>2s</b>
+              <span>to pick up, every time.</span>
             </div>
           </div>
 
-          {/* tall frame - cycles through wider atmospheric trade shots */}
-          <figure className="hg hg-tall tile clip-stack">
+          {/* outlined claim pill, centre */}
+          <div className="hg-claim">
+            <p className="claimpill">
+              Answers in your business name, day or night, weekends too.
+            </p>
+          </div>
+
+          {/* tall clip, right edge */}
+          <figure className="hg-tall tile clip-stack">
             <ClipStack queue={TALL_QUEUE} current={tallIdx} />
             <div className="vidcaps" aria-hidden>
               {(tallClip.captions ?? []).map((o, k) =>
@@ -334,14 +326,30 @@ export function Hero() {
             </figcaption>
           </figure>
 
-          <ul className="hg hg-beat">
-            <li>
-              <b>2s</b> to pick up
-            </li>
-            <li>Answers in your business name</li>
-            <li>Day, night, Sunday arvo</li>
-            <li>No card for 7 days</li>
-          </ul>
+          {/* small clip, lower left */}
+          <figure className="hg-small tile clip-stack">
+            <ClipStack queue={SMALL_QUEUE} current={smallIdx} />
+            <div className="vidchips" aria-hidden>
+              {(smallClip.chips ?? []).map((c, k) => (
+                <span className="vidchip" key={`${smallIdx}-${c}`} data-on={k === i || undefined}>
+                  {c}
+                </span>
+              ))}
+            </div>
+            <figcaption className="clip-label">
+              <span className="tick" />
+              {smallClip.label}
+            </figcaption>
+          </figure>
+
+          {/* the interactive centrepiece: lede + sleek black voice bar with CTA */}
+          <div className="hg-card">
+            <p className="lede">
+              The AI receptionist for Australian trades. Picks up in two seconds, books
+              the job, and <b>follows up so the quote doesn&rsquo;t go cold.</b>
+            </p>
+            <VoiceBar beat={i} onHover={setPaused} />
+          </div>
         </div>
       </div>
     </header>
