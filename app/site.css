@@ -241,7 +241,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 100%;
+  /* fill the hero (a flex column) so justify-content actually centres the
+     composition; min-height:100% does not resolve against the hero's
+     min-height and left the whole block pinned to the top */
+  flex: 1 1 auto;
 }
 .hero-ghosts {
   position: absolute;
