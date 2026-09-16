@@ -20,8 +20,12 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <Hero />
-      <IntegrationStrip />
+      {/* the fold: hero fills the viewport, brand strip pinned to its bottom
+          edge, so the dark section only appears once you scroll */}
+      <div className="fold">
+        <Hero />
+        <IntegrationStrip />
+      </div>
       <StageRail />
       <StatSplit />
       <Bento />

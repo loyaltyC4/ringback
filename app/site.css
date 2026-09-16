@@ -223,16 +223,21 @@
 /* ============================================================
    HERO
    ============================================================ */
-.hero {
-  position: relative;
-  /* Size to the composition with a floor, not the whole viewport. Reserving a
-     full 100dvh left a large dead band below the trust beat on tall screens;
-     min() caps the hero at what the content needs while keeping a minimum
-     stature on short-but-wide laptops, and the marquee follows right under. */
-  min-height: min(740px, calc(100dvh - 74px));
+/* The fold owns the first viewport: hero grows to fill it, the brand strip
+   sits at the very bottom edge, and the dark section below only shows on
+   scroll. Full-height modern hero, content optically centred in the space. */
+.fold {
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding: clamp(56px, 6vh, 84px) 0 clamp(20px, 3vh, 36px);
+}
+.hero {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(56px, 6vh, 84px) 0 clamp(24px, 4vh, 44px);
   overflow: hidden;
 }
 .hero-inner {
