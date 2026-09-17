@@ -19,8 +19,22 @@ export const DB_ADMIN = Boolean(SUPABASE_URL && SUPABASE_SERVICE);
 export const BILLING_LIVE = Boolean(
   process.env.STRIPE_SECRET_KEY && process.env.STRIPE_PRICE_FOUNDING,
 );
-/** shared secret the telephony provider signs inbound call webhooks with */
+/** shared secret a generic telephony provider signs inbound call webhooks with */
 export const CALL_WEBHOOK_SECRET = process.env.CALL_WEBHOOK_SECRET ?? "";
+
+/** Retell — the voice agent that actually answers calls. Retell signs its own
+ * webhooks with an HMAC over the raw body keyed by this same API key, so one
+ * var covers both outbound calls to Retell and verifying inbound webhooks. */
+export const RETELL_API_KEY = process.env.RETELL_API_KEY ?? "";
+export const VOICE_LIVE = Boolean(RETELL_API_KEY);
+
+/** Twilio — SMS confirmations after a call/booking */
+export const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID ?? "";
+export const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN ?? "";
+export const TWILIO_FROM_NUMBER = process.env.TWILIO_FROM_NUMBER ?? "";
+export const SMS_LIVE = Boolean(
+  TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN && TWILIO_FROM_NUMBER,
+);
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://ringback-chi.vercel.app";

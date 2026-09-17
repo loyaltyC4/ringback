@@ -90,6 +90,8 @@ variable switches one real system on.
 | `STRIPE_SECRET_KEY` / `STRIPE_PRICE_FOUNDING` | Real Stripe Checkout behind the pay sheet. |
 | `STRIPE_WEBHOOK_SECRET` | Signature verification on `/api/stripe/webhook`. |
 | `CALL_WEBHOOK_SECRET` | Accepts inbound calls on `/api/calls/inbound` (header `x-ringback-secret`). |
+| `RETELL_API_KEY` | Real voice: dials/configures Retell and verifies the signature on `/api/webhooks/retell` and `/api/tools/book-appointment`. |
+| `TWILIO_ACCOUNT_SID` / `TWILIO_AUTH_TOKEN` / `TWILIO_FROM_NUMBER` | Sends the SMS confirmation after a call ends or a job books. |
 | `NEXT_PUBLIC_SITE_URL` | Absolute URLs in auth + checkout redirects. |
 
 Database: run `db/schema.sql` then `db/002_product.sql` on the project. Both are
@@ -98,3 +100,23 @@ idempotent and both enable row level security scoped to the owner's email.
 Telephony is deliberately provider-agnostic: `/api/calls/inbound` takes a
 normalised payload (tenant, caller, call, optional booking) so a vendor adapter
 is a thin translation layer instead of the vendor's shape reaching the database.
+
+
+### Voice pipeline (Retell + Telnyx)
+
+Telnyx is the carrier (buys the AU number, terminates SIP at Retell). Retell
+runs the actual conversation and calls back into this app twice:
+
+- `POST /api/webhooks/retell` — one endpoint for `call_started` / `call_ended`
+  / `call_analyzed`. Writes `rb_calls`, texts the owner once a call ends.
+- `POST /api/tools/book-appointment` — a Retell function tool called *during*
+  the call once the caller agrees to a time. Writes `rb_bookings`, texts both
+  the caller and the owner, and returns the sentence Retell speaks back.
+
+Both verify Retell's HMAC-SHA256 signature (`x-retell-signature`, keyed by
+`RETELL_API_KEY`) against the raw request body — see `lib/retell.ts`.
+
+Every call must be dialled into Retell with `metadata: { tenant, caller_name,
+suburb }`, where `tenant` is the `rb_tenants.id` (or `owner_email`) — that's
+how a shared agent config maps back to the right dashboard. The demo line
+uses `demo@ringback.com.au`.
