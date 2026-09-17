@@ -598,8 +598,8 @@ export function Pricing() {
             Simple pricing. <span className="g">No lock-in.</span>
           </h2>
           <p>
-            Start with a 7-day free trial - no credit card. Cancel any time, keep your
-            number.
+            Start with a 7-day free trial. Card on file, first charge on day 8 - cancel
+            any time before that and pay nothing.
           </p>
         </div>
         <div className="price">

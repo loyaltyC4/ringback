@@ -86,7 +86,7 @@ export function StageBusiness({ onNext }: { onNext: () => void }) {
         </div>
 
         <p className="st-fine">
-          No card, no ABN, nothing else yet.{" "}
+          No ABN yet - your card comes at the very end, once you&rsquo;ve heard her work.{" "}
           <button className="linkish" onClick={onNext}>
             No website? Tell me instead →
           </button>

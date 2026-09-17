@@ -474,14 +474,14 @@ export function EmptyBilling() {
         <>
           You&rsquo;re on the free trial.
           <br />
-          <span className="ez-em">No card, nothing charged.</span>
+          <span className="ez-em">Card on file, nothing charged yet.</span>
         </>
       }
       body={
         <>
-          Seven days, everything switched on, no payment details taken. When you&rsquo;re ready, the founding
-          rate is <b>$150/mo</b> for three months and then <b>$299</b> - flat, no per-minute billing, no
-          add-ons.
+          Seven days, everything switched on. Your card is on file but the first charge doesn&rsquo;t land
+          until day eight, and only if you haven&rsquo;t cancelled. The founding rate is <b>$150/mo</b> for
+          three months and then <b>$299</b> - flat, no per-minute billing, no add-ons.
         </>
       }
       action={<GhostButton href="/dashboard/value">See what she&rsquo;s recovered</GhostButton>}

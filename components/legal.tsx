@@ -241,7 +241,7 @@ export function Terms() {
     >
       <Plain
         items={[
-          "Seven days free, no card. Then $150/month for three months, then $299.",
+          "Seven days free. Card on file - $150/month starts automatically after, then $299.",
           "Flat pricing. No per-minute charges, no add-ons, no setup fee.",
           "Cancel yourself, from the dashboard, in one click. No phone call.",
           "30-day money back if it isn't working for you.",
@@ -258,9 +258,10 @@ export function Terms() {
 
       <S n="02" title="Money">
         <p>
-          The trial is seven days and needs no payment details. After it, the founding rate is $150 per month
-          for three months, then $299 per month. Flat - we do not bill per minute or per call, and there are
-          no add-on tiers.
+          The trial is seven days. We take your card up front, but you are not charged until day eight - and
+          only if you have not cancelled. After the trial, the founding rate is $150 per month for three
+          months, then $299 per month. Flat - we do not bill per minute or per call, and there are no
+          add-on tiers.
         </p>
         <p>
           You can cancel from the Billing page at any time, effective at the end of your current period.

@@ -142,7 +142,7 @@ export function SignIn() {
               </form>
 
               <p className="si-alt">
-                Haven&rsquo;t set her up yet? <a href="/start">Start a free trial</a> - seven days, no card.
+                Haven&rsquo;t set her up yet? <a href="/start">Start a free trial</a> - seven days free, card on file.
               </p>
             </>
           )}

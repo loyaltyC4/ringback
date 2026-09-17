@@ -75,9 +75,9 @@ const STEPS: Step[] = [
   {
     path: "/dashboard/billing",
     sel: ".bill-hero",
-    title: "Seven days, no card",
+    title: "Seven days free, card on file",
     body:
-      "Founding rate holds for three months. Cancel inside thirty days and you get your money back, no conversation required.",
+      "First charge lands on day eight, not before. Founding rate holds for three months. Cancel inside thirty days and you get your money back, no conversation required.",
   },
 ];
 
