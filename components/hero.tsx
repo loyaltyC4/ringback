@@ -214,8 +214,8 @@ function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => vo
         </p>
       </div>
 
-      <a className="vb-cta" href="tel:+61340135000">
-        <span>Ring it and listen</span>
+      <a className="vb-cta" href="tel:+61242636501">
+        <span>Ring the live demo</span>
         <i aria-hidden>
           <PhoneGlyph />
         </i>
