@@ -37,7 +37,7 @@ export function Bento() {
             <span className="g">The fortnight after it is where the money goes.</span>
           </h2>
           <p>
-            Answering is table stakes. RingBack keeps working after the phone goes down
+            Answering is table stakes. Voxline keeps working after the phone goes down
             - chasing quotes, rescuing no-shows, and asking for the review you&rsquo;d
             never get round to.
           </p>
@@ -160,7 +160,7 @@ export function StatSplit() {
             </h3>
             <p>
               Nobody&rsquo;s bad at their job because they missed a call. They were
-              under a sink, on a roof, or elbow-deep in a switchboard. RingBack picks it
+              under a sink, on a roof, or elbow-deep in a switchboard. Voxline picks it
               up so the work keeps coming.
             </p>
             <ul className="checklist">
@@ -193,7 +193,7 @@ const PLAYS: Play[] = [
   {
     tab: "Missed call",
     head: "Rings back the ones that hung up.",
-    body: "If a caller drops before the conversation gets anywhere, RingBack texts them inside sixty seconds and offers to book - before they scroll to the next name.",
+    body: "If a caller drops before the conversation gets anywhere, Voxline texts them inside sixty seconds and offers to book - before they scroll to the next name.",
     cards: [
       { label: "Text sent", value: "within 60s", sub: "While they're still looking" },
       { label: "Reply rate", value: "38%", sub: "Of dropped callers respond" },
@@ -233,7 +233,7 @@ const PLAYS: Play[] = [
   {
     tab: "Win-back",
     head: "Wakes up the customers who went quiet.",
-    body: "Annual service due, filter overdue, that repair you flagged as “keep an eye on it”. RingBack works your existing customer list instead of buying new leads.",
+    body: "Annual service due, filter overdue, that repair you flagged as “keep an eye on it”. Voxline works your existing customer list instead of buying new leads.",
     cards: [
       { label: "Triggers on", value: "Service due", sub: "From the last job's notes" },
       { label: "Source", value: "Your own list", sub: "Cheaper than any lead you buy" },
@@ -312,7 +312,7 @@ export function FollowUpTabs() {
                 <div className="tp-copy">
                   <h3>{p.head}</h3>
                   <p>{p.body}</p>
-                  <a className="btn btn-line" href="tel:+61340135000">
+                  <a className="btn btn-line" href="tel:+61242636501">
                     <span>Hear it on the demo line</span>
                     <span className="tic">✆</span>
                   </a>
@@ -365,7 +365,7 @@ export function Proof() {
             We&rsquo;re new. <span className="g">So judge it, don&rsquo;t trust it.</span>
           </h2>
           <p>
-            RingBack is taking its first five founding operators. There&rsquo;s no wall
+            Voxline is taking its first five founding operators. There&rsquo;s no wall
             of five-star quotes here yet, because inventing them would be the fastest
             way to lose you. Test it yourself instead.
           </p>
@@ -380,8 +380,8 @@ export function Proof() {
                 24/7. Try to trip it up - ask for a price, describe an emergency, talk
                 over the top of it. That&rsquo;s the fastest honest test there is.
               </p>
-              <a className="go" href="tel:+61340135000">
-                +61 3 4013 5000 <Arrow />
+              <a className="go" href="tel:+61242636501">
+                +61 2 4263 6501 <Arrow />
               </a>
             </div>
           </div>
@@ -409,7 +409,7 @@ export function Proof() {
    SECURITY & PRIVACY
 
    Every claim here is either an architectural fact or an explicit
-   commitment. No certification language - RingBack holds none, and the
+   commitment. No certification language - Voxline holds none, and the
    closing note says so rather than implying otherwise.
    ============================================================ */
 
@@ -524,7 +524,7 @@ export function Security() {
               You&rsquo;re handing us the first conversation every new customer has
               with your business. Here&rsquo;s exactly what happens to it.
             </p>
-            <a className="btn btn-line" href="tel:+61340135000">
+            <a className="btn btn-line" href="tel:+61242636501">
               <span>Ask me anything on the setup call</span>
               <span className="tic">✆</span>
             </a>
@@ -550,7 +550,7 @@ export function Security() {
           <div>
             <b>What we don&rsquo;t have, so you don&rsquo;t have to ask</b>
             <p>
-              RingBack is a small Australian operation, not an enterprise vendor with
+              Voxline is a small Australian operation, not an enterprise vendor with
               a compliance department. We hold no SOC 2 report and no ISO 27001
               certificate, and we&rsquo;re not going to pretend otherwise with a badge
               on a landing page. If your insurer or a strata client needs that on
@@ -582,7 +582,7 @@ const COMPARE = [
   { label: "Full-time receptionist, loaded", value: "$6,500/mo" },
   { label: "Part-time office admin", value: "$2,900/mo" },
   { label: "Traditional answering service", value: "$400-900/mo" },
-  { label: "RingBack, founding rate", value: "$150/mo", win: true },
+  { label: "Voxline, founding rate", value: "$150/mo", win: true },
 ];
 
 export function Pricing() {
@@ -743,12 +743,12 @@ export function FinalCta() {
                 <span>Start free trial</span>
                 <span className="tic">↗</span>
               </a>
-              <a className="btn btn-onnight" href="tel:+61340135000">
+              <a className="btn btn-onnight" href="tel:+61242636501">
                 <span>Or ring it first</span>
                 <span className="tic">✆</span>
               </a>
             </div>
-            <p className="fine">+61 3 4013 5000 · answers 24/7 · no credit card</p>
+            <p className="fine">+61 2 4263 6501 · answers 24/7 · no credit card</p>
           </div>
         </div>
       </div>
