@@ -117,11 +117,11 @@ export function Nav() {
         {/* two islands rather than one bar: navigation on the left, account
             and the call to action on the right */}
         <div className="nav-in nav-left">
-          <a href="#top" className="brand" aria-label="RingBack home">
+          <a href="#top" className="brand" aria-label="Voxline home">
             <span className="mk">
               <PhoneGlyph />
             </span>
-            RingBack
+            Voxline
           </a>
           <span className="nav-rule" aria-hidden />
           <div className="nlinks">
@@ -168,7 +168,7 @@ export function Nav() {
         <a href="/signin" onClick={() => setOpen(false)}>
           Sign in
         </a>
-        <a href="tel:+61340135000" onClick={() => setOpen(false)}>
+        <a href="tel:+61242636501" onClick={() => setOpen(false)}>
           Ring the demo line ✆
         </a>
       </div>
@@ -240,7 +240,7 @@ export function Footer() {
               <span className="mk">
                 <PhoneGlyph />
               </span>
-              RingBack
+              Voxline
             </a>
             <p>
               The AI receptionist for Australian trades. Every call answered, every job
@@ -259,7 +259,7 @@ export function Footer() {
             <div className="f-col">
               <h5>Try it</h5>
               <a href="/start">Start free trial</a>
-              <a href="tel:+61340135000">Ring the demo line</a>
+              <a href="tel:+61242636501">Ring the demo line</a>
               <a href="/dashboard">Demo dashboard</a>
             </div>
             <div className="f-col f-col-legal">
@@ -277,7 +277,7 @@ export function Footer() {
           </div>
         </div>
         <div className="f-bot">
-          <span>© {new Date().getFullYear()} RingBack</span>
+          <span>© {new Date().getFullYear()} Voxline</span>
           <span>Brisbane, Australia</span>
         </div>
       </div>
