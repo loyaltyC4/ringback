@@ -24,11 +24,11 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RingBack - never miss a job because you couldn't pick up",
+  title: "Voxline - never miss a job because you couldn't pick up",
   description:
-    "RingBack is the AI receptionist for Australian trades. Answers every call in two seconds, books the job into your calendar, texts you the details, and follows up so quotes don't go cold.",
+    "Voxline is the AI receptionist for Australian trades. Answers every call in two seconds, books the job into your calendar, texts you the details, and follows up so quotes don't go cold.",
   openGraph: {
-    title: "RingBack - every call answered",
+    title: "Voxline - every call answered",
     description:
       "The AI receptionist for Australian trades. Picks up in two seconds, books the job, follows up.",
     type: "website",
