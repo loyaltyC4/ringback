@@ -11,15 +11,15 @@ import { Arrow, Check, useLoopVideo } from "@/components/site-chrome";
    ============================================================ */
 
 const THREAD = [
-  { who: "them", text: "“Sent you the quote for the rough-in last Tuesday.”" },
+  { who: "them", text: "“Hi - we enquired about a family room for the long weekend.”" },
   {
     who: "us",
-    text: "“Hi Jim - just checking that quote landed. Happy to pencil in a start date if the numbers work?”",
+    text: "“Hi Sarah - yes, the Family Suite is free. Two adults and two kids, R2,900 a night incl. breakfast?”",
   },
-  { who: "them", text: "“Yeah go on then - week after next?”" },
+  { who: "them", text: "“Perfect - can you hold it while I check flights?”" },
   {
     who: "us",
-    text: "“Done. I've held Mon the 22nd, 7am start. Dan will confirm the day before.”",
+    text: "“Done. I've held it for 24 hours and WhatsApped you the deposit link.”",
   },
 ] as const;
 
@@ -34,11 +34,11 @@ export function Bento() {
           </span>
           <h2>
             The call was the easy bit.{" "}
-            <span className="g">The fortnight after it is where the money goes.</span>
+            <span className="g">The days after it are where the booking is won.</span>
           </h2>
           <p>
-            Answering is table stakes. Voxline keeps working after the phone goes down
-            - chasing quotes, rescuing no-shows, and asking for the review you&rsquo;d
+            Answering is table stakes. StaysAfrica keeps working after the phone goes down
+            - chasing enquiries, filling cancellations, and asking for the review you&rsquo;d
             never get round to.
           </p>
         </div>
@@ -57,8 +57,8 @@ export function Bento() {
             <div className="foot">
               <span className="l">Follow-ups</span>
               <p>
-                Quotes get chased on day three, day seven and day fourteen - in your
-                voice, until you say stop.
+                Enquiries get chased on day one, day two and day four - in your
+                voice, until they book or say stop.
               </p>
             </div>
           </div>
@@ -66,12 +66,12 @@ export function Bento() {
           <div className="bpanel grey rv">
             <ShaderBackground className="surface" uniforms={GREY_GRAIN} />
             <div className="metric">
-              <span className="l">Jobs won from follow-up</span>
+              <span className="l">Bookings won from follow-up</span>
               <span className="v">
                 1 in <NumberTicker value={4} />
               </span>
               <span className="d">
-                of chased quotes convert that would otherwise have gone quiet
+                of chased enquiries convert that would otherwise have booked elsewhere
               </span>
               <svg
                 className="spark"
@@ -99,7 +99,7 @@ export function Bento() {
             <div className="foot">
               <span className="l">Recovered revenue</span>
               <p>
-                Every chase, booking and win-back is tracked against real dollars in
+                Every chase, booking and win-back is tracked against real rand in
                 your dashboard.
               </p>
             </div>
@@ -115,10 +115,10 @@ export function Bento() {
    ============================================================ */
 
 const CHECKS = [
-  "Trained on your services, pricing and tone from your website",
-  "Recognises repeat callers and pulls up their history",
-  "Locked to your rules - it never quotes, never over-promises",
-  "Every call transcribed and summarised to your phone",
+  "Trained on your rooms, rates and house rules from your website",
+  "Recognises returning guests and pulls up their history",
+  "Locked to your rules - it never discounts, never over-promises",
+  "Every call transcribed and summarised to your WhatsApp",
 ];
 
 export function StatSplit() {
@@ -132,20 +132,14 @@ export function StatSplit() {
             <div className="bigfig">
               <NumberTicker value={62} />%
               <span className="sub">
-                of calls to a trade business go unanswered - and 85% of those callers
-                never ring back. They just book the next mob.
+                of callers won't leave a voicemail - and 85% of missed callers
+                never ring back. They just book the next lodge on Booking.com.
               </span>
             </div>
             <div className="splitmedia">
-              <video
-                ref={vid}
-                src="https://pub.hyperagent.com/api/published/pbf01M23D64B3_CGF0FCR45VN0Q67M/under-sink.mp4"
-                muted
-                loop
-                playsInline
-                autoPlay
-                preload="none"
-                aria-label="A plumber working under a sink with both hands, phone ringing on the floor"
+              <img
+                src="https://hyperagent.com/api/files/usergenerated/threads/cmufjzk280fbs06ad76ocdjtu/images/7ffba585-b6eb-4cf0-baab-17bfcdcc504e.png"
+                alt="An empty lodge reception desk at night, the phone glowing as it rings unanswered"
               />
             </div>
           </div>
@@ -156,12 +150,12 @@ export function StatSplit() {
             </span>
             <h3>
               You can&rsquo;t answer the phone{" "}
-              <span className="g">with your hands full.</span>
+              <span className="g">when you&rsquo;re looking after guests.</span>
             </h3>
             <p>
-              Nobody&rsquo;s bad at their job because they missed a call. They were
-              under a sink, on a roof, or elbow-deep in a switchboard. Voxline picks it
-              up so the work keeps coming.
+              Nobody loses a booking because they&rsquo;re bad at hospitality. They were
+              mid-check-in, on a game drive, or elbow-deep in breakfast service. StaysAfrica
+              picks it up so the bookings keep coming.
             </p>
             <ul className="checklist">
               {CHECKS.map((c) => (
@@ -191,53 +185,53 @@ type Play = {
 
 const PLAYS: Play[] = [
   {
-    tab: "Missed call",
-    head: "Rings back the ones that hung up.",
-    body: "If a caller drops before the conversation gets anywhere, Voxline texts them inside sixty seconds and offers to book - before they scroll to the next name.",
+    tab: "After-hours call",
+    head: "Answers the 9pm booking call.",
+    body: "The call that comes in when you're finally sitting down. StaysAfrica picks up in two seconds, checks live availability, takes the booking and sends the deposit link - before they scroll to the next lodge.",
     cards: [
-      { label: "Text sent", value: "within 60s", sub: "While they're still looking" },
-      { label: "Reply rate", value: "38%", sub: "Of dropped callers respond" },
-      { label: "Outcome", value: "Booked or binned", sub: "No lead left in limbo" },
+      { label: "Answered", value: "in 1.8s", sub: "While they're still deciding" },
+      { label: "Of callers", value: "62%", sub: "Won't leave a voicemail" },
+      { label: "Outcome", value: "Booked or waitlisted", sub: "No enquiry left in limbo" },
     ],
   },
   {
-    tab: "Quote sent",
-    head: "Chases the quote three times, politely.",
-    body: "Day three, day seven, day fourteen - then it stops. Each message references the actual job, not a generic nudge, and offers to hold a start date.",
+    tab: "Enquiry chase",
+    head: "Chases the enquiry three times, politely.",
+    body: "Day one, day two, day four - then it stops. Each message references the actual room and dates, not a generic nudge, and offers to hold the room.",
     cards: [
-      { label: "Cadence", value: "3 · 7 · 14 days", sub: "Then it leaves them alone" },
-      { label: "Converted", value: "1 in 4", sub: "Quotes that had gone quiet" },
-      { label: "Average job", value: "$780", sub: "Typical missed trade job, AU" },
+      { label: "Cadence", value: "1 · 2 · 4 days", sub: "Then it leaves them alone" },
+      { label: "Converted", value: "1 in 4", sub: "Enquiries that had gone quiet" },
+      { label: "Average booking", value: "R3,400", sub: "Typical two-night stay, SA" },
     ],
   },
   {
-    tab: "No-show",
-    head: "Rescues the no-show same day.",
-    body: "When nobody's home or the job falls through, it doesn't just sit in your calendar as a hole. It reaches the customer, finds out what happened, and rebooks.",
+    tab: "Cancellation",
+    head: "Fills the cancellation the same day.",
+    body: "When a guest cancels on Thursday, the room doesn't just sit empty for the weekend. It works the waitlist, offers the gap, and rebooks it before Friday.",
     cards: [
-      { label: "Reached", value: "Same day", sub: "Before the slot is wasted" },
-      { label: "Rebooked", value: "2 in 3", sub: "No-shows put back on the books" },
-      { label: "Gap filled", value: "Offered out", sub: "To the next job on the waitlist" },
+      { label: "Offered out", value: "Same day", sub: "Before the weekend is lost" },
+      { label: "Rebooked", value: "2 in 3", sub: "Cancellations put back on the books" },
+      { label: "Source", value: "Your waitlist", sub: "Guests who already wanted to stay" },
     ],
   },
   {
     tab: "Review",
-    head: "Asks for the review while they're still happy.",
-    body: "Two hours after you mark the job done - the window where people actually leave five stars. It only asks customers whose job went cleanly.",
+    head: "Asks for the review at checkout.",
+    body: "Two hours after checkout - the window where guests actually leave five stars. It only asks guests whose stay went cleanly.",
     cards: [
-      { label: "Timing", value: "+2 hours", sub: "After you close the job" },
-      { label: "Filtered", value: "Clean jobs only", sub: "Complaints route to you instead" },
+      { label: "Timing", value: "+2 hours", sub: "After checkout" },
+      { label: "Filtered", value: "Happy guests only", sub: "Complaints route to you instead" },
       { label: "Lands on", value: "Google", sub: "Straight to your business profile" },
     ],
   },
   {
     tab: "Win-back",
-    head: "Wakes up the customers who went quiet.",
-    body: "Annual service due, filter overdue, that repair you flagged as “keep an eye on it”. Voxline works your existing customer list instead of buying new leads.",
+    head: "Brings back last year's guests.",
+    body: "The whales are back in Hermanus, the proteas are out, their anniversary is in October. StaysAfrica works your existing guest list instead of paying Booking.com 18% to reach them again.",
     cards: [
-      { label: "Triggers on", value: "Service due", sub: "From the last job's notes" },
-      { label: "Source", value: "Your own list", sub: "Cheaper than any lead you buy" },
-      { label: "Cadence", value: "Once, then out", sub: "Never pesters your customers" },
+      { label: "Triggers on", value: "Season & dates", sub: "From the last stay's notes" },
+      { label: "Source", value: "Your own list", sub: "Guests who already love you" },
+      { label: "Cadence", value: "Once, then out", sub: "Never pesters your guests" },
     ],
   },
 ];
@@ -275,8 +269,8 @@ export function FollowUpTabs() {
           </span>
           <h2>Five follow-ups that pay for themselves.</h2>
           <p>
-            Switch on the ones that fit how you work. Each runs on its own timing, in
-            your voice, and stops the moment the customer replies or you tell it to.
+            Switch on the ones that fit how you run your place. Each runs on its own timing, in
+            your voice, and stops the moment the guest replies or you tell it to.
           </p>
         </div>
 
@@ -365,7 +359,7 @@ export function Proof() {
             We&rsquo;re new. <span className="g">So judge it, don&rsquo;t trust it.</span>
           </h2>
           <p>
-            Voxline is taking its first five founding operators. There&rsquo;s no wall
+            StaysAfrica is taking its first five founding properties. There&rsquo;s no wall
             of five-star quotes here yet, because inventing them would be the fastest
             way to lose you. Test it yourself instead.
           </p>
@@ -376,9 +370,9 @@ export function Proof() {
               <span className="num">01</span>
               <h3>Ring the demo line right now.</h3>
               <p>
-                It&rsquo;s a live agent for a fictional Brisbane plumber, answering
-                24/7. Try to trip it up - ask for a price, describe an emergency, talk
-                over the top of it. That&rsquo;s the fastest honest test there is.
+                It&rsquo;s a live agent for a fictional Franschhoek guest house, answering
+                24/7. Try to trip it up - ask about rates, push for a discount, describe a
+                tricky dietary requirement, talk over the top of it. That&rsquo;s the fastest honest test there is.
               </p>
               <a className="go" href="tel:+61242636501">
                 +61 2 4263 6501 <Arrow />
@@ -409,7 +403,7 @@ export function Proof() {
    SECURITY & PRIVACY
 
    Every claim here is either an architectural fact or an explicit
-   commitment. No certification language - Voxline holds none, and the
+   commitment. No certification language - StaysAfrica holds none, and the
    closing note says so rather than implying otherwise.
    ============================================================ */
 
@@ -474,8 +468,8 @@ function IcScale() {
 const SECURITY = [
   {
     icon: <IcPin />,
-    title: "Your calls stay in Australia",
-    text: "Call audio, transcripts and customer details are stored on Australian infrastructure. Nothing is shipped offshore to sit at rest.",
+    title: "Your calls stay in South Africa",
+    text: "Call audio, transcripts and guest details are stored on South African infrastructure, POPIA-compliant. Nothing is shipped offshore to sit at rest.",
   },
   {
     icon: <IcLock />,
@@ -490,7 +484,7 @@ const SECURITY = [
   {
     icon: <IcDot />,
     title: "A recording notice on every call",
-    text: "On by default, because recording law differs from state to state. You can switch recording off entirely and keep transcripts only.",
+    text: "On by default, as POPIA and SA recording law require. You can switch recording off entirely and keep transcripts only.",
   },
   {
     icon: <IcNoTrain />,
@@ -550,10 +544,10 @@ export function Security() {
           <div>
             <b>What we don&rsquo;t have, so you don&rsquo;t have to ask</b>
             <p>
-              Voxline is a small Australian operation, not an enterprise vendor with
+              StaysAfrica is a small South African operation, not an enterprise vendor with
               a compliance department. We hold no SOC 2 report and no ISO 27001
               certificate, and we&rsquo;re not going to pretend otherwise with a badge
-              on a landing page. If your insurer or a strata client needs that on
+              on a landing page. If your insurer or a hotel group needs that on
               paper, raise it on the setup call and I&rsquo;ll tell you honestly
               whether we&rsquo;re the right fit yet.
             </p>
@@ -570,19 +564,19 @@ export function Security() {
 
 const PLAN_FEATURES = [
   "Built and launched for you inside 48 hours",
-  "Your own AU number, or forward your existing one",
-  "Caller memory, calendar booking, SMS confirmations",
+  "Your own SA number, or forward your existing one",
+  "Caller memory, live availability, WhatsApp confirmations",
   "All five follow-up playbooks included",
-  "ServiceM8 / simPRO / Tradify hand-off",
+  "Nightsbridge / RoomRaccoon / Semper hand-off",
   "Call minutes included up to 300/month",
   "I tune the script with you in week one",
 ];
 
 const COMPARE = [
-  { label: "Full-time receptionist, loaded", value: "$6,500/mo" },
-  { label: "Part-time office admin", value: "$2,900/mo" },
-  { label: "Traditional answering service", value: "$400-900/mo" },
-  { label: "Voxline, founding rate", value: "$150/mo", win: true },
+  { label: "Full-time front desk, loaded", value: "R25,000/mo" },
+  { label: "Part-time night & weekend cover", value: "R8,000/mo" },
+  { label: "Booking.com commission on R30k of bookings", value: "R5,400/mo" },
+  { label: "StaysAfrica, founding rate", value: "R299/mo", win: true },
 ];
 
 export function Pricing() {
@@ -599,24 +593,24 @@ export function Pricing() {
           </h2>
           <p>
             Start with a 7-day free trial. Card on file, first charge on day 8 - cancel
-            any time before that and pay nothing.
+            any time before that and pay nothing. Prices in rand, VAT included.
           </p>
         </div>
         <div className="price">
           <div className="plan rv">
             <div className="in">
               <span className="tag">Founding · 5 spots</span>
-              <h3>Founding operator</h3>
+              <h3>Founding property</h3>
               <div className="amt">
-                <b>$150</b>
+                <b>R299</b>
                 <em>/month for the first 3 months</em>
               </div>
               <div className="setupline">
                 <span>Setup &amp; build</span>
-                <s>$1,200</s>
-                <b>$0 today</b>
+                <s>R4,500</s>
+                <b>R0 today</b>
               </div>
-              <p className="sub">Then $299/month. 30-day money-back guarantee.</p>
+              <p className="sub">Then R1,500/month. 30-day money-back guarantee.</p>
               <ul>
                 {PLAN_FEATURES.map((f) => (
                   <li key={f}>
@@ -645,13 +639,13 @@ export function Pricing() {
               ))}
             </div>
             <div className="saveline">
-              One recovered job a month covers it <b>five times over</b>. The average
-              missed trade job in Australia is worth about $780.
+              One recovered weekend booking covers it <b>ten times over</b>. The average
+              two-night guest house stay in the Winelands is worth about R3,400.
             </div>
             <p className="fineprint">
-              Receptionist figure based on Jobs and Skills Australia median full-time
-              earnings (~$5,326/month gross) plus super, leave loading and workers&rsquo;
-              comp. Minutes beyond the included 300 are billed at cost.
+              Front-desk figure based on typical SA hospitality wages plus UIF, leave and
+              provident contributions. Commission figure based on Booking.com&rsquo;s
+              standard 18% partner rate. Minutes beyond the included 300 are billed at cost.
             </p>
           </div>
         </div>
@@ -666,32 +660,32 @@ export function Pricing() {
 
 const FAQS = [
   {
-    q: "Will callers know it's AI?",
-    a: "Most don't ask. It answers with your business name, speaks in plain Australian English and doesn't pretend to be a specific person. If someone asks directly, it tells them it's the automated booking line and offers to put them through to you.",
+    q: "Will guests know it's AI?",
+    a: "Most don't ask. It answers with your property's name, speaks in plain South African English (and Afrikaans), and doesn't pretend to be a specific person. If someone asks directly, it tells them it's the automated booking line and offers to put them through to you.",
   },
   {
     q: "What happens when it can't help?",
-    a: "It stops trying. Anything outside its rules gets a warm hand-off to your mobile with the caller's name, number and problem already captured - or a callback booked in if you're unreachable.",
+    a: "It stops trying. Anything outside its rules - a wedding block booking, a complaint, a strange request - gets a warm hand-off to your phone with the caller's name, number and what they need already captured. Or a callback booked in if you're unreachable.",
   },
   {
-    q: "Can it promise a price?",
-    a: "No - and that's deliberate. It's locked out of quoting, discounting and committing to scope. It gathers the job details and books the visit. You keep every pricing conversation.",
+    q: "Can it promise a rate or a discount?",
+    a: "No - and that's deliberate. It's locked out of discounting, upgrading and committing to anything outside your rate card and house rules. It quotes your published rates and books the room. You keep every negotiation.",
   },
   {
-    q: "Won't the follow-ups annoy my customers?",
-    a: "They're capped and they stop on reply. A quote gets three messages across a fortnight and then nothing. Win-backs go once. Review requests only go to customers whose job went cleanly - anyone unhappy routes to you instead. You can switch any playbook off, and every message is in your voice, referencing the actual job.",
+    q: "Won't the follow-ups annoy my guests?",
+    a: "They're capped and they stop on reply. An enquiry gets three messages across four days and then nothing. Win-backs go once. Review requests only go to guests whose stay went cleanly - anyone unhappy routes to you instead. You can switch any playbook off, and every message is in your voice, referencing the actual room and dates.",
   },
   {
-    q: "Does it work with my job software?",
-    a: "Jobs push into ServiceM8, simPRO and Tradify. Run something else? Mention it on the setup call and I'll confirm before you pay anything.",
+    q: "Does it work with my booking system?",
+    a: "Bookings push into Nightsbridge, RoomRaccoon and Semper, and it reads live availability from them. Run something else - even a paper book? Mention it on the setup call and I'll confirm before you pay anything.",
   },
   {
     q: "How quickly can we launch?",
-    a: "Inside 48 hours. Setup call, I build the flow for your trade and suburb, you call it and pick it apart, then we point your number at it.",
+    a: "Inside 48 hours. Setup call, I build the flow for your property and your town, you call it and pick it apart, then we point your number at it.",
   },
   {
     q: "What if I hate it?",
-    a: "Cancel and we unpoint the number the same day. No lock-in, no exit fee. You were a founding customer, not a hostage.",
+    a: "Cancel and we unpoint the number the same day. No lock-in, no exit fee. You were a founding property, not a hostage.",
   },
 ];
 
@@ -733,9 +727,9 @@ export function FinalCta() {
         <div className="final rv">
           <ShaderBackground className="surface" uniforms={GREEN_MESH_DEEP} />
           <div className="fc">
-            <h2>Let the next call become the next job.</h2>
+            <h2>Let the next call become the next booking.</h2>
             <p>
-              Ring the demo line and hear exactly what your customers would hear. No
+              Ring the demo line and hear exactly what your guests would hear. No
               form, no sales call - just pick up your phone.
             </p>
             <div className="row">
@@ -748,7 +742,7 @@ export function FinalCta() {
                 <span className="tic">✆</span>
               </a>
             </div>
-            <p className="fine">+61 2 4263 6501 · answers 24/7 · no credit card</p>
+            <p className="fine">Demo line · answers 24/7 · no credit card</p>
           </div>
         </div>
       </div>

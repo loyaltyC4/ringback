@@ -7,23 +7,20 @@ import { PhoneGlyph } from "@/components/site-chrome";
    CLIP LIBRARY
 
    Two frames, two independent queues that crossfade every ~7s
-   through cinematic vignettes of different AU trades. Same
-   golden-hour outdoor register across every clip so the two
-   frames always feel like the same film.
+   through cinematic vignettes of South African hospitality.
+   Same golden-hour register across every frame so the two
+   always feel like the same film. Stills for launch; video
+   swaps in later via the same mp4 field.
    ============================================================ */
 
-const ROOF_MP4 =
-  "https://pub.hyperagent.com/api/published/pbf01M23848X8_ZSSGC2DCJJ5YCNZW/on-the-roof.mp4";
-const ROOF_POSTER =
-  "https://pub.hyperagent.com/api/published/pbf01M23849PZ_8016520H92F13249/on-the-roof.jpg";
-const WORK_MP4 =
-  "https://pub.hyperagent.com/api/published/pbf01M238486G_R8J1KBD99D62XM25/to-work.mp4";
-const WORK_POSTER =
-  "https://pub.hyperagent.com/api/published/pbf01M23849EC_E7JYDK3G7XT5MEYQ/to-work.jpg";
-const LANDSCAPER_MP4 =
-  "https://pub.hyperagent.com/api/published/pbf01M2HZ52QN_JT75G2M6ZF6KM9RW/cc9356da-d793-4827-8b58-1bd77c5a4c7d.mp4";
-const CARPENTER_MP4 =
-  "https://pub.hyperagent.com/api/published/pbf01M2HZ54EH_XQ3WJQ9XCAEKA8WD/890c716d-cf87-4ac4-ba8f-cafefd9ea427.mp4";
+const SAFARI_IMG =
+  "https://hyperagent.com/api/files/usergenerated/threads/cmufjzk280fbs06ad76ocdjtu/images/d318eb03-8848-4e52-8937-a56c7c8801bc.png";
+const BREAKFAST_IMG =
+  "https://hyperagent.com/api/files/usergenerated/threads/cmufjzk280fbs06ad76ocdjtu/images/4b888970-7912-486c-a313-023fa5702d91.png";
+const LUGGAGE_IMG =
+  "https://hyperagent.com/api/files/usergenerated/threads/cmufjzk280fbs06ad76ocdjtu/images/64698c35-7cea-4fd1-8c0c-fd1b0621d6fc.png";
+const TURNDOWN_IMG =
+  "https://hyperagent.com/api/files/usergenerated/threads/cmufjzk280fbs06ad76ocdjtu/images/8c388d8b-c1b0-4948-b268-c8c8937f2215.png";
 
 type Clip = {
   mp4: string;
@@ -34,33 +31,34 @@ type Clip = {
   captions?: readonly ({ tone: "light" | "dark"; text: string } | null)[]; // for the tall frame
 };
 
-/** small frame - intimate / close, "hands-on-a-tool" shots */
+/** small frame - intimate / close, "hands-full" shots */
 const SMALL_QUEUE: Clip[] = [
   {
-    mp4: ROOF_MP4,
-    poster: ROOF_POSTER,
-    label: "Up the ladder",
-    aria: "A tradesperson working on a corrugated roof with a cordless drill",
+    mp4: SAFARI_IMG,
+    poster: SAFARI_IMG,
+    label: "You’re mid-safari",
+    aria: "A safari guide driving guests at sunrise, his phone face-down on the dashboard",
     chips: [
-      "Ringing · you’re up a ladder",
+      "Ringing · you’re on a game drive",
       "Answered in 1.8s",
-      "Emergency triaged",
-      "Availability checked",
-      "Booked · Thu 2:15pm",
-      "SMS confirmation sent",
+      "Dates checked",
+      "Courtyard Room held",
+      "Booked · Fri to Sun",
+      "WhatsApp confirmation sent",
     ],
   },
   {
-    mp4: CARPENTER_MP4,
-    label: "Nail gun’s going",
-    aria: "A carpenter using a pneumatic nailer on a timber deck at dawn",
+    mp4: BREAKFAST_IMG,
+    poster: BREAKFAST_IMG,
+    label: "Breakfast service",
+    aria: "A lodge hostess plating breakfast while the office phone rings in the background",
     chips: [
-      "Ringing · nail gun’s going",
+      "Ringing · breakfast is out",
       "Answered in 1.8s",
-      "Quote request logged",
-      "Site address captured",
-      "Booked · Wed 7am",
-      "SMS confirmation sent",
+      "Enquiry logged",
+      "Rates quoted",
+      "Booked · 2 nights",
+      "Deposit link sent",
     ],
   },
 ];
@@ -68,29 +66,30 @@ const SMALL_QUEUE: Clip[] = [
 /** tall frame - wider / atmospheric, "in-motion" shots */
 const TALL_QUEUE: Clip[] = [
   {
-    mp4: WORK_MP4,
-    poster: WORK_POSTER,
-    label: "You’re on the way",
-    aria: "A tradesperson walking to their work ute at sunrise",
+    mp4: LUGGAGE_IMG,
+    poster: LUGGAGE_IMG,
+    label: "You’re carrying bags",
+    aria: "A guest house owner carrying luggage up whitewashed steps in Franschhoek at golden hour",
     captions: [
       null,
-      { tone: "light", text: "“G’day, you’ve reached Kedron Plumbing - this is Emma.”" },
-      { tone: "dark", text: "“My hot water system’s just let go, there’s water everywhere.”" },
-      { tone: "light", text: "“Is it still leaking, or have you got the water off at the mains?”" },
-      { tone: "light", text: "“Dan can be there Thursday between 2 and 4 - I’ve held it for you.”" },
+      { tone: "light", text: "“Good evening, you’ve reached Riverstone Lodge - this is Emma.”" },
+      { tone: "dark", text: "“Hi - do you have anything for two nights, this weekend?”" },
+      { tone: "light", text: "“Checking the calendar… yes, the Courtyard Room is free.”" },
+      { tone: "light", text: "“Booked - Friday to Sunday, R3,400. Deposit link sent.”" },
       null,
     ],
   },
   {
-    mp4: LANDSCAPER_MP4,
-    label: "Headphones on",
-    aria: "A landscaper riding a commercial mower across a suburban lawn at golden hour",
+    mp4: TURNDOWN_IMG,
+    poster: TURNDOWN_IMG,
+    label: "Checkout’s at 10, check-in’s at 2",
+    aria: "A housekeeper turning down a boutique hotel room between guests",
     captions: [
       null,
-      { tone: "light", text: "“G’day, you’ve reached Kedron Plumbing - this is Emma.”" },
-      { tone: "dark", text: "“Yeah, the front lawn’s ruined and I need a quote.”" },
-      { tone: "light", text: "“No worries - what suburb are you in?”" },
-      { tone: "light", text: "“Dan’s free Friday morning - I’ve locked in 8:30 for a look.”" },
+      { tone: "light", text: "“Good evening, you’ve reached Riverstone Lodge - this is Emma.”" },
+      { tone: "dark", text: "“We’re driving through tomorrow - any chance of a room?”" },
+      { tone: "light", text: "“Of course - one night, king bed, R1,650.”" },
+      { tone: "light", text: "“All booked. I’ve WhatsApped the directions and gate code.”" },
       null,
     ],
   },
@@ -147,11 +146,11 @@ type Cap = { text: string; live: boolean; done?: boolean };
 
 const CAPTIONS: Cap[] = [
   { text: "Ringing…", live: false },
-  { text: "“G’day, you’ve reached Kedron Plumbing.”", live: true },
-  { text: "“My hot water system’s just let go.”", live: true },
-  { text: "Emergency · water off at the mains", live: true },
-  { text: "All booked - Thursday, 2:15pm", live: false, done: true },
-  { text: "Details texted to Dave", live: false, done: true },
+  { text: "“Good evening, you’ve reached Riverstone Lodge.”", live: true },
+  { text: "“Do you have a room for this weekend?”", live: true },
+  { text: "Courtyard Room · Fri to Sun · R3,400", live: true },
+  { text: "All booked - deposit link sent", live: false, done: true },
+  { text: "Details WhatsApped to Thandi", live: false, done: true },
 ];
 
 /**
@@ -207,7 +206,7 @@ function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => vo
       <div className="vb-stage">
         <span className="vb-id">
           <span className="vb-dot" data-ringing={beat === 0 || undefined} />
-          Kedron Plumbing
+          Riverstone Lodge
         </span>
         <p className="vb-sub" data-done={cap.done || undefined} aria-live="polite">
           {cap.text}
@@ -234,21 +233,32 @@ function VoiceBar({ beat, onHover }: { beat: number; onHover: (v: boolean) => vo
 function ClipStack({ queue, current }: { queue: Clip[]; current: number }) {
   return (
     <>
-      {queue.map((clip, k) => (
-        <video
-          key={k}
-          className="clip"
-          data-on={k === current || undefined}
-          src={clip.mp4}
-          poster={clip.poster}
-          muted
-          loop
-          playsInline
-          autoPlay
-          preload="auto"
-          aria-label={clip.aria}
-        />
-      ))}
+      {queue.map((clip, k) =>
+        // Stills phase: mp4 holds an image URL until the video clips are cut.
+        clip.mp4.match(/\.(png|jpe?g|webp)(\?|$)/) ? (
+          <img
+            key={k}
+            className="clip"
+            data-on={k === current || undefined}
+            src={clip.mp4}
+            alt={clip.aria}
+          />
+        ) : (
+          <video
+            key={k}
+            className="clip"
+            data-on={k === current || undefined}
+            src={clip.mp4}
+            poster={clip.poster}
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload="auto"
+            aria-label={clip.aria}
+          />
+        ),
+      )}
     </>
   );
 }
@@ -345,8 +355,8 @@ export function Hero() {
           {/* the interactive centrepiece: lede + sleek black voice bar with CTA */}
           <div className="hg-card">
             <p className="lede">
-              The AI receptionist for Australian trades. Picks up in two seconds, books
-              the job, and <b>follows up so the quote doesn&rsquo;t go cold.</b>
+              The AI receptionist for South African guest houses, lodges and B&amp;Bs. Picks up in two seconds, books
+              the room, and <b>follows up so the enquiry doesn&rsquo;t go cold.</b>
             </p>
             <VoiceBar beat={i} onHover={setPaused} />
           </div>

@@ -1,7 +1,7 @@
-# RingBack
+# StaysAfrica
 
-Marketing site and operator prototypes for RingBack — the AI receptionist for
-Australian trades.
+Marketing site and operator prototypes for StaysAfrica — the AI receptionist for
+South African guest houses, lodges and B&Bs.
 
 ## Stack
 
@@ -89,7 +89,7 @@ variable switches one real system on.
 | `SUPABASE_SERVICE_ROLE_KEY` | Trusted server writes: telephony + Stripe webhooks, tenant provisioning. |
 | `STRIPE_SECRET_KEY` / `STRIPE_PRICE_FOUNDING` | Real Stripe Checkout behind the pay sheet. |
 | `STRIPE_WEBHOOK_SECRET` | Signature verification on `/api/stripe/webhook`. |
-| `CALL_WEBHOOK_SECRET` | Accepts inbound calls on `/api/calls/inbound` (header `x-ringback-secret`). |
+| `CALL_WEBHOOK_SECRET` | Accepts inbound calls on `/api/calls/inbound` (header `x-staysafrica-answers-secret`). |
 | `RETELL_API_KEY` | Real voice: dials/configures Retell and verifies the signature on `/api/webhooks/retell` and `/api/tools/book-appointment`. |
 | `TWILIO_ACCOUNT_SID` / `TWILIO_AUTH_TOKEN` / `TWILIO_FROM_NUMBER` | Sends the SMS confirmation after a call ends or a job books. |
 | `NEXT_PUBLIC_SITE_URL` | Absolute URLs in auth + checkout redirects. |
@@ -119,4 +119,4 @@ Both verify Retell's HMAC-SHA256 signature (`x-retell-signature`, keyed by
 Every call must be dialled into Retell with `metadata: { tenant, caller_name,
 suburb }`, where `tenant` is the `rb_tenants.id` (or `owner_email`) — that's
 how a shared agent config maps back to the right dashboard. The demo line
-uses `demo@ringback.com.au`.
+uses `demo@staysafrica-answers.com.au`.
