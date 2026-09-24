@@ -24,13 +24,13 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Voxline - never miss a job because you couldn't pick up",
+  title: "StaysAfrica - never miss a booking because you couldn't pick up",
   description:
-    "Voxline is the AI receptionist for Australian trades. Answers every call in two seconds, books the job into your calendar, texts you the details, and follows up so quotes don't go cold.",
+    "StaysAfrica is the AI receptionist for South African guest houses, lodges and B&Bs. Answers every call in two seconds, books the room, WhatsApps you the details, and follows up so enquiries don't go cold.",
   openGraph: {
-    title: "Voxline - every call answered",
+    title: "StaysAfrica - every call answered",
     description:
-      "The AI receptionist for Australian trades. Picks up in two seconds, books the job, follows up.",
+      "The AI receptionist for South African guest houses and lodges. Picks up in two seconds, books the room, follows up.",
     type: "website",
   },
 };
@@ -41,7 +41,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-AU" className={`${bricolage.variable} ${instrument.variable} ${jetbrains.variable}`}>
+    <html lang="en-ZA" className={`${bricolage.variable} ${instrument.variable} ${jetbrains.variable}`}>
       <body>
         <div className="page-grain" aria-hidden />
         {children}

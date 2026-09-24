@@ -117,11 +117,11 @@ export function Nav() {
         {/* two islands rather than one bar: navigation on the left, account
             and the call to action on the right */}
         <div className="nav-in nav-left">
-          <a href="#top" className="brand" aria-label="Voxline home">
+          <a href="#top" className="brand" aria-label="StaysAfrica home">
             <span className="mk">
               <PhoneGlyph />
             </span>
-            Voxline
+            StaysAfrica
           </a>
           <span className="nav-rule" aria-hidden />
           <div className="nlinks">
@@ -182,12 +182,10 @@ export function Nav() {
 
 /** logo art is inlined in app/logos.css as `.logo-<slug>` custom properties */
 const TOOLS = [
-  { slug: "servicem8", name: "ServiceM8", w: 104 },
-  { slug: "simpro", name: "Simpro", w: 92 },
-  { slug: "tradify", name: "Tradify", w: 86 },
-  { slug: "aroflo", name: "AroFlo", w: 82 },
-  { slug: "xero", name: "Xero", w: 66 },
-  { slug: "myob", name: "MYOB", w: 74 },
+  { slug: "nightsbridge", name: "Nightsbridge", w: 116 },
+  { slug: "roomraccoon", name: "RoomRaccoon", w: 122 },
+  { slug: "semper", name: "Semper", w: 76 },
+  { slug: "whatsapp", name: "WhatsApp", w: 96 },
   { slug: "google-calendar", name: "Google Calendar", w: 84 },
   { slug: "outlook", name: "Outlook", w: 88 },
 ];
@@ -212,6 +210,7 @@ export function IntegrationStrip() {
                     key={`${copy}-${t.slug}`}
                     style={{ width: t.w }}
                     title={t.name}
+                    data-name={t.name}
                   />
                 ))}
               </div>
@@ -240,11 +239,11 @@ export function Footer() {
               <span className="mk">
                 <PhoneGlyph />
               </span>
-              Voxline
+              StaysAfrica
             </a>
             <p>
-              The AI receptionist for Australian trades. Every call answered, every job
-              booked, every quote followed up.
+              The AI receptionist for South African guest houses, lodges and B&Bs. Every call answered, every room
+              booked, every enquiry followed up.
             </p>
           </div>
           <div className="f-cols">
@@ -270,15 +269,15 @@ export function Footer() {
             </div>
             <div className="f-col">
               <h5>Integrations</h5>
-              <a href="#stages">ServiceM8</a>
-              <a href="#stages">simPRO</a>
-              <a href="#stages">Xero</a>
+              <a href="#stages">Nightsbridge</a>
+              <a href="#stages">RoomRaccoon</a>
+              <a href="#stages">Semper</a>
             </div>
           </div>
         </div>
         <div className="f-bot">
-          <span>© {new Date().getFullYear()} Voxline</span>
-          <span>Brisbane, Australia</span>
+          <span>© {new Date().getFullYear()} StaysAfrica</span>
+          <span>Cape Town, South Africa</span>
         </div>
       </div>
     </footer>
