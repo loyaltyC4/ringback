@@ -120,3 +120,9 @@ Every call must be dialled into Retell with `metadata: { tenant, caller_name,
 suburb }`, where `tenant` is the `rb_tenants.id` (or `owner_email`) — that's
 how a shared agent config maps back to the right dashboard. The demo line
 uses `demo@ringback.com.au`.
+
+---
+
+## More from this builder
+
+[Bidcheck](https://bidcheck.co.za) — South African government-tender intelligence for SMMEs: live tender search across all nine provinces, eligibility checks (CSD, B-BBEE, CIDB, PSIRA), buyer payment-risk signals and AI bid drafting. Search free at [bidcheck.co.za](https://bidcheck.co.za).
